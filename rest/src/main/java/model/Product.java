@@ -7,22 +7,24 @@ import enumeration.ProductType;
 @XmlRootElement
 public class Product {
 	
+	private String id;
 	private String name;
 	private float price;
 	private ProductType type;
-	private Restaurant restaurant;
+	//private Restaurant restaurant;
 	private int quantity; //u g ili ml
 	private String description;
 	private boolean deleted = false;
 	// SLIKA
 	
-	public Product(String name, float price, ProductType type, Restaurant restaurant, int quantity,
+	public Product(String id, String name, float price, ProductType type, Restaurant restaurant, int quantity,
 			String description) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.type = type;
-		this.restaurant = restaurant;
+		//this.restaurant = restaurant;
 		this.quantity = quantity;
 		this.description = description;
 	}
@@ -51,13 +53,13 @@ public class Product {
 		this.type = type;
 	}
 
-	public Restaurant getRestaurant() {
-		return restaurant;
-	}
-
-	public void setRestaurant(Restaurant restaurant) {
-		this.restaurant = restaurant;
-	}
+//	public Restaurant getRestaurant() {
+//		return restaurant;
+//	}
+//
+//	public void setRestaurant(Restaurant restaurant) {
+//		this.restaurant = restaurant;
+//	}
 
 	public int getQuantity() {
 		return quantity;
@@ -81,6 +83,14 @@ public class Product {
 
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	

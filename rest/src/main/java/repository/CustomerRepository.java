@@ -7,13 +7,12 @@ public class CustomerRepository extends GenericRepository<Customer, CustomerRepo
 
 	@Override
 	protected String getFileName() {		
-		return "testjson.json";
+		return "customerData.json";
 	}
 
 	@Override
 	protected String getKey(Customer e) {
 		return e.getId();
 	}
-
 	
 }
