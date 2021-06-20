@@ -3,8 +3,11 @@ package model;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import enumeration.OrderStatus;
 
+@XmlRootElement
 public class Order {
 	
 	private String id; // 10 karaktera

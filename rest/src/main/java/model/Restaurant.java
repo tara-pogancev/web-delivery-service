@@ -2,8 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import enumeration.RestaurantStatus;
 
+@XmlRootElement
 public class Restaurant {
 
 	private String name; 
@@ -11,6 +14,7 @@ public class Restaurant {
 	private ArrayList<Product> products;
 	private RestaurantStatus status;
 	private Location location;
+	private boolean deleted = false;
 	//SLIKA
 	
 	public Restaurant(String name, String type, RestaurantStatus status, Location location) {
@@ -65,6 +69,14 @@ public class Restaurant {
 	public void addProduct(Product product) {
 		if (!this.products.contains(product))
 			this.products.add(product);
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 		
 }

@@ -1,5 +1,8 @@
 package model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class CustomerType {
 
 	private String name;
@@ -35,8 +38,5 @@ public class CustomerType {
 	public float getDiscountFloat() {
 		return this.discount/100;
 	}
-	
-	
-	
 	
 }

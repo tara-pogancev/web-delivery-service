@@ -1,7 +1,10 @@
 package model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import enumeration.ProductType;
 
+@XmlRootElement
 public class Product {
 	
 	private String name;
@@ -10,6 +13,7 @@ public class Product {
 	private Restaurant restaurant;
 	private int quantity; //u g ili ml
 	private String description;
+	private boolean deleted = false;
 	// SLIKA
 	
 	public Product(String name, float price, ProductType type, Restaurant restaurant, int quantity,
@@ -69,6 +73,14 @@ public class Product {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 	
 	

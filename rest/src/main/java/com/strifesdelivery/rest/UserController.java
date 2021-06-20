@@ -16,7 +16,6 @@ public class UserController {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getUser()
 	{
-
 		User tempUser = new User("1", "123", "Tara", "Valentine", Gender.FEMALE, "2000-02-03", UserCategory.ADMIN);
 		return tempUser.getId();
 	}

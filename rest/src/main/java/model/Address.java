@@ -1,10 +1,13 @@
 package model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Address {
 
 	private String addressName;	//ulica i broj
 	private String city;
-	private int postalCode;
+	private int postalCode;	
 	
 	public Address(String addressName, String city, int postalCode) {
 		super();

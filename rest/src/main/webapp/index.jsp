@@ -41,7 +41,7 @@
         </div>
 
         <div class="button">
-            <a href="webapi/users" class="btn">Order now!</a>
+            <a href="webapi/customers/new" class="btn">Order now!</a>
         </div>
 
     </header>

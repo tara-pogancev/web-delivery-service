@@ -3,9 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import enumeration.Gender;
 import enumeration.UserCategory;
 
+@XmlRootElement
 public class Deliverer extends User {
 
 	private ArrayList<Order> ordersToDeliver;

@@ -5,26 +5,47 @@ import java.util.ArrayList;
 public class Cart {
 
 	private ArrayList<CartItem> items;
-	private Customer cartOwener;
+	private String cartOwnerId;
 	private float totalPrice;
+	private boolean deleted = false;
 	
-	public Cart(ArrayList<CartItem> items, Customer cartOwener, float totalPrice) {
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
+	public Cart(ArrayList<CartItem> items, String cartOwner, float totalPrice) {
 		super();
 		this.items = items;
-		this.cartOwener = cartOwener;
+		this.cartOwnerId = cartOwner;
 		this.totalPrice = totalPrice;
 	}
+	
+	public Cart(String cartOwner) {
+		super();
+		this.items = new ArrayList<CartItem>();
+		this.cartOwnerId = cartOwner;
+		this.totalPrice = 0;
+	}
+	
 	public ArrayList<CartItem> getItems() {
 		return items;
 	}
 	public void setItems(ArrayList<CartItem> items) {
 		this.items = items;
 	}
-	public Customer getCartOwener() {
-		return cartOwener;
+	public Customer getCartOwner() {
+		// TODO Customer owener
+		return null;
 	}
-	public void setCartOwener(Customer cartOwener) {
-		this.cartOwener = cartOwener;
+	public String getCartOwnerId() {
+		return this.cartOwnerId;
+	}
+	public void setCartOwner(Customer cartOwner) {
+		this.cartOwnerId = cartOwner.getId();
 	}
 	public float getTotalPrice() {
 		return totalPrice;
@@ -32,8 +53,5 @@ public class Cart {
 	public void setTotalPrice(float totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	
-	//TODO logika za dodavanje elementa i brisanje elementa iz korpe
-	
-	
+
 }

@@ -18,7 +18,14 @@ public class User {
 	private Gender gender;
 	private Date dateOfBirth;
 	private UserCategory category;
+	private boolean deleted;
 	
+	public boolean isDeleted() {
+		return deleted;
+	}
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
 	public String getId() {
 		return id;
 	}
@@ -71,6 +78,7 @@ public class User {
 		this.gender = gender;
 		this.dateOfBirth = dateOfBirth;
 		this.category = category;
+		this.deleted = false;
 	}
 	
 	public User(String id, String password, String name, String lastName, Gender gender, String dateOfBirth,
@@ -81,13 +89,14 @@ public class User {
 		this.name = name;
 		this.lastName = lastName;
 		this.gender = gender;
+		this.deleted = false;
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		java.util.Date yourDate = null;
 		try {
 			yourDate = sdf.parse(dateOfBirth);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
