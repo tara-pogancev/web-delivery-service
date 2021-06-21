@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Set;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -105,6 +106,10 @@ public abstract class GenericRepository<Entity, StorageType extends GenericRepos
 		
 		return null;
 
+	}
+	
+	public Set<String> getKeySet() {		
+		return getMap().keySet();		
 	}
 	
 }

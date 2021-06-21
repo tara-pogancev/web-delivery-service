@@ -1095,7 +1095,7 @@ footer .social li a {
   color: #fff;
   text-align: center;
   background-color: transparent;
-  border: 1px solid #fff;
+  /*border: 1px solid #fff;*/
   width: 44px;
   height: 44px;
   line-height: 44px;
@@ -1106,6 +1106,10 @@ footer .social li a {
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
+}
+
+footer .social li a img {
+  width: 44px;
 }
 
 footer .social li a:hover {
