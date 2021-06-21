@@ -2,6 +2,8 @@ package model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import enumeration.CommentState;
+
 @XmlRootElement
 public class Comment {
 
@@ -10,6 +12,8 @@ public class Comment {
 	private Restaurant restaurant; 
 	private String text;
 	private int rating;
+	private CommentState state = CommentState.WAITING;
+	
 	
 	public Comment(Customer author, Restaurant restaurant, String text, int rating) {
 		super();
@@ -59,6 +63,14 @@ public class Comment {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public CommentState getState() {
+		return state;
+	}
+
+	public void setState(CommentState state) {
+		this.state = state;
 	}
 	
 	
