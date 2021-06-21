@@ -6,6 +6,8 @@
     <title>Strife Delivery Service | Homepage</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/frontpage.css'>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
     
@@ -30,7 +32,7 @@
                     <a href="#">Restaurants</a>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="userList.html">Contact</a>
                 </li>
             </ul>
         </div>

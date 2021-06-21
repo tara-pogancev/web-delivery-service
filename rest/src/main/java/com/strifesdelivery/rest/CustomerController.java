@@ -9,7 +9,9 @@ import javax.ws.rs.core.MediaType;
 
 import enumeration.Gender;
 import enumeration.UserCategory;
+import model.Admin;
 import model.Customer;
+import repository.AdminRepository;
 import repository.CustomerRepository;
 
 @Path("customers")
@@ -31,12 +33,11 @@ public class CustomerController {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String createCustomer(Customer c)
 	{
-		System.out.println("Creating new customer");
-		
-		Customer c1 = new Customer("1", "123", "Tara", "Valentine", Gender.FEMALE, "2000-02-03", UserCategory.CUSTOMER);
-		repo.create(c1);
+		Admin a1 = new Admin("admin", "admin", "admin", "Valentine", Gender.FEMALE, "2000-02-03", UserCategory.ADMIN);
+		AdminRepository repoa = new AdminRepository();
+		repoa.create(a1);
 						
-		return "New customer added.";
+		return "New adminy added.";
 	}
 	
 	

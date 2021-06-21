@@ -89,7 +89,7 @@ public abstract class GenericRepository<Entity, StorageType extends GenericRepos
 		try {
 			map = mapper.readValue(file, new TypeReference<Map<String, Entity>>(){});
 			
-			System.out.println("Mapa uspesno procitana sa : " + map.size() + " entiteta.");
+			//System.out.println("Mapa uspesno procitana sa : " + map.size() + " entiteta.");
 			
 			return map;
 		} catch (JsonParseException e) {
