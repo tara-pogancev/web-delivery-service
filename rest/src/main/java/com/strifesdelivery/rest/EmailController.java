@@ -34,9 +34,7 @@ public class EmailController {
 	@Path("/sendEmail")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void sendEmail(String par)
-	{	
-		System.out.println(par);
-		
+	{			
 		ObjectMapper objectMapper = new ObjectMapper();
 		Email emailPar = null;
 		try {

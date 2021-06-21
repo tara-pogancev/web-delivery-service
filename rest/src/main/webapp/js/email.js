@@ -4,7 +4,16 @@ const	form = document.getElementById('contact'),
 function getFormData(e) {
 	
 	e.preventDefault();	
-	sendEmail();	
+	
+	var name = document.getElementById('name').value;
+	var email = document.getElementById('email').value;
+	var content = document.getElementById('form-message').value;
+	
+	if (name && email && content)	
+		sendEmail();	
+		
+	else 
+		alert("Please fill in all fields!")
 }
 
 function sendEmail() {	
@@ -15,6 +24,10 @@ function sendEmail() {
 		"email" : document.getElementById('email').value,
 		"content" : document.getElementById('form-message').value	
 		
+	})
+	.then(response => {
+    	alert("Thank you! Your email has been sent!");
+		window.location.reload();
 	});	
 	
 }
