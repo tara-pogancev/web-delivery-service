@@ -795,6 +795,74 @@ about
   display: inline-block;
 }
 
+/*
+---------------------------------------------
+restaurant
+---------------------------------------------
+*/
+
+
+@media (max-width: 992px) {
+  .features-restaurant {
+    margin-bottom: 45px;
+  }
+}
+
+.features-restaurant-container {
+  padding-bottom: 40px;  
+}
+
+.features-restaurant {
+  border-radius: 5px;
+  padding: 0px 0px 30px 0px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+  transition: transform .6s;
+}
+
+.features-restaurant:hover {
+   transform: scale(1.03);
+}
+
+.features-restaurant h2 {
+  z-index: 9;
+  position: absolute;
+  top: 15px;
+  left: 45px;
+  font-size: 100px;
+  font-weight: 600;
+  color: #fdefe9;
+}
+
+.features-restaurant h4 {
+  margin-top: 0px;
+  font-size: 22px;
+  color: #1e1e1e;
+  margin-bottom: 25px;
+}
+
+.features-restaurant-picture img {  
+  max-width:100%;
+}
+
+.features-restaurant-picture {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 40px;
+
+  display: flex;
+  align-items: center; /* vertical */
+  justify-content: center; /* horizontal */
+
+}
+
+.features-restaurant .main-button {
+  margin-top: 35px;
+  display: inline-block;
+}
+
 
 /*
 ---------------------------------------------
@@ -983,6 +1051,16 @@ footer {
   margin-top: 200px;
   padding-top: 120px;
   background-image: url(../images/footer-bg.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  width: 100%;
+}
+
+.footer-small {
+  margin-top: 200px;
+  padding-top: 120px;
+  background-image: url(../images/footer-bg-small.png);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;

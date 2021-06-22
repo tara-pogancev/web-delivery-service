@@ -19,7 +19,6 @@ function getFormData(e) {
 function sendEmail() {	
 	
 	axios.post('webapi/email/sendEmail', { 
-		"id": null,
 		"name" : document.getElementById('name').value,
 		"email" : document.getElementById('email').value,
 		"content" : document.getElementById('form-message').value	

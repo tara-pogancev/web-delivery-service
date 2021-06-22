@@ -4,7 +4,6 @@ import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
@@ -23,6 +22,7 @@ public class EmailController {
 	@Context
 	ServletContext ctx;
 	
+	@SuppressWarnings("unused")
 	public void init() {
 		if (ctx.getAttribute("emails") == null) {
 	    	String contextPath = ctx.getRealPath("");
