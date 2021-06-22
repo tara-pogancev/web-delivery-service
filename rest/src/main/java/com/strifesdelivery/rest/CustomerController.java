@@ -1,10 +1,13 @@
 package com.strifesdelivery.rest;
 
+import java.io.File;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import enumeration.Gender;
@@ -18,6 +21,17 @@ import repository.CustomerRepository;
 public class CustomerController {
 
 	CustomerRepository repo = new CustomerRepository();
+	
+	@Context
+	ServletContext ctx;
+	
+	@SuppressWarnings("unused")
+	public void init() {
+		if (ctx.getAttribute("customers") == null) {
+	    	String contextPath = ctx.getRealPath("");
+			ctx.setAttribute("customers", new CustomerRepository());
+		}
+	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
@@ -33,12 +47,16 @@ public class CustomerController {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String createCustomer(Customer c)
 	{
-		Admin a1 = new Admin("admin", "admin", "admin", "Valentine", Gender.FEMALE, "2000-02-03", UserCategory.ADMIN);
+		Admin a1 = new Admin("1", "admin", "admin", "Valentine", Gender.FEMALE, "2000-02-03", UserCategory.ADMIN);
 		AdminRepository repoa = new AdminRepository();
+		repoa.setBasePath(ctx.getRealPath("") + "WEB-INF" + File.separator + "classes" + File.separator + "data" + File.separator);
 		repoa.create(a1);
-						
-		return "New adminy added.";
+			
+		return "Sheeesh.";
 	}
 	
+	public String getDataDirPath() {
+		return (ctx.getRealPath("") + "WEB-INF" + File.separator + "classes" + File.separator + "data" + File.separator);
+	}
 	
 }

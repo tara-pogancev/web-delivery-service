@@ -16,24 +16,31 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public abstract class GenericRepository<Entity, StorageType extends GenericRepository<Entity, StorageType>>
 	implements IGenericRepository<Entity>
 {
-	//Abstraktna klasa sa CRUD operacijama
+	//Abstraktna klasa sa CRUD operacijama, koristi mapu
 	
 	protected abstract String getFileName();	
 	protected abstract String getKey(Entity e);
 	
+	private String basePath;
+	
+	public void setBasePath(String path) {
+		this.basePath = path;
+	}
+	
 	private String getPath() {
-		return "C:\\Users\\Tara\\Desktop\\FTN\\Veb programiranje\\&PROJEKAT\\web-delivery-service\\rest\\data\\" + getFileName();
+		//return "C:\\Users\\Tara\\Desktop\\FTN\\Veb programiranje\\&PROJEKAT\\web-delivery-service\\rest\\data\\" + getFileName();
+		return this.basePath + "WEB-INF" + File.separator + "classes" + File.separator + "data" + File.separator + getFileName();
 	}
 
     private void writeFile(Map<String, Entity> entities)
     {
-    	ObjectMapper mapper = new ObjectMapper();
+    	ObjectMapper mapper = new ObjectMapper();    	
     	
     	try {
     		File file = new File(getPath());
     		
-    		//String path = file.getPath();
-            //System.out.println(path);		
+    		String path = file.getPath();
+            System.out.println(path);		
     		
 			mapper.writeValue(file, entities);            
 			
