@@ -1,2 +1,0 @@
-Orange: FF6600
-Red: FF046F

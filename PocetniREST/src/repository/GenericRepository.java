@@ -28,9 +28,7 @@ public abstract class GenericRepository<Entity, StorageType extends GenericRepos
 	}
 	
 	private String getPath() {
-		//return "C:\\Users\\Tara\\Desktop\\FTN\\Veb programiranje\\&PROJEKAT\\web-delivery-service\\rest\\src\\main\\java\\data\\" + getFileName();
-		return "\\src\\data\\" + getFileName();
-		//return this.basePath + getFileName();
+		return this.basePath + getFileName();
 	}
 
     private void writeFile(Map<String, Entity> entities)

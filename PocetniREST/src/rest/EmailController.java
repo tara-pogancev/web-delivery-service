@@ -34,20 +34,9 @@ public class EmailController {
 	@POST
 	@Path("/sendEmail")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void sendEmail(String par)
+	public void sendEmail(Email emailPar)
 	{			
-		repo.setBasePath(ctx.getRealPath(""));
-		System.out.println(ctx.getRealPath(""));
-		
-		ObjectMapper objectMapper = new ObjectMapper();
-		Email emailPar = null;
-		try {
-			emailPar = objectMapper.readValue(par, Email.class);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		System.out.println("izlazak");
+		repo.setBasePath(getDataDirPath());
 		
 		emailPar.setId(repo);
 		System.out.println("Sending email from " + emailPar.getName() + "...");		
@@ -56,21 +45,9 @@ public class EmailController {
 		System.out.println("Email sent!");	
 		
 	}
-	
-	@GET
-	@Path("/getEmail")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public String sendEmail()
-	{			
-			
-		return "Hello";
 		
-	}
-	
 	public String getDataDirPath() {
-		System.out.println(ctx.getRealPath("") + "WEB-INF" + File.separator + "classes" + File.separator + "data" + File.separator);
-		return (ctx.getRealPath("") + "WEB-INF" + File.separator + "classes" + File.separator + "data" + File.separator);
+		return (ctx.getRealPath("") + "WEB-INF\\classes\\data\\");
 	}
 
 }
