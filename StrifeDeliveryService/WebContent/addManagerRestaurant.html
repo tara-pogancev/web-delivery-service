@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>Add New Restaurant - Strife Delivery Service</title>
+	<title>Add New Manager - Strife Delivery Service</title>
 	<meta charset="utf-8">
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -13,7 +13,6 @@
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/template.css">
-	<link rel="stylesheet" href="css/owl-carousel.css">
 
 </head>
 
@@ -65,48 +64,80 @@
 	</section>
 
 
-	<section class="r-section r-section-white" style="width: 60%; min-width: 900px;">
+	<section class="r-section r-section-white" style="width: 40%; min-width: 600px;">
 
 		<div class="row equal">
-			<div class="col-6">
-				<h1>Add Manager</h1>
+			<div class="col-12">
+				<h1>Create New Manager</h1>
 				<hr>
 				<div class="r-gap"></div>
 
 				<div class="r-row" style="margin-bottom: 20px;">
 					<div class="col-4">
-						<label>Select manager:</label>
+						<label>Username::</label>
+					</div>
+					<div align="right" class="col-8">
+						<input type="text" id="username" placeholder="Enter username..." style="width: 300px;">
+					</div>
+				</div>
+
+				<div class="r-row" style="margin-bottom: 20px;">
+					<div class="col-4">
+						<label>Password:</label>
+					</div>
+					<div align="right" class="col-8">
+						<input type="text" id="password" placeholder="Enter password..." style="width: 300px;">
+					</div>
+				</div>
+
+				<div class="r-row" style="margin-bottom: 20px;">
+					<div class="col-4">
+						<label>Name:</label>
+					</div>
+					<div align="right" class="col-8">
+						<input type="text" id="name" placeholder="Enter name..." style="width: 300px;">
+					</div>
+				</div>
+
+				<div class="r-row" style="margin-bottom: 20px;">
+					<div class="col-4">
+						<label>Last name:</label>
+					</div>
+					<div align="right" class="col-8">
+						<input type="text" id="last" placeholder="Enter last name..." style="width: 300px;">
+					</div>
+				</div>
+
+				<div class="r-row" style="margin-bottom: 20px;">
+					<div class="col-4">
+						<label>Date of birth:</label>
+					</div>
+					<div align="right" class="col-8">
+						<input type="date" id="date-of-birth" style="width: 300px;">
+					</div>
+				</div>
+
+				<div class="r-row" style="margin-bottom: 20px;">
+					<div class="col-4">
+						<label>Select gender:</label>
 					</div>
 
 					<div align="right" class="col-8">
-						<select id="manager-sel" name="manager-sel" style="width: 300px;">
-							<option value="null">-</option>
-							<option value="o1">Jack</option>
-							<option value="o2">Cloud</option>
+						<select id="gender" name="gender" style="width: 300px;">
+							<option value="male">Male</option>
+							<option value="female">Female</option>
 						</select>
 					</div>
-
-
 				</div>
 
-				<div align="right" style="margin-right: 15px;">
-					<a class="main-button" href="addManagerRestaurant.html">Create new manager</a>
-				</div>
-
-				<div class="r-gap" style="margin-top: 200px;"></div>
+				<div class="r-gap" style="margin-top: 60px;"></div>
 
 				<div class="col-12 r-row-center">
-					<a class="main-button" href="#">Finish</a>
+					<a class="main-button" href="#">Create</a>
 				</div>
 
 				<div class="r-gap">.</div>
 
-			</div>
-
-			<div class="col-6">
-				<div class="r-center">
-					<img src="images/cloud-image.png" style="height: 350px;">
-				</div>
 			</div>
 
 		</div>
@@ -150,6 +181,7 @@
 	<!-- Global Init -->
 	<script src="js/custom.js"></script>
 	<script src="js/newRestaurant/newRestaurant.js"></script>
+	<script src="js/manager.js"></script>
 
 </body>
 
