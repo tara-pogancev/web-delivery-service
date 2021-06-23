@@ -12,23 +12,25 @@ import enumeration.UserCategory;
 public class Customer extends User {
 
 	private ArrayList<Order> orders;
-	private Cart cart;
+	private CustomerType customerType;
 	private int points;
-	private boolean blocked = false;
+	private boolean blocked = false;	
 	
 	public Customer(String id, String password, String name, String lastName, Gender gender, Date dateOfBirth,
 			UserCategory category) {
 		super(id, password, name, lastName, gender, dateOfBirth, category);
+		this.setCategory(UserCategory.CUSTOMER);
 		this.orders = new ArrayList<Order>();
-		this.cart = new Cart(id);
+		this.customerType = new CustomerType("BRONZE", 0, 0);
 		this.points = 0;
 	}
 	
 	public Customer(String id, String password, String name, String lastName, Gender gender, String dateOfBirth,
 			UserCategory category) {
 		super(id, password, name, lastName, gender, dateOfBirth, category);
+		this.setCategory(UserCategory.CUSTOMER);
 		this.orders = new ArrayList<Order>();
-		this.cart = new Cart(id);
+		this.customerType = new CustomerType("BRONZE", 0, 0);
 		this.points = 0;
 	}
 	
@@ -38,12 +40,6 @@ public class Customer extends User {
 	}
 	public void setOrders(ArrayList<Order> orders) {
 		this.orders = orders;
-	}
-	public Cart getCart() {
-		return cart;
-	}
-	public void setCart(Cart cart) {
-		this.cart = cart;
 	}
 	public int getPoints() {
 		return points;
@@ -58,6 +54,14 @@ public class Customer extends User {
 
 	public void setBlocked(boolean blocked) {
 		this.blocked = blocked;
+	}
+
+	public CustomerType getCustomerType() {
+		return customerType;
+	}
+
+	public void setCustomerType(CustomerType customerType) {
+		this.customerType = customerType;
 	}
 	
 	
