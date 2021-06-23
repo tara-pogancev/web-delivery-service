@@ -21,6 +21,7 @@ public abstract class GenericRepository<Entity, StorageType extends GenericRepos
 	protected abstract String getFileName();	
 	protected abstract String getKey(Entity e);
 	
+	@SuppressWarnings("unused")
 	private String basePath;
 	
 	public void setBasePath(String path) {
@@ -29,7 +30,7 @@ public abstract class GenericRepository<Entity, StorageType extends GenericRepos
 	
 	private String getPath() {
 		//return this.basePath + getFileName();
-		return "C:\\Users\\Tara\\Desktop\\FTN\\Veb programiranje\\&PROJEKAT\\web-delivery-service\\PocetniREST\\src\\data\\" + getFileName();
+		return "C:\\Users\\Tara\\Desktop\\FTN\\Veb programiranje\\&PROJEKAT\\web-delivery-service\\StrifeDeliveryService\\src\\data\\" + getFileName();
 	}
 
     private void writeFile(Map<String, Entity> entities)
