@@ -30,8 +30,7 @@ public class Email {
 		return id;
 	}
 
-	public void setId() {
-		EmailRepository repo = new EmailRepository();
+	public void setId(EmailRepository repo) {
 		this.id = IdGenerator.getInstance().generateId(repo.getKeySet(), 5);
 	}
 
@@ -57,6 +56,10 @@ public class Email {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public void setId(String id) {
+		this.id = id;		
 	}
 		
 }

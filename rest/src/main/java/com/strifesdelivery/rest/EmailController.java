@@ -1,5 +1,7 @@
 package com.strifesdelivery.rest;
 
+import java.io.File;
+
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -35,6 +37,8 @@ public class EmailController {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void sendEmail(String par)
 	{			
+		//repo.setBasePath(ctx.getRealPath("") + "WEB-INF" + File.separator + "classes" + File.separator + "data" + File.separator);
+		
 		ObjectMapper objectMapper = new ObjectMapper();
 		Email emailPar = null;
 		try {
@@ -45,12 +49,17 @@ public class EmailController {
 			e.printStackTrace();
 		} 
 		
-		emailPar.setId();
-		
-		System.out.println("Sending email from " + emailPar.getName() + "...");				
+		emailPar.setId(repo);
+		System.out.println("Sending email from " + emailPar.getName() + "...");		
+				
 		repo.create(emailPar);		
 		System.out.println("Email sent!");	
 		
+	}
+	
+	public String getDataDirPath() {
+		System.out.println(ctx.getRealPath("") + "WEB-INF" + File.separator + "classes" + File.separator + "data" + File.separator);
+		return (ctx.getRealPath("") + "WEB-INF" + File.separator + "classes" + File.separator + "data" + File.separator);
 	}
 
 }
