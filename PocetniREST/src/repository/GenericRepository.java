@@ -28,7 +28,8 @@ public abstract class GenericRepository<Entity, StorageType extends GenericRepos
 	}
 	
 	private String getPath() {
-		return this.basePath + getFileName();
+		//return this.basePath + getFileName();
+		return "C:\\Users\\Tara\\Desktop\\FTN\\Veb programiranje\\&PROJEKAT\\web-delivery-service\\PocetniREST\\src\\data\\" + getFileName();
 	}
 
     private void writeFile(Map<String, Entity> entities)
@@ -36,10 +37,11 @@ public abstract class GenericRepository<Entity, StorageType extends GenericRepos
     	ObjectMapper mapper = new ObjectMapper();    	
     	
     	try {
+    		
     		File file = new File(getPath());
     		
-    		String path = file.getPath();
-            System.out.println(path);		
+    		//String path = file.getPath();
+            //System.out.println(path);		
     		
 			mapper.writeValue(file, entities);            
 			
