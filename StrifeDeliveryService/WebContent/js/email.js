@@ -9,6 +9,7 @@ function getFormData(e) {
 	var email = document.getElementById('email').value;
 	var content = document.getElementById('form-message').value;
 	
+	
 	if (name && email && content)	
 		sendEmail();	
 		
