@@ -30,7 +30,8 @@ public abstract class GenericRepository<Entity, StorageType extends GenericRepos
 	
 	private String getPath() {
 		//return this.basePath + getFileName();
-		return "C:\\Users\\Tara\\Desktop\\FTN\\Veb programiranje\\&PROJEKAT\\web-delivery-service\\StrifeDeliveryService\\src\\data\\" + getFileName();
+		//return "C:\\Users\\Tara\\Desktop\\FTN\\Veb programiranje\\&PROJEKAT\\web-delivery-service\\StrifeDeliveryService\\src\\data\\" + getFileName();
+		return "C:\\Users\\filip\\Documents\\GitHub\\web-delivery-service\\StrifeDeliveryService\\src\\data\\" + getFileName();
 	}
 
     private void writeFile(Map<String, Entity> entities)
