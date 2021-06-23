@@ -36,9 +36,7 @@ public class EmailController {
 	@Path("/sendEmail")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void sendEmail(String par)
-	{			
-		//repo.setBasePath(ctx.getRealPath("") + "WEB-INF" + File.separator + "classes" + File.separator + "data" + File.separator);
-		
+	{					
 		ObjectMapper objectMapper = new ObjectMapper();
 		Email emailPar = null;
 		try {
