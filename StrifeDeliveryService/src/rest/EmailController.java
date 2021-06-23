@@ -34,7 +34,7 @@ public class EmailController {
 	{			
 		repo.setBasePath(getDataDirPath());
 		
-		emailPar.setId(repo);
+		emailPar.setGeneratedId(repo);
 		System.out.println("Sending email from " + emailPar.getName() + "...");		
 				
 		repo.create(emailPar);		

@@ -228,7 +228,7 @@ button.main-button:hover {
 
 }
 
-.title-div hr {
+.r-section hr {
   width: 350px;
   text-align:left;
   margin-left:0;
@@ -316,6 +316,15 @@ Rows, cols, table
 
 }
 
+.r-section-white {
+  background-color: white;
+  padding: 50px;
+  box-shadow: inset;
+  border-radius: 30px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+
+}
+
 .r-gap {
   margin-top: 30px;
 }
@@ -344,6 +353,7 @@ Rows, cols, table
 
 .main-button-small:hover {
   background-color: #f1556a;
+  color: #fff;
 }
 
 ::-webkit-scrollbar {
