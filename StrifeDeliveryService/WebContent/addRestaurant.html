@@ -65,52 +65,82 @@
 	</section>
 
 
-	<section class="r-section r-section-white" style="width: 50%;">
-		<h1>New Restaurant</h1>
-		<hr>
-		<div class="r-gap"></div>
+	<section class="r-section r-section-white" style="width: 60%; min-width: 900px;">
+
+		<div class="row equal">
+			<div class="col-6">
+				<h1>New Restaurant</h1>
+				<hr>
+				<div class="r-gap"></div>
 
 
-		<div class="col-8">
-			<div class="r-row" style="margin-bottom: 20px;">
-				<label>Name:</label>
-				<span class="r-span" style="margin-left: 60px;"></span>
-				<input type="text" id="rest-name" placeholder="Enter name..." style="width: 300px;">
+				<div class="r-row" style="margin-bottom: 20px;">
+					<div class="col-4">
+						<label>Name:</label>
+					</div>
+					<div align="rignt" class="col-8">
+						<input type="text" id="rest-name" placeholder="Enter name..." style="width: 300px;">
+					</div>
+				</div>
+
+				<div class="r-row" style="margin-bottom: 20px;">
+					<div class="col-4">
+						<label>Type:</label>
+					</div>
+					<div align="rignt" class="col-8">
+						<select id="type" name="type" style="width: 300px;">
+							<option value="regular">Regular</option>
+							<option value="chinese">Chinese</option>
+							<option value="Cafe">Cafe</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="r-row" style="margin-bottom: 20px;">
+					<div class="col-4">
+						<label>Open:</label>
+					</div>
+					<div align="rignt" class="col-8">
+						<select id="open-status" name="open-status" style="width: 300px;">
+							<option value="open">Open</option>
+							<option value="closed">Closed</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="r-row" style="margin-bottom: 20px;">
+					<div class="col-4">
+						<label>Location:</label>
+					</div>
+					<div align="rignt" class="col-8">
+						<input type="text" placeholder="Enter location..." style="width: 300px;">
+					</div>
+				</div>
+
+				<div class="r-row" style="margin-bottom: 20px;">
+					<div class="col-4">
+						<label>Logo:</label>
+					</div>
+					<div align="rignt" class="col-8">
+						<input type="file" id="logo-picture" style="width: 300px;">
+					</div>
+				</div>
+
+				<div class="r-gap">.</div>
+
+				<div class="col-12 r-row-center">
+					<a class="main-button" href="#">Add</a>
+				</div>
+
 			</div>
 
-			<div class="r-row" style="margin-bottom: 20px;">
-				<label>Type:</label>
-				<span class="r-span" style="margin-left: 60px;"></span>
-				<select id="type" name="type" style="width: 300px;">
-					<option value="regular">Regular</option>
-					<option value="chinese">Chinese</option>
-					<option value="Cafe">Cafe</option>
-				</select>
-			</div>
-
-			<div class="r-row" style="margin-bottom: 20px;">
-				<label>Open:</label>
-				<span class="r-span" style="margin-left: 60px;"></span>
-				<select id="open-status" name="open-status" style="width: 300px;">
-					<option value="open">Open</option>
-					<option value="closed">Closed</option>
-				</select>
-			</div>
-
-			<div class="r-row" style="margin-bottom: 20px;">
-				<label>Location:</label>
-				<span class="r-span" style="margin-left: 60px;"></span>
-				<input type="text" placeholder="Enter name..." style="width: 300px;">
-			</div>
-
-			<div class="r-row" style="margin-bottom: 20px;">
-				<label>Logo:</label>
-				<span class="r-span" style="margin-left: 60px;"></span>
-				<input type="file" id="logo-picture" style="width: 300px;">
+			<div class="col-6">
+				<div class="r-center">
+					<img src="images/cloud-image.png" style="height: 350px;">
+				</div>
 			</div>
 
 		</div>
-
 
 	</section>
 
