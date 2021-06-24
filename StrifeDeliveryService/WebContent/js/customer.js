@@ -16,13 +16,11 @@ function getFormData(e) {
 	var date = document.getElementById('date-of-birth').value;
 	var gender = document.getElementById('gender').value;
 
-	isUnique(username, password, name, last, date, gender)
-
-	/*if (username && password && name && last && date && gender)	
+	if (username && password && name && last && date && gender)	
 		checkUsername(username)
 		
 	else 
-		alert("Please fill in all fields!")*/
+		alert("Please fill in all fields!")
 }
 
 function checkUsername(username) {
@@ -35,6 +33,8 @@ function checkUsername(username) {
 }
 
 function createAccount(username, password, name, last, date, gender) {
+
+	alert("ok")
 
 	axios.post('webapi/newCustomer/create', {
 		"id": username,
@@ -51,23 +51,21 @@ function createAccount(username, password, name, last, date, gender) {
 		});
 }
 
-function isUnique(username, password, name, last, date, gender) {
+function isUnique(username) {
 
 	let data = {
-		"id": username,
-		"password": password,
-		"name": name,
-		"lastName": last,
-		"gender": gender,
-		"dateOfBirth": date
+		"id": username
 	}
 
-	$.put({
+	$.post({
 		url: 'webapi/newCustomer/unique',
 		data: JSON.stringify(data),
 		contentType: 'application/json',
-		success: function (hey) {
-			alert(hey);
+		success: function (response) {
+			if (response == "false") {
+				return false;
+			}
+			return true;
 		}
 	});
 

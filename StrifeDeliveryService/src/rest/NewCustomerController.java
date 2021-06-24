@@ -1,6 +1,8 @@
 package rest;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
@@ -29,9 +31,9 @@ public class NewCustomerController {
 		}
 	}
 	
-	@PUT
+	@POST
 	@Path("unique")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String uniqueUsername(UserDTO par)
 	{
@@ -39,10 +41,13 @@ public class NewCustomerController {
 		
 		System.out.println("Hii " + par.id);
 		
-		/*if (repo.read(par.id) == null)
-			return true;	*/
+		List<Customer> list = repo.getAll();
 		
-		return "false"; 
+		for (Customer c : list)
+			if (c.getId().equals(par.id))
+				return "false";
+		
+		return "true"; 
 	}
 		
 	@POST
