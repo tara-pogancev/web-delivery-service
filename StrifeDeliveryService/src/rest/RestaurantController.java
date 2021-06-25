@@ -11,6 +11,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import dto.RestaurantDTO;
+import dto.RestaurantViewDTO;
 import model.Restaurant;
 import repository.RestaurantRepository;
 
@@ -47,13 +48,13 @@ public class RestaurantController {
 	@GET
 	@Path("getAllDTO")	
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<RestaurantDTO> getAllRestaurantsDTO()
+	public ArrayList<RestaurantViewDTO> getAllRestaurantsDTO()
 	{
 		repo.setBasePath(getDataDirPath());
-		ArrayList<RestaurantDTO> retVal = new ArrayList<RestaurantDTO>();
+		ArrayList<RestaurantViewDTO> retVal = new ArrayList<RestaurantViewDTO>();
 		
 		for (Restaurant r : repo.getAll())
-			retVal.add(new RestaurantDTO(r));
+			retVal.add(new RestaurantViewDTO(r));
 					
 		return retVal;				
 	}

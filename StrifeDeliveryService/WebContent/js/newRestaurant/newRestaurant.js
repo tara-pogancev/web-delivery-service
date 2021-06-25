@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	var submitInput = document.getElementById('form-submit')
 	submitInput.addEventListener('click', form, false);
-	savePicture();
 
 }, false);
 
@@ -23,7 +22,7 @@ function form(e) {
 	var status = document.getElementById('open-status').value;
 	var picture = document.getElementById('logo-picture').value;
 
-	if (name && type && status && picture)
+	if (name && type && status)
 		isUnique(name, type, status)
 
 	else

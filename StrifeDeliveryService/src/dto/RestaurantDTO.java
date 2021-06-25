@@ -11,7 +11,6 @@ public class RestaurantDTO {
 	public String city;
 	public String postal;
 	public String address;
-	public String rating;
 	
 	public RestaurantStatus getEnumStatus() {
 		if (this.status.equals("open"))
@@ -19,15 +18,6 @@ public class RestaurantDTO {
 		else return 
 				RestaurantStatus.CLOSED;
 	}
-		
-	public RestaurantDTO (Restaurant r) {
-		this.name = r.getName();
-		this.type = r.getType();
-		this.status = r.getStatus().toString();
-		this.city = r.getLocation().getCity();
-		this.postal = r.getLocation().getPostalCode();
-		this.address = r.getLocation().getAddressName();
-		this.rating = r.getRatingString();		
-	}
+
 
 }
