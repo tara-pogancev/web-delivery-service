@@ -55,9 +55,7 @@ function isUnique(username, password, name, last, date, gender) {
 
 			if (response == "false") {
 				alert("Username taken! Please pick something else.")
-				alert(response);
 			} else {
-				alert(response);
 				createAccount(username, password, name, last, date, gender)
 			}
 
