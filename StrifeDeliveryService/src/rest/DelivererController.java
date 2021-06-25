@@ -12,13 +12,13 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import dto.UserDTO;
-import model.Manager;
-import repository.ManagerRepository;
+import model.Deliverer;
+import repository.DelivererRepository;
 
-@Path("manager")
-public class ManagerController {
+@Path("deliverer")
+public class DelivererController {
 
-	ManagerRepository repo = new ManagerRepository();
+	DelivererRepository repo = new DelivererRepository();
 
 	@Context
 	ServletContext ctx;
@@ -27,7 +27,7 @@ public class ManagerController {
 	public void init() {
 		if (ctx.getAttribute("customers") == null) {
 			String contextPath = ctx.getRealPath("");
-			ctx.setAttribute("customers", new ManagerRepository());
+			ctx.setAttribute("customers", new DelivererRepository());
 		}
 	}
 	
@@ -43,10 +43,10 @@ public class ManagerController {
 	{
 		repo.setBasePath(getDataDirPath());
 						
-		List<Manager> list = repo.getAll();
+		List<Deliverer> list = repo.getAll();
 		
-		for (Manager m : list)
-			if (m.getId().equals(par.id))
+		for (Deliverer d : list)
+			if (d.getId().equals(par.id))
 				return "false";
 		
 		return "true"; 
@@ -60,10 +60,10 @@ public class ManagerController {
 	{
 		repo.setBasePath(getDataDirPath());
 				
-		Manager manager = new Manager(par.id, par.password, par.name, par.lastName, par.gerGenderEnum(), par.dateOfBirth, null, null);
-		repo.create(manager);
+		Deliverer deliverer = new Deliverer(par.id, par.password, par.name, par.lastName, par.gerGenderEnum(), par.dateOfBirth, null);
+		repo.create(deliverer);
 		
-		System.out.println("Created new manager: " + manager.getId());
+		System.out.println("Created new deliverer: " + deliverer.getId());
 		
 	}
 

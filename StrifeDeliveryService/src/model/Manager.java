@@ -16,6 +16,7 @@ public class Manager extends User {
 			UserCategory category, Restaurant restaurant) {
 		super(id, password, name, lastName, gender, dateOfBirth, category);
 		this.restaurant = restaurant;
+		this.setCategory(UserCategory.MANNAGER);
 	}
 
 	public Restaurant getRestaurant() {
