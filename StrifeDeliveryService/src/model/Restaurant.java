@@ -13,17 +13,27 @@ public class Restaurant {
 	private String type; 
 	private ArrayList<Product> products;
 	private RestaurantStatus status;
-	private Location location;
+	private Address location;
 	private boolean deleted = false;
 	//SLIKA
 	
-	public Restaurant(String name, String type, RestaurantStatus status, Location location) {
+	public Restaurant(String name, String type, RestaurantStatus status, Address location) {
 		super();
 		this.name = name;
 		this.type = type;
 		this.status = status;
 		this.location = location;
 		this.products = new ArrayList<Product>();
+	}
+	
+	public Restaurant() {
+		super();
+		this.name = null;
+		this.type = null;
+		this.status = null;
+		this.location = null;
+		this.products = new ArrayList<Product>();	
+		
 	}
 
 	public String getName() {
@@ -50,11 +60,11 @@ public class Restaurant {
 		this.status = status;
 	}
 
-	public Location getLocation() {
+	public Address getLocation() {
 		return location;
 	}
 
-	public void setLocation(Location location) {
+	public void setLocation(Address location) {
 		this.location = location;
 	}
 
@@ -78,5 +88,13 @@ public class Restaurant {
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
+
+	@Override
+	public String toString() {
+		return "Restaurant [name=" + name + ", type=" + type + ", products=" + products + ", status=" + status
+				+ ", location=" + location + "]";
+	}
+	
+	
 		
 }

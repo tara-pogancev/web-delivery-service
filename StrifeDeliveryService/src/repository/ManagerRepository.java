@@ -55,5 +55,17 @@ public class ManagerRepository extends GenericRepository<Manager, ManagerReposit
 
 	}
 	
+	public ArrayList<Manager> getAvailableManagers() {
+		
+		ArrayList<Manager> managers = getAll();
+		ArrayList<Manager> retVal = new ArrayList<Manager>();
+		
+		for (Manager m : managers)
+			if (m.getRestaurant() == null)
+				retVal.add(m);
+		
+		return retVal;
+	}
+	
 
 }

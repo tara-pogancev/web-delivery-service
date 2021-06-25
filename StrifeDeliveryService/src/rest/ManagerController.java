@@ -1,10 +1,12 @@
 package rest;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -66,5 +68,19 @@ public class ManagerController {
 		System.out.println("Created new manager: " + manager.getId());
 		
 	}
+	
+	@GET
+	@Path("getAvailableManagers")	
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ArrayList<Manager> getAvailableManagers()
+	{
+		repo.setBasePath(getDataDirPath());
+		
+		return repo.getAvailableManagers();		
+		
+	}
+	
+	
 
 }

@@ -7,9 +7,9 @@ public class Address {
 
 	private String addressName;	//ulica i broj
 	private String city;
-	private int postalCode;	
+	private String postalCode;	
 	
-	public Address(String addressName, String city, int postalCode) {
+	public Address(String addressName, String city, String postalCode) {
 		super();
 		this.addressName = addressName;
 		this.city = city;
@@ -32,16 +32,19 @@ public class Address {
 		this.city = city;
 	}
 
-	public int getPostalCode() {
+	public String getPostalCode() {
 		return postalCode;
 	}
 
-	public void setPostalCode(int postalCode) {
+	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Address [addressName=" + addressName + ", city=" + city + ", postalCode=" + postalCode + "]";
+	}
+		
 	
 	
 }
