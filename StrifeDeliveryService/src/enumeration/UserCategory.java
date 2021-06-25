@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public enum UserCategory {
 
 	CUSTOMER, 
-	MANNAGER, 
+	MANAGER, 
 	ADMIN, 
 	DELIVERER
 	

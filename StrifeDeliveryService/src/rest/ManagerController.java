@@ -72,11 +72,13 @@ public class ManagerController {
 	@GET
 	@Path("getAvailableManagers")	
 	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
 	public ArrayList<Manager> getAvailableManagers()
 	{
 		repo.setBasePath(getDataDirPath());
 		
+//		for (Manager m : repo.getAvailableManagers())
+//			System.out.println(m.toString());
+			
 		return repo.getAvailableManagers();		
 		
 	}

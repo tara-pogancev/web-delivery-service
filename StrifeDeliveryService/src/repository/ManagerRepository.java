@@ -66,6 +66,5 @@ public class ManagerRepository extends GenericRepository<Manager, ManagerReposit
 		
 		return retVal;
 	}
-	
 
 }

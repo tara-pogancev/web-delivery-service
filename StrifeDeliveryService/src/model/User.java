@@ -104,6 +104,14 @@ public class User {
 		this.category = category;
 	}
 	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", password=" + password + ", name=" + name + ", lastName=" + lastName + ", gender="
+				+ gender + ", dateOfBirth=" + dateOfBirth + ", category=" + category + ", deleted=" + deleted + "]";
+	}
+	
+	
+	
 	
 	
 	
