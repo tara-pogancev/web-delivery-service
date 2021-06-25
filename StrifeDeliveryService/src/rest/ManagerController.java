@@ -75,9 +75,6 @@ public class ManagerController {
 	public ArrayList<Manager> getAvailableManagers()
 	{
 		repo.setBasePath(getDataDirPath());
-		
-//		for (Manager m : repo.getAvailableManagers())
-//			System.out.println(m.toString());
 			
 		return repo.getAvailableManagers();		
 		

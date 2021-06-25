@@ -95,6 +95,13 @@ public class Restaurant {
 				+ ", location=" + location + "]";
 	}
 	
+	public float getRating() {
+		return 0;
+	}
+	
+	public String getRatingString() {
+		return "-";
+	}
 	
 		
 }
