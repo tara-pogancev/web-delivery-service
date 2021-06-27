@@ -1,5 +1,6 @@
-/data/
-/enumeration/
-/model/
 /repository/
 /rest/
+/data/
+/model/
+/dto/
+/enumeration/

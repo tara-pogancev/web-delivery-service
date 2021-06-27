@@ -1,1 +1,1 @@
-{"1":{"id":"1","password":"123","name":"Tara","lastName":"Valentine","gender":"FEMALE","dateOfBirth":949532400000,"category":"CUSTOMER","deleted":false,"orders":[],"cart":{"items":[],"cartOwnerId":"1","totalPrice":0.0,"deleted":false,"cartOwner":null},"points":0,"blocked":false}}
+{"jelovceva":{"orders":[],"customerType":{"name":"BRONZE","discount":0,"minPoints":0},"points":0,"blocked":false,"id":"jelovceva","password":"1","name":"Tara","lastName":"Pogancev","gender":"FEMALE","dateOfBirth":"Feb 3, 2000 1:00:00 AM","category":"CUSTOMER","deleted":false}}

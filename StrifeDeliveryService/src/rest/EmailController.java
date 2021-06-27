@@ -1,5 +1,7 @@
 package rest;
 
+import java.io.File;
+
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.*;
@@ -43,7 +45,7 @@ public class EmailController {
 	}
 		
 	public String getDataDirPath() {
-		return (ctx.getRealPath("") + "WEB-INF\\classes\\data\\");
+		return (ctx.getRealPath("") + "WEB-INF" + File.separator + "classes" + File.separator + "data" + File.separator);
 	}
 
 }

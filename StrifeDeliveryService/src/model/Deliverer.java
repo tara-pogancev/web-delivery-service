@@ -17,6 +17,7 @@ public class Deliverer extends User {
 			UserCategory category) {
 		super(id, password, name, lastName, gender, dateOfBirth, category);
 		this.ordersToDeliver = new ArrayList<Order>();
+		this.setCategory(UserCategory.DELIVERER);
 	}
 
 	public ArrayList<Order> getOrdersToDeliver() {

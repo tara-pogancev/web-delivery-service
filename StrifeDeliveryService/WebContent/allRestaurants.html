@@ -67,6 +67,8 @@
 
   <section class="r-section">
     <h1>All Restaurants</h1>
+    
+    <div class="r-gap"></div>
 
     <div class="tbl-header">
       <table class="r-table" cellpadding="0" cellspacing="0" border="0">
@@ -83,15 +85,9 @@
     </div>
 
     <div class="tbl-content">
-      <table class="r-table" cellpadding="0" cellspacing="0" border="0">
+      <table id="rest-table" class="r-table" cellpadding="0" cellspacing="0" border="0">
         <tbody>
-          <tr>
-            <td class="td-center"><a href="#"><img src="images/logos/Yummyyy.png"></a></td>
-            <td>Yummyy</td>
-            <td>High End Road 80</td>
-            <td>5.0</td>
-            <td>Wutai</td>
-          </tr>
+          
         </tbody>
       </table>
     </div>
@@ -100,7 +96,7 @@
 
     <div class="r-row">
       <div class="col-6">
-        <input type="text" placeholder="Search restaurants..." style="width: 300px;">
+        <input type="text" placeholder="Search restaurants..." style="width: 300px; margin-bottom: 10px;">
         <span class="r-span"></span>
         <a href="#" class="main-button-small">Search</a>
       </div>
@@ -118,6 +114,8 @@
       </div>
 
     </div>
+
+    <div class="r-gap"></div>
 
   </section>
 
@@ -138,7 +136,7 @@
   </footer>
 
   <!-- jQuery -->
-  <script src="js/service/jquery-2.1.0.min.js"></script>
+  <script src="js/service/jquery-3.3.1.min.js"></script>
 
   <!-- Bootstrap -->
   <script src="js/service/popper.js"></script>
@@ -158,6 +156,7 @@
   <!-- Global Init -->
   <script src="js/custom.js"></script>
   <script src="js/table.js"></script>
+  <script src="js/restaurantTable.js"></script>
 
 </body>
 
