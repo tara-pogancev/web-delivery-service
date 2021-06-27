@@ -1,4 +1,4 @@
-const	form = document.getElementById('contact'),
+const	form = document.getElementById('login-form'),
 		submitInput = document.getElementById('login-submit');
 		
 function getFormData(e) {
@@ -8,8 +8,8 @@ function getFormData(e) {
 	var username = document.getElementById('username').value;
 	var password = document.getElementById('password').value;
 	
-	if (name && email)	
-		sendEmail();	
+	if (username && password)	
+		sendLogin();	
 	else 
 		alert("Please fill in all fields!")
 }
