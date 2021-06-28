@@ -29,8 +29,8 @@ public class LoginController {
 	@GET
 	@Path("userLogin")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String userLogIn(String username, String password) {
-		String message = "err: not getting into repo";
+	public String userLogIn() {
+		/*String message = "err: not getting into repo";
 		User foundUser;
 		for(User u : repoCustomer.getAll()) 
 		{
@@ -49,7 +49,8 @@ public class LoginController {
 				break;
 			}
 		}
-		return message;
+		return message;*/
+		return "";
 	}
 }
 

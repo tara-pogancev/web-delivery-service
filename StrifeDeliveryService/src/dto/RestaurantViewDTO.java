@@ -10,8 +10,7 @@ public class RestaurantViewDTO {
 	public String city;
 	public String postal;
 	public String address;
-	public String rating;
-	
+	public String rating;	
 		
 	public RestaurantViewDTO (Restaurant r) {
 		this.name = r.getName();
