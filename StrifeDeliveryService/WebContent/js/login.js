@@ -14,16 +14,21 @@ function getFormData(e) {
 		alert("Please fill in all fields!")
 }
 
-function sendLogin() {	
+function sendLogin(username, password) {	
 	
-	axios.post('webapi/login/sendLogin', { 
-		"username" : username,
-		"password" : password,
-		
-	})
-	.then(response => {
-    	alert("Sign in, successful");
-		window.location.reload();
-	});	
-	
+	let data = {
+		"id" : username,
+		"password" : password
+	}
+
+	$.post({
+		url: 'webapi/login/userLogin',
+		data: JSON.stringify(data),
+		contentType: 'aplication/json',
+		success: function(response){
+			Alert(response)
+		}
+
+
+	});
 }

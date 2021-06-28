@@ -3,10 +3,13 @@ package rest;
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import dto.UserDTO;
 import model.User;
 import repository.CustomerRepository;
 
@@ -26,30 +29,26 @@ public class LoginController {
 		}
 	}
 	
-	@GET
-	@Path("findUser")
+	@POST
+	@Path("userLogin")
+	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String userLogIn() {
-		/*String message = "err: not getting into repo";
+	public String userLogIn(UserDTO par) {
 		User foundUser;
 		for(User u : repoCustomer.getAll()) 
 		{
-			if (u.getId() == username) {
-				if(u.getPassword() == password) {
+			if (u.getId() == par.id) {
+				if(u.getPassword().equals(par.password)) {
 					foundUser = u;
 					ctx.setAttribute("loggedin", foundUser);
-					message = "Log in successful";
-					break;
+					return "Log in successful";
 				}else {
-					message = "Wrong password";
-					break;
+					return "Wrong password";
 				}
 			}else {
-				message = "Username not found";
-				break;
+				return "Username not found";
 			}
 		}
-		return message;*/
 		return "";
 	}
 }
