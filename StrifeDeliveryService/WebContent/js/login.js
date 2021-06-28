@@ -27,24 +27,3 @@ function sendLogin() {
 	});	
 	
 }
-
-function isUnique(username, password, name, last, date, gender) {
-
-	let data = {
-		"id": username
-	}
-
-	$.post({
-		url: 'webapi/login/unique',
-		data: JSON.stringify(data),
-		contentType: 'application/json',
-		success: function (response) {
-
-			if (response == "false") {
-				alert("Username taken! Please pick something else.")
-			} else {
-				createAccount(username, password, name, last, date, gender)
-			}
-
-		}
-	});

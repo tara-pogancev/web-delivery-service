@@ -1,25 +1,19 @@
 package rest;
 
-import java.util.List;
-
 import javax.servlet.ServletContext;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import dto.UserDTO;
-import model.*;
-import repository.AdminRepository;
+import model.User;
 import repository.CustomerRepository;
-import repository.EmailRepository;
-import repository.ManagerRepository;
 
 @Path("login")
 public class LoginController {
-	
-	private AdminRepository repoAdmin = new AdminRepository();
+
 	private CustomerRepository repoCustomer = new CustomerRepository();
-	private ManagerRepository repoMenager = new ManagerRepository();
 	
 	@Context
 	ServletContext ctx;
@@ -36,7 +30,7 @@ public class LoginController {
 	@Path("findUser")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String userLogIn(String username, String password) {
-		String message;
+		String message = "err: not getting into repo";
 		User foundUser;
 		for(User u : repoCustomer.getAll()) 
 		{
@@ -45,30 +39,17 @@ public class LoginController {
 					foundUser = u;
 					ctx.setAttribute("loggedin", foundUser);
 					message = "Log in successful";
+					break;
 				}else {
 					message = "Wrong password";
+					break;
 				}
 			}else {
 				message = "Username not found";
+				break;
 			}
 		}
-	}
-	
-	@POST
-	@Path("unique")
-	@Produces(MediaType.TEXT_PLAIN)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public String uniqueUsername(UserDTO par)
-	{
-		repoCustomer.setBasePath(getDataDirPath());
-						
-		List<Customer> list = repoCustomer.getAll();
-		
-		for (Customer c : list)
-			if (c.getId().equals(par.id))
-				return "false";
-		
-		return "true"; 
+		return message;
 	}
 }
 
