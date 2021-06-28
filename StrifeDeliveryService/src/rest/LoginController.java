@@ -27,7 +27,7 @@ public class LoginController {
 	}
 	
 	@GET
-	@Path("findUser")
+	@Path("userLogin")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String userLogIn(String username, String password) {
 		String message = "err: not getting into repo";
