@@ -1,13 +1,13 @@
 package rest;
 
+import java.util.List;
+
 import javax.servlet.ServletContext;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.*;
-import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-
+import dto.UserDTO;
 import model.*;
 import repository.AdminRepository;
 import repository.CustomerRepository;
@@ -26,20 +26,49 @@ public class LoginController {
 	
 	@SuppressWarnings("unused")
 	public void init() {
-		if (ctx.getAttribute("passwords") == null) {
+		if (ctx.getAttribute("customers") == null) {
 	    	String contextPath = ctx.getRealPath("");
-			ctx.setAttribute("emails", new EmailRepository());
+			ctx.setAttribute("customers", new CustomerRepository());
+		}
+	}
+	
+	@GET
+	@Path("findUser")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String userLogIn(String username, String password) {
+		String message;
+		User foundUser;
+		for(User u : repoCustomer.getAll()) 
+		{
+			if (u.getId() == username) {
+				if(u.getPassword() == password) {
+					foundUser = u;
+					ctx.setAttribute("loggedin", foundUser);
+					message = "Log in successful";
+				}else {
+					message = "Wrong password";
+				}
+			}else {
+				message = "Username not found";
+			}
 		}
 	}
 	
 	@POST
-	@Path("/checkUser")
+	@Path("unique")
+	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void sendEmail(Email emailPar)
-	{			
-		for(Admin a : repoAdmin.getAll()) {
-			if (a.getPassword() == )
-		}
+	public String uniqueUsername(UserDTO par)
+	{
+		repoCustomer.setBasePath(getDataDirPath());
+						
+		List<Customer> list = repoCustomer.getAll();
+		
+		for (Customer c : list)
+			if (c.getId().equals(par.id))
+				return "false";
+		
+		return "true"; 
 	}
 }
 
