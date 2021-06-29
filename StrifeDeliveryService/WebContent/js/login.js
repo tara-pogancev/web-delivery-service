@@ -1,5 +1,9 @@
-const	form = document.getElementById('login-form'),
-		submitInput = document.getElementById('login-submit');
+document.addEventListener('DOMContentLoaded', function () {
+
+	var submitInput = document.getElementById('form-submit')
+	submitInput.addEventListener('click', getFormData, false);
+
+}, false);
 		
 function getFormData(e) {
 	
@@ -24,9 +28,9 @@ function sendLogin(username, password) {
 	$.post({
 		url: 'webapi/login/userLogin',
 		data: JSON.stringify(data),
-		contentType: 'aplication/json',
+		contentType: 'application/json',
 		success: function(response){
-			Alert(response)
+				alert(response)
 		}
 
 

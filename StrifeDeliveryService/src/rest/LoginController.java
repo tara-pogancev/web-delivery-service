@@ -37,16 +37,16 @@ public class LoginController {
 		User foundUser;
 		for(User u : repoCustomer.getAll()) 
 		{
-			if (u.getId() == par.id) {
+			if (u.getId().equals(par.id)) {
 				if(u.getPassword().equals(par.password)) {
 					foundUser = u;
 					ctx.setAttribute("loggedin", foundUser);
-					return "Log in successful";
+					return "Loggin successful";
 				}else {
-					return "Wrong password";
+					return "Incorrect password";
 				}
 			}else {
-				return "Username not found";
+				return "Username was not found";
 			}
 		}
 		return "";
