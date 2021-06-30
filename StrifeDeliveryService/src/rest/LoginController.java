@@ -1,8 +1,9 @@
 package rest;
 
+import java.io.File;
+
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -10,13 +11,15 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import dto.UserDTO;
+import model.Customer;
+import model.Restaurant;
 import model.User;
 import repository.CustomerRepository;
 
 @Path("login")
 public class LoginController {
 
-	private CustomerRepository repoCustomer = new CustomerRepository();
+	CustomerRepository repoCustomer = new CustomerRepository();
 	
 	@Context
 	ServletContext ctx;
@@ -29,18 +32,26 @@ public class LoginController {
 		}
 	}
 	
+	private String getDataDirPath() {
+		return (ctx.getRealPath("") + "WEB-INF" + File.separator + "classes" + File.separator + "data" + File.separator);
+	}
+	
+	private void setLoggedInUser(Customer u) {
+		ctx.setAttribute("newRestaurant", u);
+	}
+	
 	@POST
 	@Path("userLogin")
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String userLogIn(UserDTO par) {
-		User foundUser;
-		for(User u : repoCustomer.getAll()) 
+	public String userLogIn(UserDTO par) 
+	{
+		repoCustomer.setBasePath(getDataDirPath());
+		for(Customer u : repoCustomer.getAll()) 
 		{
 			if (u.getId().equals(par.id)) {
 				if(u.getPassword().equals(par.password)) {
-					foundUser = u;
-					ctx.setAttribute("loggedin", foundUser);
+					setLoggedInUser(u);
 					return "Loggin successful";
 				}else {
 					return "Incorrect password";
