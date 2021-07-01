@@ -130,24 +130,7 @@ public class NewRestaurantController {
 		repoManager.update(manager);	
 		
 	}
-	
-	
-	@PUT
-	@Path("uploadLogo")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public void uploadLogo()
-	{
-		restaurant = getCurrentRestaurant();
-		repoRestaurant.setBasePath(getDataDirPath());
-		
-	}
-	
-	
-	
-	
-	
-	
+
 	
 	
 }
