@@ -12,8 +12,9 @@ function getFormData(e) {
 	var username = document.getElementById('username').value;
 	var password = document.getElementById('password').value;
 	
-	if (username && password)	
-		sendLogin();	
+	if (username && password){
+		sendLogin(username, password);
+		}	
 	else 
 		alert("Please fill in all fields!")
 }
@@ -31,8 +32,7 @@ function sendLogin(username, password) {
 		contentType: 'application/json',
 		success: function(response){
 				alert(response)
+				window.location.href = "http://localhost:8080/PocetniREST/";
 		}
-
-
 	});
 }

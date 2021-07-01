@@ -32,118 +32,115 @@ public class LoginController {
 	DelivererRepository repoDel = new DelivererRepository();
 	User user;
 	List<String> usernames;
-	
+
 	@Context
 	ServletContext ctx;
-	
+
 	@SuppressWarnings("unused")
 	public void init() {
 		if (ctx.getAttribute("username") == null) {
-	    	String contextPath = ctx.getRealPath("");
+			String contextPath = ctx.getRealPath("");
 			ctx.setAttribute("username", "");
 		}
 	}
-	
+
 	private String getDataDirPath() {
-		return (ctx.getRealPath("") + "WEB-INF" + File.separator + "classes" + File.separator + "data" + File.separator);
+		return (ctx.getRealPath("") + "WEB-INF" + File.separator + "classes" + File.separator + "data"
+				+ File.separator);
 	}
-	
+
 	private void setLoggedInUser(String username) {
 		ctx.setAttribute("username", username);
 	}
-	
+
 	@GET
 	@Path("logOut")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String userLogOut()
-	{
+	public String userLogOut() {
 		ctx.setAttribute("username", "");
 		return "Log Out Successful";
 	}
-	
+
 	@POST
 	@Path("userLogin")
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String userLogIn(UserDTO par) 
-	{
-		
-		if (customerLogIn(par) != "Username was not found")
-			return customerLogIn(par);
-		
-		if (delivererLogIn(par) != "Username was not found")
-			return delivererLogIn(par);
-		
-		if(managerLogIn(par) != "Username was not found")
-			return managerLogIn(par);
-		
-		if(adminLogIn(par) != "Username was not found")
-			return adminLogIn(par);
+	public String userLogIn(UserDTO par) {
 
-		return "Username was not foundd";
+		String log = customerLogIn(par);
+		if (log != "Username was not found")
+			return log;
+
+		log = delivererLogIn(par);
+		if (log != "Username was not found")
+			return log;
+
+		log = managerLogIn(par);
+		if (log != "Username was not found")
+			return log;
+
+		log = adminLogIn(par);
+		if (log != "Username was not found")
+			return log;
+
+		return "Username was not found";
 	}
-	
-	public String customerLogIn(UserDTO par)
-	{
+
+	public String customerLogIn(UserDTO par) {
 		repoCustomer.setBasePath(getDataDirPath());
-		for(Customer u : repoCustomer.getAll()) 
-		{
+		for (Customer u : repoCustomer.getAll()) {
+			System.out.println(par.id + u.getId());
 			if (u.getId().equals(par.id)) {
-				if(u.getPassword().equals(par.password)) {
+				System.out.println(par.id + u.getId());
+				if (u.getPassword().equals(par.password)) {
 					setLoggedInUser(par.id);
 					return "Loggin successful";
-				}else {
+				} else {
 					return "Incorrect password";
 				}
 			}
 		}
 		return "Username was not found";
 	}
-	
-	public String adminLogIn(UserDTO par) 
-	{
+
+	public String adminLogIn(UserDTO par) {
 		repoAdmin.setBasePath(getDataDirPath());
-		for(Admin u : repoAdmin.getAll()) 
-		{
+		for (Admin u : repoAdmin.getAll()) {
 			if (u.getId().equals(par.id)) {
-				if(u.getPassword().equals(par.password)) {
+				if (u.getPassword().equals(par.password)) {
 					setLoggedInUser(par.id);
 					return "Loggin successful";
-				}else {
+				} else {
 					return "Incorrect password";
 				}
 			}
 		}
 		return "Username was not found";
 	}
-	
-	public String managerLogIn(UserDTO par) 
-	{
+
+	public String managerLogIn(UserDTO par) {
 		repoManager.setBasePath(getDataDirPath());
-		for(Manager u : repoManager.getAll()) 
-		{
+		for (Manager u : repoManager.getAll()) {
 			if (u.getId().equals(par.id)) {
-				if(u.getPassword().equals(par.password)) {
+				if (u.getPassword().equals(par.password)) {
 					setLoggedInUser(par.id);
 					return "Loggin successful";
-				}else {
+				} else {
 					return "Incorrect password";
 				}
 			}
 		}
 		return "Username was not found";
 	}
-	
-	public String delivererLogIn(UserDTO par) 
-	{
+
+	public String delivererLogIn(UserDTO par) {
 		repoDel.setBasePath(getDataDirPath());
-		for(Deliverer u : repoDel.getAll()) 
-		{
+		for (Deliverer u : repoDel.getAll()) {
 			if (u.getId().equals(par.id)) {
-				if(u.getPassword().equals(par.password)) {
+				if (u.getPassword().equals(par.password)) {
 					setLoggedInUser(par.id);
 					return "Loggin successful";
-				}else {
+				} else {
 					return "Incorrect password";
 				}
 			}
