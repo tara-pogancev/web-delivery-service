@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -51,6 +52,15 @@ public class LoginController {
 		ctx.setAttribute("username", username);
 	}
 	
+	@GET
+	@Path("logOut")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String userLogOut()
+	{
+		ctx.setAttribute("username", "");
+		return "Log Out Successful";
+	}
+	
 	@POST
 	@Path("userLogin")
 	@Produces(MediaType.TEXT_PLAIN)
@@ -60,13 +70,14 @@ public class LoginController {
 		
 		if (customerLogIn(par) != "Username was not found")
 			return customerLogIn(par);
-		if (delivererLogIn(par) != "Username was not found")
-			retunr delivererLogIn(par);
 		
-		if(adminLogIn(par) != "Username was not found")
-			return adminLogIn(par);
+		if (delivererLogIn(par) != "Username was not found")
+			return delivererLogIn(par);
 		
 		if(managerLogIn(par) != "Username was not found")
+			return managerLogIn(par);
+		
+		if(adminLogIn(par) != "Username was not found")
 			return adminLogIn(par);
 
 		return "Username was not foundd";
@@ -84,11 +95,9 @@ public class LoginController {
 				}else {
 					return "Incorrect password";
 				}
-			}else {
-				return "Username was not found";
 			}
 		}
-		return "";
+		return "Username was not found";
 	}
 	
 	public String adminLogIn(UserDTO par) 
@@ -103,11 +112,9 @@ public class LoginController {
 				}else {
 					return "Incorrect password";
 				}
-			}else {
-				return "Username was not found";
 			}
 		}
-		return "";
+		return "Username was not found";
 	}
 	
 	public String managerLogIn(UserDTO par) 
@@ -122,11 +129,9 @@ public class LoginController {
 				}else {
 					return "Incorrect password";
 				}
-			}else {
-				return "Username was not found";
 			}
 		}
-		return "";
+		return "Username was not found";
 	}
 	
 	public String delivererLogIn(UserDTO par) 
@@ -141,12 +146,8 @@ public class LoginController {
 				}else {
 					return "Incorrect password";
 				}
-			}else {
-				return "Username was not found";
 			}
 		}
-		return "";
+		return "Username was not found";
 	}
 }
-
-
