@@ -7,7 +7,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import model.User;
 import repository.CustomerRepository;
 
 @Path("login")

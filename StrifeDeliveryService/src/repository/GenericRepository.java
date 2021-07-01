@@ -41,7 +41,7 @@ public abstract class GenericRepository<Entity, StorageType extends GenericRepos
 
 	}
 
-	private void writeFile(Map<String, Entity> entities) {
+	protected void writeFile(Map<String, Entity> entities) {
 		String jsonStr = gs.toJson(entities);
 		//System.out.println(jsonStr);
 

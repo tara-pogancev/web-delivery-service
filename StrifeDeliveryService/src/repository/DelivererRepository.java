@@ -28,7 +28,8 @@ public class DelivererRepository extends GenericRepository<Deliverer, DelivererR
 		ArrayList<Deliverer> list = new ArrayList<>();
 
 		for (Map.Entry<String, Deliverer> entry : map.entrySet()) {
-			list.add(((Deliverer) entry.getValue()));
+			if(!entry.getValue().isDeleted())
+				list.add(((Deliverer) entry.getValue()));
 		}
 
 		return list;
@@ -52,6 +53,12 @@ public class DelivererRepository extends GenericRepository<Deliverer, DelivererR
 
 		return map;
 
+	}
+	
+	public void delete(String id) {
+		Map<String, Deliverer> map = getMap();
+		map.get(id).setDeleted(true);;
+		writeFile(map);
 	}
 
 }

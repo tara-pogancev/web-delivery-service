@@ -29,7 +29,8 @@ public class CustomerRepository extends GenericRepository<Customer, CustomerRepo
 		ArrayList<Customer> list = new ArrayList<>();
 
 		for (Map.Entry<String, Customer> entry : map.entrySet()) {
-			list.add(((Customer) entry.getValue()));
+			if(!entry.getValue().isDeleted())
+				list.add(((Customer) entry.getValue()));
 		}
 
 		return list;
@@ -53,6 +54,12 @@ public class CustomerRepository extends GenericRepository<Customer, CustomerRepo
 
 		return map;
 
+	}
+	
+	public void delete(String id) {
+		Map<String, Customer> map = getMap();
+		map.get(id).setDeleted(true);;
+		writeFile(map);
 	}
 	
 }
