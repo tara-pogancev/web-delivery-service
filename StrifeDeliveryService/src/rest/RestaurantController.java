@@ -40,6 +40,34 @@ public class RestaurantController {
 	}
 
 	@GET
+	@Path("getAllOpen")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<RestaurantViewDTO> getAllRestaurantsOpen() {
+		repo.setBasePath(getDataDirPath());
+		ArrayList<RestaurantViewDTO> retVal = new ArrayList<>();
+		
+		for (Restaurant r : repo.getAll())
+			if (r.getStatus().equals(RestaurantStatus.OPEN))
+				retVal.add(new RestaurantViewDTO(r));
+
+		return retVal;
+	}
+	
+	@GET
+	@Path("getAllClosed")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<RestaurantViewDTO> getAllRestaurantsClosed() {
+		repo.setBasePath(getDataDirPath());
+		ArrayList<RestaurantViewDTO> retVal = new ArrayList<>();
+		
+		for (Restaurant r : repo.getAll())
+			if (r.getStatus().equals(RestaurantStatus.CLOSED))
+				retVal.add(new RestaurantViewDTO(r));
+
+		return retVal;
+	}
+	
+	@GET
 	@Path("getAll")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Restaurant> getAllRestaurants() {

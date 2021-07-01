@@ -24,6 +24,13 @@ function getDataFromServer() {
 
 			}
 
+			if (response.length === 0) {
+				newRowContent = `<tr>`
+				newRowContent += `<td colspan="6">No users.</td>`
+			
+				$('#rest-table tbody').append(newRowContent);
+			}
+
 		}
 	});
 
