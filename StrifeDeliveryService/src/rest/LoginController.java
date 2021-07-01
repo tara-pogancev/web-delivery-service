@@ -39,7 +39,7 @@ public class LoginController {
 	public void init() {
 		if (ctx.getAttribute("username") == null) {
 	    	String contextPath = ctx.getRealPath("");
-			ctx.setAttribute("username", new User().getId());
+			ctx.setAttribute("username", "");
 		}
 	}
 	
@@ -61,8 +61,8 @@ public class LoginController {
 		if (customerLogIn(par) != "Username was not found")
 			return customerLogIn(par);
 		
-		//if(adminLogIn(par) != "Username was not found")
-			//return adminLogIn(par);
+		if(adminLogIn(par) != "Username was not found")
+			return adminLogIn(par);
 		
 		if(managerLogIn(par) != "Username was not found")
 			return adminLogIn(par);
