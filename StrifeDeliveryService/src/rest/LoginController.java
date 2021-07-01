@@ -60,16 +60,15 @@ public class LoginController {
 		
 		if (customerLogIn(par) != "Username was not found")
 			return customerLogIn(par);
+		if (delivererLogIn(par) != "Username was not found")
+			retunr delivererLogIn(par);
 		
 		if(adminLogIn(par) != "Username was not found")
 			return adminLogIn(par);
 		
 		if(managerLogIn(par) != "Username was not found")
 			return adminLogIn(par);
-		
-		if(delivererLogIn(par) != "Username was not found")
-			return delivererLogIn(par);
-		
+
 		return "Username was not foundd";
 	}
 	
