@@ -81,6 +81,19 @@ public class User {
 		this.deleted = false;
 	}
 	
+	public User()
+	{
+		super();
+		this.id = null;
+		this.password = null;
+		this.name = null;
+		this.lastName = null;
+		this.gender = null;
+		this.dateOfBirth = null;
+		this.category = null;
+		this.deleted = false;
+	}
+	
 	public User(String id, String password, String name, String lastName, Gender gender, String dateOfBirth,
 			UserCategory category) {
 		super();

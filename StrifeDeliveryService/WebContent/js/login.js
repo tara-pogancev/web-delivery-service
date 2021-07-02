@@ -1,5 +1,9 @@
-const	form = document.getElementById('login-form'),
-		submitInput = document.getElementById('login-submit');
+document.addEventListener('DOMContentLoaded', function () {
+
+	var submitInput = document.getElementById('form-submit')
+	submitInput.addEventListener('click', getFormData, false);
+
+}, false);
 		
 function getFormData(e) {
 	
@@ -8,22 +12,27 @@ function getFormData(e) {
 	var username = document.getElementById('username').value;
 	var password = document.getElementById('password').value;
 	
-	if (username && password)	
-		sendLogin();	
+	if (username && password){
+		sendLogin(username, password);
+		}	
 	else 
 		alert("Please fill in all fields!")
 }
 
-function sendLogin() {	
+function sendLogin(username, password) {	
 	
-	axios.post('webapi/login/sendLogin', { 
-		"username" : username,
-		"password" : password,
-		
-	})
-	.then(response => {
-    	alert("Sign in, successful");
-		window.location.reload();
-	});	
-	
+	let data = {
+		"id" : username,
+		"password" : password
+	}
+
+	$.post({
+		url: 'webapi/login/userLogin',
+		data: JSON.stringify(data),
+		contentType: 'application/json',
+		success: function(response){
+				alert(response)
+				window.location.href = "http://localhost:8080/PocetniREST/";
+		}
+	});
 }
