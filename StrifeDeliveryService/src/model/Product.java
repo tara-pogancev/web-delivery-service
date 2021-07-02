@@ -11,11 +11,9 @@ public class Product {
 	private String name;
 	private float price;
 	private ProductType type;
-	//private Restaurant restaurant;
 	private int quantity; //u g ili ml
 	private String description;
 	private boolean deleted = false;
-	// SLIKA
 	
 	public Product(String id, String name, float price, ProductType type, Restaurant restaurant, int quantity,
 			String description) {
@@ -24,7 +22,6 @@ public class Product {
 		this.name = name;
 		this.price = price;
 		this.type = type;
-		//this.restaurant = restaurant;
 		this.quantity = quantity;
 		this.description = description;
 	}
@@ -52,14 +49,6 @@ public class Product {
 	public void setType(ProductType type) {
 		this.type = type;
 	}
-
-//	public Restaurant getRestaurant() {
-//		return restaurant;
-//	}
-//
-//	public void setRestaurant(Restaurant restaurant) {
-//		this.restaurant = restaurant;
-//	}
 
 	public int getQuantity() {
 		return quantity;
@@ -93,7 +82,4 @@ public class Product {
 		this.id = id;
 	}
 	
-	
-	
-
 }

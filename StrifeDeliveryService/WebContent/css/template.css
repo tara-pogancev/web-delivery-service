@@ -320,6 +320,12 @@ padding: 10px;
   height: 75px;
 }
 
+.r-table tbody tr a {
+  color: #318c69;
+  cursor: pointer;
+  
+}
+
 .r-section {
   width: 60%;
   margin: auto;

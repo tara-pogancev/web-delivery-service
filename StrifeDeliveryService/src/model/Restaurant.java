@@ -11,11 +11,10 @@ public class Restaurant {
 
 	private String name; 
 	private String type; 
-	private ArrayList<Product> products;
+	private ArrayList<String> products;
 	private RestaurantStatus status;
 	private Address location;
 	private boolean deleted = false;
-	//SLIKA
 	
 	public Restaurant(String name, String type, RestaurantStatus status, Address location) {
 		super();
@@ -23,7 +22,7 @@ public class Restaurant {
 		this.type = type;
 		this.status = status;
 		this.location = location;
-		this.products = new ArrayList<Product>();
+		this.products = new ArrayList<String>();
 	}
 	
 	public Restaurant() {
@@ -32,7 +31,7 @@ public class Restaurant {
 		this.type = null;
 		this.status = null;
 		this.location = null;
-		this.products = new ArrayList<Product>();	
+		this.products = new ArrayList<String>();	
 		
 	}
 
@@ -68,17 +67,17 @@ public class Restaurant {
 		this.location = location;
 	}
 
-	public ArrayList<Product> getProducts() {
+	public ArrayList<String> getProducts() {
 		return products;
 	}
 
-	public void setProducts(ArrayList<Product> products) {
+	public void setProducts(ArrayList<String> products) {
 		this.products = products;
 	}
 	
 	public void addProduct(Product product) {
-		if (!this.products.contains(product))
-			this.products.add(product);
+		if (!this.products.contains(product.getId()))
+			this.products.add(product.getId());
 	}
 
 	public boolean isDeleted() {

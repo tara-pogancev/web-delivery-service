@@ -62,4 +62,16 @@ public class CustomerRepository extends GenericRepository<Customer, CustomerRepo
 		writeFile(map);
 	}
 	
+	public void ban(String id) {
+		Map<String, Customer> map = getMap();
+		map.get(id).setBlocked(true);;
+		writeFile(map);
+	}
+	
+	public void unban(String id) {
+		Map<String, Customer> map = getMap();
+		map.get(id).setBlocked(false);;
+		writeFile(map);
+	}
+	
 }
