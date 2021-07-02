@@ -13,7 +13,7 @@ function getDataFromServer() {
 			for (let restaurant of response) {
 
 				newRowContent = `<tr>`
-				newRowContent += `<td class="td-center"><a href="#"><img src="images/logos/Yummyyy.png"></a></td>"`
+				newRowContent += `<td class="td-center"><a href="#"><img src="images/logos/`+restaurant.name+`.png"></a></td>"`
 				newRowContent += `<td>` + restaurant.name + `</td>`
 				newRowContent += `<td>` + restaurant.address + `</td>`
 				newRowContent += `<td>` + restaurant.rating + `</td>`

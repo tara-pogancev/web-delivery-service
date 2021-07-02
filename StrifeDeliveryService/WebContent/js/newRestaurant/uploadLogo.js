@@ -3,7 +3,7 @@ function upload() {
 	let base64String = "";
 
 	var file = document.querySelector(
-        'input[type=file]')['files'][0];
+		'input[type=file]')['files'][0];
 
 	var reader = new FileReader();
 
@@ -13,20 +13,17 @@ function upload() {
 		imageBase64Stringsep = base64String;
 
 		//console.log(base64String);
-		
+
+		$.post({
+			url: 'webapi/images/uploadImage',
+			data: base64String,
+			success: function (response) {
+			}
+		});
+
 	}
 
 	reader.readAsDataURL(file);
-
-	$.post({
-		url: 'webapi/images/uploadImage',
-		//data: JSON.stringify(data),
-		data: base64String,
-		contentType: 'text/plain',
-		success: function (response) {
-			alert(base64String);
-		}
-	});
 
 }
 

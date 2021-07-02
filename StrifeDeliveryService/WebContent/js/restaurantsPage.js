@@ -32,7 +32,7 @@ function getDataFromServerOpen() {
 			if (response.length === 0) {
 				newRowContent += `<p>No restaurants.</p>`
 
-				$('#restaurants-closed').append(newRowContent);
+				$('#restaurants').append(newRowContent);
 			}
 
 		}
