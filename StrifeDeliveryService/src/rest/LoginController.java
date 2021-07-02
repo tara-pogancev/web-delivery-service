@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import dto.RestaurantViewDTO;
 import dto.UserDTO;
 import dto.UserViewDTO;
 import model.Admin;
@@ -23,6 +24,7 @@ import repository.AdminRepository;
 import repository.CustomerRepository;
 import repository.DelivererRepository;
 import repository.ManagerRepository;
+import repository.RestaurantRepository;
 
 @Path("login")
 public class LoginController {
@@ -31,6 +33,7 @@ public class LoginController {
 	ManagerRepository repoManager = new ManagerRepository();
 	AdminRepository repoAdmin = new AdminRepository();
 	DelivererRepository repoDel = new DelivererRepository();
+	RestaurantRepository repoRest = new RestaurantRepository();
 	User user;
 	List<String> usernames;
 
@@ -197,5 +200,18 @@ public class LoginController {
 		else
 			return new UserViewDTO(repoAdmin.read(username));	
 		
+	}
+	
+	@GET
+	@Path("activeManagerRestaurant")
+	@Produces(MediaType.APPLICATION_JSON)
+	public RestaurantViewDTO activeManagerRestaurant() {
+		repoManager.setBasePath(getDataDirPath());
+		repoRest.setBasePath(getDataDirPath());
+		
+		String username = (String) ctx.getAttribute("username");
+		String restaurantID = repoManager.read(username).getRestaurantId();
+
+		return new RestaurantViewDTO(repoRest.read(restaurantID));
 	}
 }

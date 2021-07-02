@@ -32,11 +32,11 @@ public abstract class GenericRepository<Entity, StorageType extends GenericRepos
 	}
 
 	protected String getPath() {
-		return this.basePath + getFileName();
+		// return this.basePath + getFileName();
 		
-		// return "C:\\Users\\Tara\\Desktop\\FTN\\Veb programiranje\\&PROJEKAT\\web-delivery-service\\StrifeDeliveryService\\src\\data\\"+ getFileName();
+		//return "C:\\Users\\Tara\\Desktop\\FTN\\Veb programiranje\\&PROJEKAT\\web-delivery-service\\StrifeDeliveryService\\src\\data\\"+ getFileName();
 		
-		// return "C:\\Users\\filip\\Documents\\GitHub\\web-delivery-service\\StrifeDeliveryService\\src\\data\\" + getFileName();
+		return "C:\\Users\\filip\\Documents\\GitHub\\web-delivery-service\\StrifeDeliveryService\\src\\data\\" + getFileName();
 
 	}
 
