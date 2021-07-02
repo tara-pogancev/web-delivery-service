@@ -30,9 +30,10 @@ function getDataFromServerOpen() {
 			}
 
 			if (response.length === 0) {
-				newRowContent += `<p>No restaurants.</p>`
 
-				$('#restaurants-closed').append(newRowContent);
+				newRowContent = `<p>No restaurants.</p>`
+
+				$('#restaurants').append(newRowContent);
 			}
 
 		}
@@ -66,7 +67,9 @@ function getDataFromServerClosed() {
 			}
 
 			if (response.length === 0) {
-				newRowContent += `<p>No restaurants.</p>`
+
+				newRowContent = `<p>No restaurants.</p>`
+
 
 				$('#restaurants-closed').append(newRowContent);
 			}

@@ -62,7 +62,7 @@ public class ManagerController {
 	{
 		repo.setBasePath(getDataDirPath());
 				
-		Manager manager = new Manager(par.id, par.password, par.name, par.lastName, par.gerGenderEnum(), par.dateOfBirth, null, null);
+		Manager manager = new Manager(par.id, par.password, par.name, par.lastName, par.gerGenderEnum(), par.dateOfBirth, null, "");
 		repo.create(manager);
 		
 		System.out.println("Created new manager: " + manager.getId());

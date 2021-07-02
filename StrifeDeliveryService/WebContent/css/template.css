@@ -524,14 +524,15 @@ header
 }
 
 .header-area .main-nav .nav li.submenu:after {
-  font-family: FontAwesome;
-  content: "\f107";
+  content: url(../images/etc/down-arrow.png);
+  align-content: flex-end;
+  margin-left: 10px;
   font-size: 12px;
   color: #7a7a7a;
   position: absolute;
   right: 18px;
   top: 12px;
-}
+} 
 
 .header-area .main-nav .nav li.submenu ul {
   position: absolute;

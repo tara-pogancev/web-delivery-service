@@ -53,7 +53,7 @@ public class LoginController {
 		ctx.setAttribute("username", username);
 	}
 
-	@GET
+	@POST
 	@Path("logOut")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String userLogOut() {
@@ -144,5 +144,32 @@ public class LoginController {
 			}
 		}
 		return "Username was not found";
+	}
+	
+	
+	@GET
+	@Path("activeUser")
+	@Produces(MediaType.APPLICATION_JSON)
+	public UserDTO getActiveAccount() {
+		repoCustomer.setBasePath(getDataDirPath());
+		repoManager.setBasePath(getDataDirPath());
+		repoAdmin.setBasePath(getDataDirPath());
+		repoDel.setBasePath(getDataDirPath());
+		
+		UserDTO retVal = new UserDTO();
+		
+		String username = (String) ctx.getAttribute("username");
+		retVal.id = username;
+		
+		if (repoCustomer.read(username) != null)
+			retVal.name = "CUSTOMER";
+		else if (repoManager.read(username) != null)
+			retVal.name = "MANAGER";
+		else if (repoDel.read(username) != null)
+			retVal.name = "DELIVERER";
+		else
+			retVal.name = "ADMIN";		
+		
+		return retVal;
 	}
 }

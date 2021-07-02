@@ -55,4 +55,12 @@ public class RestaurantRepository extends GenericRepository<Restaurant, Restaura
 
 	}
 
+	public Restaurant readByName(String name) {
+		for (Restaurant r : getAll())
+			if (r.getName().equals(name))
+				return r;
+		
+		return null;
+	}
+
 }

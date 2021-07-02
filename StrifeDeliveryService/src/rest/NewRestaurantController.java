@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
@@ -125,7 +124,7 @@ public class NewRestaurantController {
 		Manager manager = repoManager.read(dto.id);
 		
 		repoRestaurant.create(restaurant);
-		manager.setRestaurant(restaurant);
+		manager.setRestaurantId(restaurant.getName());
 		
 		repoManager.update(manager);	
 		
