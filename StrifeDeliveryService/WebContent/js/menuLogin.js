@@ -13,85 +13,85 @@ function setLoginMenu() {
 
 			if (response.id == null || response.id == "") {
 
-				newRowContent = `<a href="login.html">Login</a>`
-				newRowContent += `<ul>`
-				newRowContent += `<li><a href="registerUser.html" class="menu-item">Register account</a></li>`
-				newRowContent += `</ul>`
+				newRowContentLogin = `<a href="login.html">Login</a>`
+				newRowContentLogin += `<ul>`
+				newRowContentLogin += `<li><a href="registerUser.html" class="menu-item">Register account</a></li>`
+				newRowContentLogin += `</ul>`
 
 
-				$('#login-menu').append(newRowContent);
+				$('#login-menu').append(newRowContentLogin);
 
 			}
 
 			else if (response.name == "CUSTOMER") {
 
-				newRowContent = `<a href="profileCustomer.html">` + response.id + `</a>`
+				newRowContentLogin = `<a href="profileCustomer.html">` + response.id + `</a>`
 
-				newRowContent += `<ul>`
+				newRowContentLogin += `<ul>`
 
-				newRowContent += `<li><a href="cartPage.html" class="menu-item">Cart</a></li>`
-				newRowContent += `<li><a href="customerOrders.html" class="menu-item">My Orders</a></li>`
-				newRowContent += `<li><a href="#" class="menu-item" onclick="logout();">LOGOUT</a></li>`
+				newRowContentLogin += `<li><a href="cartPage.html" class="menu-item">Cart</a></li>`
+				newRowContentLogin += `<li><a href="customerOrders.html" class="menu-item">My Orders</a></li>`
+				newRowContentLogin += `<li><a href="#" class="menu-item" onclick="logout();">LOGOUT</a></li>`
 
-				newRowContent += `</ul>`
+				newRowContentLogin += `</ul>`
 
 
-				$('#login-menu').append(newRowContent);
+				$('#login-menu').append(newRowContentLogin);
 
 			}
 
 			else if (response.name == "ADMIN") {
 
-				newRowContent = `<a href="profileAdmin.html">` + response.id + `</a>`
+				newRowContentLogin = `<a href="profileAdmin.html">` + response.id + `</a>`
 
-				newRowContent += `<ul>`
+				newRowContentLogin += `<ul>`
 
-				newRowContent += `<li><a href="adminUsersView.html" class="menu-item">Manage Users</a></li>`
-				newRowContent += `<li><a href="addRestaurant.html" class="menu-item">Add Restaurant</a></li>`
-				newRowContent += `<li><a href="addManager.html" class="menu-item">Add Manager</a></li>`
-				newRowContent += `<li><a href="addDeliverer.html" class="menu-item">Add Deliverer</a></li>`
-				newRowContent += `<li><a href="#" class="menu-item">Manage Customers</a></li>`
-				newRowContent += `<li><a href="#" class="menu-item" onclick="logout();">LOGOUT</a></li>`
+				newRowContentLogin += `<li><a href="adminUsersView.html" class="menu-item">Manage Users</a></li>`
+				newRowContentLogin += `<li><a href="addRestaurant.html" class="menu-item">Add Restaurant</a></li>`
+				newRowContentLogin += `<li><a href="addManager.html" class="menu-item">Add Manager</a></li>`
+				newRowContentLogin += `<li><a href="addDeliverer.html" class="menu-item">Add Deliverer</a></li>`
+				newRowContentLogin += `<li><a href="#" class="menu-item">Manage Customers</a></li>`
+				newRowContentLogin += `<li><a href="#" class="menu-item" onclick="logout();">LOGOUT</a></li>`
 
-				newRowContent += `</ul>`
+				newRowContentLogin += `</ul>`
 
 
-				$('#login-menu').append(newRowContent);
+				$('#login-menu').append(newRowContentLogin);
 
 			}
 
 			else if (response.name == "MANAGER") {
 
-				newRowContent = `<a href="profileManager.html">` + response.id + `</a>`
+				newRowContentLogin = `<a href="profileManager.html">` + response.id + `</a>`
 
-				newRowContent += `<ul>`
+				newRowContentLogin += `<ul>`
 
-				newRowContent += `<li><a href="#" class="menu-item">My Restaurant</a></li>`
-				newRowContent += `<li><a href="#" class="menu-item">Add Menu Item</a></li>`
-				newRowContent += `<li><a href="#" class="menu-item">Manage Menu Items</a></li>`
-				newRowContent += `<li><a href="#" class="menu-item">Manage Orders</a></li>`
-				newRowContent += `<li><a href="#" class="menu-item" onclick="logout();">LOGOUT</a></li>`
+				newRowContentLogin += `<li><a href="#" class="menu-item">My Restaurant</a></li>`
+				newRowContentLogin += `<li><a href="#" class="menu-item">Add Menu Item</a></li>`
+				newRowContentLogin += `<li><a href="#" class="menu-item">Manage Menu Items</a></li>`
+				newRowContentLogin += `<li><a href="#" class="menu-item">Manage Orders</a></li>`
+				newRowContentLogin += `<li><a href="#" class="menu-item" onclick="logout();">LOGOUT</a></li>`
 
-				newRowContent += `</ul>`
+				newRowContentLogin += `</ul>`
 
 
-				$('#login-menu').append(newRowContent);
+				$('#login-menu').append(newRowContentLogin);
 
 			}
 
 			else if (response.name == "DELIVERER") {
 
-				newRowContent = `<a href="profileManager.html">` + response.id + `</a>`
+				newRowContentLogin = `<a href="profileManager.html">` + response.id + `</a>`
 
-				newRowContent += `<ul>`
+				newRowContentLogin += `<ul>`
 
-				newRowContent += `<li><a href="#" class="menu-item">My Orders</a></li>`
-				newRowContent += `<li><a href="#" class="menu-item" onclick="logout();">LOGOUT</a></li>`
+				newRowContentLogin += `<li><a href="#" class="menu-item">My Orders</a></li>`
+				newRowContentLogin += `<li><a href="#" class="menu-item" onclick="logout();">LOGOUT</a></li>`
 
-				newRowContent += `</ul>`
+				newRowContentLogin += `</ul>`
 
 
-				$('#login-menu').append(newRowContent);
+				$('#login-menu').append(newRowContentLoginLogin);
 
 			}
 

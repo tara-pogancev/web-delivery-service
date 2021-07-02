@@ -124,7 +124,7 @@ public class NewRestaurantController {
 		Manager manager = repoManager.read(dto.id);
 		
 		repoRestaurant.create(restaurant);
-		manager.setRestaurant(restaurant);
+		manager.setRestaurantId(restaurant.getName());
 		
 		repoManager.update(manager);	
 		
