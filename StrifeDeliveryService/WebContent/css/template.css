@@ -1143,6 +1143,15 @@ restaurant
   display: inline-block;
 }
 
+.cart-number-input {
+  width: 40px;
+  margin: 10px;
+  border: 0px;
+  border-bottom: 3px solid #ffaf7a;
+  
+}
+
+
 
 /*
 ---------------------------------------------

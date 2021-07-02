@@ -66,3 +66,19 @@ function doSearch() {
 	});
 
 }
+
+function setCurrentRestaurantView(name) {
+
+	let data = {
+		"name": name
+	}
+
+	$.post({
+		url: 'webapi/restaurantView/setCurrentRestaurant',
+		data: JSON.stringify(data),
+		contentType: 'application/json',
+		success: function (response) {
+
+		}
+	});
+}
