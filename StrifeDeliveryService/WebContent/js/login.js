@@ -31,8 +31,14 @@ function sendLogin(username, password) {
 		data: JSON.stringify(data),
 		contentType: 'application/json',
 		success: function(response){
-				alert(response)
-				window.location.href = "http://localhost:8080/PocetniREST/";
+				if (response === "Loggin successful") {
+					window.location.href = "http://localhost:8080/PocetniREST/";
+				}			
+				
+				else {
+					alert(response)
+				}
+					
 		}
 	});
 }

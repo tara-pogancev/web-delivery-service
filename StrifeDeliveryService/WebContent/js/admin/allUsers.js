@@ -18,7 +18,7 @@ function getDataFromServer() {
 				newRowContent += `<td>` + user.name + `</td>`
 				newRowContent += `<td>` + user.lastName + `</td>`
 				newRowContent += `<td>` + user.password + `</td>`
-				newRowContent += `<td>` + `<p onclick=confirmDelete(\"` + user.id + `\") >Delete</p>` + `</td>`
+				newRowContent += `<td>` + `<a href="#" onclick=confirmDelete(\"` + user.id + `\") >Delete</a>` + `</td>`
 
 				$('#rest-table tbody').append(newRowContent);
 

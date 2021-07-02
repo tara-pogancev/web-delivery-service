@@ -10,7 +10,6 @@ import java.util.Map;
 import com.google.gson.reflect.TypeToken;
 
 import model.Admin;
-import model.Customer;
 
 public class AdminRepository extends GenericRepository<Admin, AdminRepository>  {
 

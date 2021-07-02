@@ -13,6 +13,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import dto.UserDTO;
+import dto.UserViewDTO;
 import model.Admin;
 import model.Customer;
 import model.Deliverer;
@@ -171,5 +172,30 @@ public class LoginController {
 			retVal.name = "ADMIN";		
 		
 		return retVal;
+	}
+	
+	@GET
+	@Path("activeUserObject")
+	@Produces(MediaType.APPLICATION_JSON)
+	public UserViewDTO getActiveUserObject() {
+		repoCustomer.setBasePath(getDataDirPath());
+		repoManager.setBasePath(getDataDirPath());
+		repoAdmin.setBasePath(getDataDirPath());
+		repoDel.setBasePath(getDataDirPath());		
+		
+		String username = (String) ctx.getAttribute("username");
+				
+		if (repoCustomer.read(username) != null) 
+			return new UserViewDTO(repoCustomer.read(username));
+		
+		else if (repoManager.read(username) != null)
+			return new UserViewDTO(repoManager.read(username));
+		
+		else if (repoDel.read(username) != null)
+			return new UserViewDTO(repoDel.read(username));
+		
+		else
+			return new UserViewDTO(repoAdmin.read(username));	
+		
 	}
 }
