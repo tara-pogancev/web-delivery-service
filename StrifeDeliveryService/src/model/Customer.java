@@ -14,7 +14,6 @@ public class Customer extends User {
 	private ArrayList<Order> orders;
 	private CustomerType customerType;
 	private int points;
-	private boolean blocked = false;	
 	
 	public Customer(String id, String password, String name, String lastName, Gender gender, Date dateOfBirth,
 			UserCategory category) {
@@ -48,20 +47,26 @@ public class Customer extends User {
 		this.points = points;
 	}
 
-	public boolean isBlocked() {
-		return blocked;
-	}
-
-	public void setBlocked(boolean blocked) {
-		this.blocked = blocked;
-	}
-
 	public CustomerType getCustomerType() {
 		return customerType;
 	}
 
 	public void setCustomerType(CustomerType customerType) {
 		this.customerType = customerType;
+	}
+	
+	public void addPoints(int pointsToAdd) {
+		this.points += pointsToAdd;
+	}
+	
+	public void checkUpgrade() {
+		
+		if (this.points >= 100) 
+			this.customerType = new CustomerType("SILVER", 10, 100);
+		
+		if (this.points >= 500) 
+			this.customerType = new CustomerType("GOLD", 25, 500);		
+		
 	}
 	
 	

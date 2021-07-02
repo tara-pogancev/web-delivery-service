@@ -12,7 +12,7 @@ import enumeration.UserCategory;
 public class Deliverer extends User {
 
 	private ArrayList<Order> ordersToDeliver;
-
+	
 	public Deliverer(String id, String password, String name, String lastName, Gender gender, Date dateOfBirth,
 			UserCategory category) {
 		super(id, password, name, lastName, gender, dateOfBirth, category);
@@ -27,7 +27,7 @@ public class Deliverer extends User {
 	public void setOrdersToDeliver(ArrayList<Order> ordersToDeliver) {
 		this.ordersToDeliver = ordersToDeliver;
 	}
-	
-	
+
+
 
 }

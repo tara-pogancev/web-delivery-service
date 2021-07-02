@@ -125,37 +125,34 @@ public class UserController {
 			repoManager.delete(user.id);
 
 	}
-	
+
 	@POST
 	@Path("uniqueUsername")
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String uniqueUsername(UserDTO par)
-	{	
-		
+	public String uniqueUsername(UserDTO par) {
 		repoDeliverer.setBasePath(getDataDirPath());
 		repoCustomer.setBasePath(getDataDirPath());
 		repoManager.setBasePath(getDataDirPath());
 		repoAdmin.setBasePath(getDataDirPath());
-						
-		
+
 		for (Customer c : repoCustomer.getAll())
 			if (c.getId().equals(par.id))
 				return "false";
-		
+
 		for (Admin a : repoAdmin.getAll())
 			if (a.getId().equals(par.id))
 				return "false";
-		
+
 		for (Manager m : repoManager.getAll())
 			if (m.getId().equals(par.id))
 				return "false";
-		
+
 		for (Deliverer d : repoDeliverer.getAll())
 			if (d.getId().equals(par.id))
-				return "false";		
-		
-		return "true"; 
+				return "false";
+
+		return "true";
 	}
 
 	@POST
@@ -173,39 +170,75 @@ public class UserController {
 			c.setLastName(par.lastName);
 			c.setDateOfBirth(par.dateOfBirth);
 			c.setGender(par.gerGenderEnum());
-			c.setPassword(par.password);	
+			c.setPassword(par.password);
 			repoCustomer.update(c);
 		}
-		
+
 		if (repoDeliverer.read(par.id) != null) {
 			Deliverer d = repoDeliverer.read(par.id);
 			d.setName(par.name);
 			d.setLastName(par.lastName);
 			d.setDateOfBirth(par.dateOfBirth);
 			d.setGender(par.gerGenderEnum());
-			d.setPassword(par.password);	
+			d.setPassword(par.password);
 			repoDeliverer.update(d);
 		}
-		
+
 		if (repoManager.read(par.id) != null) {
 			Manager m = repoManager.read(par.id);
 			m.setName(par.name);
 			m.setLastName(par.lastName);
 			m.setDateOfBirth(par.dateOfBirth);
 			m.setGender(par.gerGenderEnum());
-			m.setPassword(par.password);	
+			m.setPassword(par.password);
 			repoManager.update(m);
 		}
-		
+
 		if (repoAdmin.read(par.id) != null) {
 			Admin a = repoAdmin.read(par.id);
 			a.setName(par.name);
 			a.setLastName(par.lastName);
 			a.setDateOfBirth(par.dateOfBirth);
 			a.setGender(par.gerGenderEnum());
-			a.setPassword(par.password);	
+			a.setPassword(par.password);
 			repoAdmin.update(a);
 		}
+	}
+
+	@POST
+	@Path("banUser")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void banUser(UserDTO user) {
+		repoDeliverer.setBasePath(getDataDirPath());
+		repoCustomer.setBasePath(getDataDirPath());
+		repoManager.setBasePath(getDataDirPath());
+
+		if (repoCustomer.read(user.id) != null)
+			repoCustomer.ban(user.id);
+
+		if (repoDeliverer.read(user.id) != null)
+			repoDeliverer.ban(user.id);
+
+		if (repoManager.read(user.id) != null)
+			repoManager.ban(user.id);
+	}
+
+	@POST
+	@Path("unbanUser")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void unbanUser(UserDTO user) {
+		repoDeliverer.setBasePath(getDataDirPath());
+		repoCustomer.setBasePath(getDataDirPath());
+		repoManager.setBasePath(getDataDirPath());
+
+		if (repoCustomer.read(user.id) != null)
+			repoCustomer.unban(user.id);
+
+		if (repoDeliverer.read(user.id) != null)
+			repoDeliverer.unban(user.id);
+
+		if (repoManager.read(user.id) != null)
+			repoManager.unban(user.id);
 	}
 
 }
