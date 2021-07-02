@@ -95,8 +95,13 @@ public class LoginController {
 		for (Customer u : repoCustomer.getAll()) {
 			if (u.getId().equals(par.id)) {
 				if (u.getPassword().equals(par.password)) {
+					if (u.isBlocked()) {
+						return "This user has been banned until 2/2/2222";
+					}
+					else {
 					setLoggedInUser(par.id);
 					return "Loggin successful";
+					}
 				} else {
 					return "Incorrect password";
 				}
@@ -110,8 +115,13 @@ public class LoginController {
 		for (Admin u : repoAdmin.getAll()) {
 			if (u.getId().equals(par.id)) {
 				if (u.getPassword().equals(par.password)) {
+					if (u.isBlocked()) {
+						return "This user has been banned until 2/2/2222";
+					}
+					else {
 					setLoggedInUser(par.id);
 					return "Loggin successful";
+					}
 				} else {
 					return "Incorrect password";
 				}
@@ -125,8 +135,13 @@ public class LoginController {
 		for (Manager u : repoManager.getAll()) {
 			if (u.getId().equals(par.id)) {
 				if (u.getPassword().equals(par.password)) {
+					if (u.isBlocked()) {
+						return "This user has been banned until 2/2/2222";
+					}
+					else {
 					setLoggedInUser(par.id);
 					return "Loggin successful";
+					}
 				} else {
 					return "Incorrect password";
 				}
@@ -140,8 +155,13 @@ public class LoginController {
 		for (Deliverer u : repoDel.getAll()) {
 			if (u.getId().equals(par.id)) {
 				if (u.getPassword().equals(par.password)) {
+					if (u.isBlocked()) {
+						return "This user has been banned until 2/2/2222";
+					}
+					else {
 					setLoggedInUser(par.id);
 					return "Loggin successful";
+					}
 				} else {
 					return "Incorrect password";
 				}
