@@ -1,9 +1,27 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+	getServerData();
+	
 	var submitInput = document.getElementById('form-submit')
 	submitInput.addEventListener('click', form, false);
 
 }, false);
+
+function getServerData() {
+
+	$.get({
+		url: 'webapi/login/activeManagerRestaurant',
+		success: function (restaurant) {
+
+			document.getElementById('rest-name').value = restaurant.name;
+			document.getElementById('type').value = restaurant.type;
+			document.getElementById('open-status').value = restaurant.status;
+			document.getElementById('city').value = restaurant.city;
+			document.getElementById('postal').value = restaurant.postal;
+			document.getElementById('address').value = restaurant.address;
+		}
+	});
+}
 
 function form(e) {
 
