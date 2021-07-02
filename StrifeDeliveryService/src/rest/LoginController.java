@@ -89,9 +89,7 @@ public class LoginController {
 	public String customerLogIn(UserDTO par) {
 		repoCustomer.setBasePath(getDataDirPath());
 		for (Customer u : repoCustomer.getAll()) {
-			System.out.println(par.id + u.getId());
 			if (u.getId().equals(par.id)) {
-				System.out.println(par.id + u.getId());
 				if (u.getPassword().equals(par.password)) {
 					setLoggedInUser(par.id);
 					return "Loggin successful";
