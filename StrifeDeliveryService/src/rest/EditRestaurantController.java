@@ -24,6 +24,7 @@ public class EditRestaurantController {
 	@Context
 	ServletContext ctx;
 	
+	@SuppressWarnings("unused")
 	public void init() {
 		if (ctx.getAttribute("currentRestaurant") == null) {
 			String contextPath = ctx.getRealPath("");
@@ -35,6 +36,7 @@ public class EditRestaurantController {
 		return (ctx.getRealPath("") + "WEB-INF" + File.separator + "classes" + File.separator + "data" + File.separator);
 	}
 	
+	@SuppressWarnings("unused")
 	private Restaurant getCurrentRestaurant() {
 		return (Restaurant) ctx.getAttribute("currentRestaurant");
 	}

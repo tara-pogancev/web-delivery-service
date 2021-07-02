@@ -15,7 +15,7 @@ function getServerData() {
 
 			document.getElementById('rest-name').value = restaurant.name;
 			document.getElementById('type').value = restaurant.type;
-			document.getElementById('open-status').value = restaurant.status;
+			document.getElementById('open-status').value = restaurant.status.toLowerCase();
 			document.getElementById('city').value = restaurant.city;
 			document.getElementById('postal').value = restaurant.postal;
 			document.getElementById('address').value = restaurant.address;
@@ -35,7 +35,7 @@ function form(e) {
 	var address = document.getElementById('address').value;
 	var picture = document.getElementById('logo-picture').value;
 
-	if (name)
+	if (name && type && status && city && postal && address)
 		editRestaurant(name, type, status, city, postal, address)
 
 	else
