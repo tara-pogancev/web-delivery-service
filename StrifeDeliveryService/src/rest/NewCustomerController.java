@@ -37,7 +37,6 @@ public class NewCustomerController {
 	public String uniqueUsername(UserDTO par)
 	{
 		repo.setBasePath(getDataDirPath());
-		//repo.fileStorageLocation = "C:\\Users\\Tara\\Desktop\\FTN\\Veb programiranje\\&PROJEKAT\\web-delivery-service\\StrifeDeliveryService\\src\\data\\customerData.json";
 						
 		List<Customer> list = repo.getAll();
 		
@@ -67,5 +66,6 @@ public class NewCustomerController {
 	public String getDataDirPath() {
 		return (ctx.getRealPath("") + "WEB-INF" + File.separator + "classes" + File.separator + "data" + File.separator);
 	}
+		
 	
 }
