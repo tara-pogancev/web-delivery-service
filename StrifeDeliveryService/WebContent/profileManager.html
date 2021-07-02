@@ -1,18 +1,20 @@
 <html>
 
 <head>
-	<title>My Profile - Strife Delivery Service</title>
-	<meta charset="utf-8">
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
+<title>My Profile - Strife Delivery Service</title>
+<meta charset="utf-8">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
-		rel="stylesheet">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
+	rel="stylesheet">
 
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/template.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/template.css">
 
 </head>
 
@@ -28,27 +30,26 @@
 	<!-- ***** Preloader End ***** -->
 
 	<!-- ***** Header Area Start ***** -->
-	<header class="header-area header-sticky" style="background-color: white; height: 80px;">
+	<header class="header-area header-sticky"
+		style="background-color: white; height: 80px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<nav class="main-nav">
 						<!-- ***** Logo Start ***** -->
-						<a href="index.html" class="logo">
-							<img src="images/logo black.png" class="logo-img">
+						<a href="index.html" class="logo"> <img
+							src="images/logo black.png" class="logo-img">
 						</a>
 						<!-- ***** Logo End ***** -->
 						<!-- ***** Menu Start ***** -->
-						<ul class="nav nav-transparent" style="background-color: transparent;">
+						<ul class="nav nav-transparent"
+							style="background-color: transparent;">
 							<li><a href="index.html#welcome">Home</a></li>
 							<li><a href="restaurants.html">Restaurants</a></li>
 							<li><a href="index.html#testimonials">Testamonials</a></li>
-							<li class="submenu" id="login-menu">
-
-							</li>
+							<li class="submenu" id="login-menu"></li>
 						</ul>
-						<a class="menu-trigger">
-							<span>Menu</span>
+						<a class="menu-trigger"> <span>Menu</span>
 						</a>
 						<!-- ***** Menu End ***** -->
 					</nav>
@@ -61,11 +62,82 @@
 	<img src="images/header-banner-1.png" width="100%">
 
 	<section>
-		<row>
-		</row>
+		<row> </row>
 	</section>
 
-	<h1>Manager Profile View</h1>
+	<div class="r-gap"></div>
+
+	<section class="section">
+		<div class="container">
+			<div class="r-row">
+				<div class="title-div col-6">
+					<h1 id="welcomeUser">Manager profile view</h1>
+					<hr>
+				</div>
+				<div align="right" class="col-6">
+					<div class="r-gap"></div>
+					<a class="main-button" href="changeProfileData.html">Edit
+						profile</a>
+				</div>
+			</div>
+
+			<div class="r-gap"></div>
+
+			<section style="width: 100%;">
+
+				<div class="row equal">
+					<div id="user-data" class="col-5 r-section-white"></div>
+
+					<div class="col-1"></div>
+
+					<div align="center" class="col-6 r-section-white">
+						<div>
+							<button class="main-button button-gap" style="width: 200px;"
+								onclick="location.href='editRestaurant.html';">Menu Items</button>
+							<button class="main-button button-gap" style="width: 200px;"
+								onclick="location.href='editRestaurant.html';">Add Menu Item</button>
+						</div>
+
+						<div>
+							<button class="main-button button-gap" style="width: 200px;"
+								onclick="location.href='addManager.html';">Manage Orders</button>
+							<button class="main-button button-gap" style="width: 200px;"
+								onclick="location.href='addDeliverer.html';">Deliverers</button>
+						</div>
+
+						<button class="main-button button-gap" style="width: 200px;"
+							onclick="location.href='editRestaurant.html';">Edit Restaurant</button>
+					</div>
+
+				</div>
+
+			</section>
+
+			<div class="r-gap"></div>
+
+			<div class="col-12 r-section-white">
+
+				<h1 id="user-name">My Restaurant</h1>
+				<hr>
+
+				<div class="r-gap"></div>
+
+
+				<div class="col-1"></div>
+
+			</div>
+
+		</div>
+
+		<div align="center" class="r-gap" style="margin-top: 100px;">
+			<button class="main-button" onclick="logout()">LogOut</button>
+		</div>
+
+
+
+		</div>
+
+	</section>
 
 
 
@@ -75,9 +147,11 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="sub-footer">
-						<p>Copyright &copy; 2021 Strife Delivery Service
-							| Designed by <a href="https://github.com/piwneuh">Filip</a> and <a
-								href="https://github.com/tara-pogancev">Tara</a></p>
+						<p>
+							Copyright &copy; 2021 Strife Delivery Service | Designed by <a
+								href="https://github.com/piwneuh">Filip</a> and <a
+								href="https://github.com/tara-pogancev">Tara</a>
+						</p>
 					</div>
 				</div>
 			</div>
@@ -105,6 +179,7 @@
 	<!-- Global Init -->
 	<script src="js/custom.js"></script>
 	<script src="js/menuLogin.js"></script>
+	<script src="js/manager/managerProfile.js"></script>
 
 </body>
 
