@@ -1,10 +1,6 @@
 window.onload = getDataFromServer();
+var activeUsername = "";
 
-document.addEventListener('DOMContentLoaded', function () {
-
-	//getDataFromServer();
-
-}, false);
 
 function getDataFromServer() {
 
@@ -28,7 +24,8 @@ function getDataFromServer() {
 
 			$('#welcomeUser').text("Welcome, " + profile.name);
 
-			generateCart(profile.id);
+			activeUsername = profile.id;
+			generateCart(activeUsername);
 
 		}
 	});
@@ -58,7 +55,8 @@ function generateCart(username) {
 
 				newRowContent = `<tr>`
 				newRowContent += `<td>` + item.product.name + `</td>`
-				newRowContent += `<td>` + item.amount + `</td>`
+				newRowContent += `<td><input class="cart-number-input" type="number" id="input-` + item.product.id + `" onchange=changeAmount(\"` + item.product.id + `\") 
+				min="1" value="`+ item.amount + `"></td>`
 				newRowContent += `<td>` + item.product.price + `</td>`
 				newRowContent += `<td>` + (item.product.price * item.amount) + `</td>`
 				newRowContent += `<td><a href="#" onclick=removeItem(\"` + item.product.id + `\")>Remove</a></td>`
@@ -83,12 +81,9 @@ function generateCart(username) {
 		url: 'webapi/cart/getUserCart',
 		contentType: 'application/json',
 		success: function (cart) {
-
 			$('#totalPrice').text("Total price:  $" + cart.totalPrice);
-
 		}
 	});
-
 }
 
 function removeItem(id) {
@@ -104,13 +99,31 @@ function removeItem(id) {
 			data: JSON.stringify(data),
 			contentType: 'application/json',
 			success: function (response) {
-
 				window.location.reload();
-
 			}
 		});
+	}
+}
 
+function changeAmount(id) {
+
+	var string = "input-" + id	
+
+	let data = {
+		productId: id,
+		amount: document.getElementById(string).value
 	}
 
+	$.post({
+		url: 'webapi/cart/updateItem',
+		data: JSON.stringify(data),
+		contentType: 'application/json',
+		success: function (response) {
+			
+			$('#rest-table tbody').empty();
+			generateCart(activeUsername);
+
+		}
+	});
 
 }

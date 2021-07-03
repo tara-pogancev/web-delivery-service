@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import dto.CartItemDTO;
+
 public class Cart {
 
 	private ArrayList<CartItem> items;
@@ -67,6 +69,16 @@ public class Cart {
 		}
 		
 		items.add(item);	
+	}
+	
+	public void updateCartItem(CartItemDTO item) {
+		
+		for (CartItem c : items) {
+			if (c.getProduct().getId().equals(item.productId)) {
+				c.setAmount(item.amount);
+				return;
+			}				
+		}
 	}
 
 	public void removeItem(String productId) {

@@ -122,5 +122,17 @@ public class CartController {
 		repoCart.update(c);
 		
 	}
+	
+	@POST
+	@Path("updateItem")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void updateItem(CartItemDTO dto) {
+		repoCart.setBasePath(getDataDirPath());
+		Cart c = getActiveCart();
+		c.updateCartItem(dto);
+		repoCart.update(c);
+		
+	}
 
 }
