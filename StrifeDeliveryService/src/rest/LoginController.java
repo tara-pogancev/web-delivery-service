@@ -149,8 +149,7 @@ public class LoginController {
 		}
 		return "Username was not found";
 	}
-	
-	
+
 	@GET
 	@Path("activeUser")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -159,12 +158,12 @@ public class LoginController {
 		repoManager.setBasePath(getDataDirPath());
 		repoAdmin.setBasePath(getDataDirPath());
 		repoDel.setBasePath(getDataDirPath());
-		
+
 		UserDTO retVal = new UserDTO();
-		
+
 		String username = (String) ctx.getAttribute("username");
 		retVal.id = username;
-		
+
 		if (repoCustomer.read(username) != null)
 			retVal.name = "CUSTOMER";
 		else if (repoManager.read(username) != null)
@@ -172,11 +171,11 @@ public class LoginController {
 		else if (repoDel.read(username) != null)
 			retVal.name = "DELIVERER";
 		else
-			retVal.name = "ADMIN";		
-		
+			retVal.name = "ADMIN";
+
 		return retVal;
 	}
-	
+
 	@GET
 	@Path("activeUserObject")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -184,34 +183,38 @@ public class LoginController {
 		repoCustomer.setBasePath(getDataDirPath());
 		repoManager.setBasePath(getDataDirPath());
 		repoAdmin.setBasePath(getDataDirPath());
-		repoDel.setBasePath(getDataDirPath());		
-		
+		repoDel.setBasePath(getDataDirPath());
+
 		String username = (String) ctx.getAttribute("username");
-				
-		if (repoCustomer.read(username) != null) 
+
+		if (repoCustomer.read(username) != null)
 			return new UserViewDTO(repoCustomer.read(username));
-		
+
 		else if (repoManager.read(username) != null)
 			return new UserViewDTO(repoManager.read(username));
-		
+
 		else if (repoDel.read(username) != null)
 			return new UserViewDTO(repoDel.read(username));
-		
+
 		else
-			return new UserViewDTO(repoAdmin.read(username));	
-		
+			return new UserViewDTO(repoAdmin.read(username));
+
 	}
-	
+
 	@GET
 	@Path("activeManagerRestaurant")
 	@Produces(MediaType.APPLICATION_JSON)
 	public RestaurantViewDTO activeManagerRestaurant() {
 		repoManager.setBasePath(getDataDirPath());
 		repoRest.setBasePath(getDataDirPath());
-		
+
 		String username = (String) ctx.getAttribute("username");
 		String restaurantID = repoManager.read(username).getRestaurantId();
-
-		return new RestaurantViewDTO(repoRest.read(restaurantID));
+		System.out.println(restaurantID);
+		if (!restaurantID.isEmpty()) {
+			return new RestaurantViewDTO(repoRest.read(restaurantID));
+		} else {
+			return new RestaurantViewDTO();
+		}
 	}
 }
