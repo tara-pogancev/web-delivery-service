@@ -60,17 +60,5 @@ public class DelivererRepository extends GenericRepository<Deliverer, DelivererR
 		map.get(id).setDeleted(true);;
 		writeFile(map);
 	}
-	
-	public void ban(String id) {
-		Map<String, Deliverer> map = getMap();
-		map.get(id).setBlocked(true);;
-		writeFile(map);
-	}
-	
-	public void unban(String id) {
-		Map<String, Deliverer> map = getMap();
-		map.get(id).setBlocked(false);;
-		writeFile(map);
-	}
 
 }

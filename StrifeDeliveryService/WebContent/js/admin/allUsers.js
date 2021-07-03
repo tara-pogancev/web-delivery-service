@@ -10,7 +10,27 @@ function getDataFromServer() {
 		url: 'webapi/users/getAllForAdmin',
 		contentType: 'application/json',
 		success: function (response) {
-			printTable(response);
+			for (let user of response) {
+
+				newRowContent = `<tr>`
+				newRowContent += `<td>` + user.category + `</td>`
+				newRowContent += `<td>` + user.id + `</td>`
+				newRowContent += `<td>` + user.name + `</td>`
+				newRowContent += `<td>` + user.lastName + `</td>`
+				newRowContent += `<td>` + user.password + `</td>`
+				newRowContent += `<td>` + `<a href="#" onclick=confirmDelete(\"` + user.id + `\") >Delete</a>` + `</td>`
+
+				$('#rest-table tbody').append(newRowContent);
+
+			}
+
+			if (response.length === 0) {
+				newRowContent = `<tr>`
+				newRowContent += `<td colspan="6">No users.</td>`
+			
+				$('#rest-table tbody').append(newRowContent);
+			}
+
 		}
 	});
 
@@ -55,103 +75,28 @@ function doSearch() {
 		data: JSON.stringify(data),
 		contentType: 'application/json',
 		success: function (response) {
+			$('#rest-table tbody').empty();
+			for (let user of response) {					
 
-			printTable(response);
+				newRowContent = `<tr>`
+				newRowContent += `<td>` + user.category + `</td>`
+				newRowContent += `<td>` + user.id + `</td>`
+				newRowContent += `<td>` + user.name + `</td>`
+				newRowContent += `<td>` + user.lastName + `</td>`
+				newRowContent += `<td>` + user.password + `</td>`
+				newRowContent += `<td>` + `<p onclick=confirmDelete(\"` + user.id + `\") >Delete</p>` + `</td>`
 
+				$('#rest-table tbody').append(newRowContent);
+
+			}
+
+			if (response.length === 0) {
+				newRowContent = `<tr>`
+				newRowContent += `<td colspan="6">No users found.</td>`
+			
+				$('#rest-table tbody').append(newRowContent);
+			}
 		}
 	});
 
-}
-
-
-function confirmBan(username) {
-
-	var response = confirm("Are you sure you want to ban user: " + username + "?");
-	if (response == true)
-		banUser(username);
-
-}
-
-
-function banUser(username) {
-
-	let data = {
-		"id": username
-	}
-
-	$.post({
-		url: 'webapi/users/banUser',
-		data: JSON.stringify(data),
-		contentType: 'application/json',
-		success: function (response) {
-
-			alert("User banned!");
-			window.location.reload();
-		}
-	});
-
-}
-
-
-function unbanUser(username) {
-
-	let data = {
-		"id": username
-	}
-
-	$.post({
-		url: 'webapi/users/unbanUser',
-		data: JSON.stringify(data),
-		contentType: 'application/json',
-		success: function (response) {
-
-			alert("User unbanned!");
-			window.location.reload();
-		}
-	});
-
-}
-
-function printTable(response) {
-
-	$('#rest-table tbody').empty();
-	for (let user of response) {
-
-		if (user.blocked == false) {
-
-			newRowContent = `<tr>`
-			newRowContent += `<td>` + user.category + `</td>`
-			newRowContent += `<td>` + user.id + `</td>`
-			newRowContent += `<td>` + user.name + `</td>`
-			newRowContent += `<td>` + user.lastName + `</td>`
-			newRowContent += `<td>` + user.password + `</td>`
-			newRowContent += `<td>` + `<a href="#" onclick=confirmBan(\"` + user.id + `\") >Ban</a>` + `</td>`
-			newRowContent += `<td>` + `<a href="#" onclick=confirmDelete(\"` + user.id + `\") >Delete</a>` + `</td>`
-
-			$('#rest-table tbody').append(newRowContent);
-
-		} else {
-
-			newRowContent = `<tr bgcolor="#e1e3e3">`
-			newRowContent += `<td>` + user.category + `</td>`
-			newRowContent += `<td>` + user.id + `</td>`
-			newRowContent += `<td>` + user.name + `</td>`
-			newRowContent += `<td>` + user.lastName + `</td>`
-			newRowContent += `<td>` + user.password + `</td>`
-			newRowContent += `<td>` + `<a href="#" onclick=unbanUser(\"` + user.id + `\") >Unban</a>` + `</td>`
-			newRowContent += `<td>` + `<a href="#" onclick=confirmDelete(\"` + user.id + `\") >Delete</a>` + `</td>`
-
-			$('#rest-table tbody').append(newRowContent);
-
-		}
-
-		if (response.length === 0) {
-			newRowContent = `<tr>`
-			newRowContent += `<td colspan="6">No users found.</td>`
-
-			$('#rest-table tbody').append(newRowContent);
-		}
-
-
-	}
 }

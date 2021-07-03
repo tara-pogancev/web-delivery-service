@@ -70,19 +70,7 @@ public class ManagerRepository extends GenericRepository<Manager, ManagerReposit
 	
 	public void delete(String id) {
 		Map<String, Manager> map = getMap();
-		map.get(id).setDeleted(true);
-		writeFile(map);
-	}
-	
-	public void ban(String id) {
-		Map<String, Manager> map = getMap();
-		map.get(id).setBlocked(true);
-		writeFile(map);
-	}
-	
-	public void unban(String id) {
-		Map<String, Manager> map = getMap();
-		map.get(id).setBlocked(false);
+		map.get(id).setDeleted(true);;
 		writeFile(map);
 	}
 

@@ -48,7 +48,7 @@ function isUnique(username, password, name, last, date, gender) {
 	}
 
 	$.post({
-		url: 'webapi/users/uniqueUsername',
+		url: 'webapi/manager/unique',
 		data: JSON.stringify(data),
 		contentType: 'application/json',
 		success: function (response) {

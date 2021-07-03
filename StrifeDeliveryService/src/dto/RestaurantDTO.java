@@ -1,6 +1,7 @@
 package dto;
 
 import enumeration.RestaurantStatus;
+import model.Restaurant;
 
 public class RestaurantDTO {
 
