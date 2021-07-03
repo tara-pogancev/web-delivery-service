@@ -21,5 +21,15 @@ public class RestaurantViewDTO {
 		this.address = r.getLocation().getAddressName();
 		this.rating = r.getRatingString();		
 	}
+	
+	public RestaurantViewDTO() {
+		this.name = "NO_RESTAURANT";
+		this.type = null;
+		this.status = null;
+		this.city = null;
+		this.postal = null;
+		this.address = null;
+		this.rating = null;		
+	}
 
 }

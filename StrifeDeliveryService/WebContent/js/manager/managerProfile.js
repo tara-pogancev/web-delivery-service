@@ -39,14 +39,27 @@ function generateRestaurant() {
 		url: 'webapi/login/activeManagerRestaurant',
 		contentType: 'application/json',
 		success: function(restaurant) {
-			newRowContent = `<tr>`
-			newRowContent += `<td class="td-center"><a href="#"><img src="images/logos/` + restaurant.name + `.png"></a></td>"`
-			newRowContent += `<td>` + restaurant.name + `</td>`
-			newRowContent += `<td>` + restaurant.address + `</td>`
-			newRowContent += `<td>` + restaurant.rating + `</td>`
-			newRowContent += `<td>` + restaurant.type + `</td>`
+			if (restaurant.name === "NO_RESTAURANT") {
+				newRowContent = `<tr>`
+				newRowContent += `<td colspan="6" >Ladno nemas restoran</td>`
 
-			$('#rest-table tbody').append(newRowContent);
+				$('#rest-table tbody').append(newRowContent)
+				
+				$('#b1').attr('disabled','disabled')
+				$('#b2').attr('disabled','disabled')
+				$('#b3').attr('disabled','disabled')
+				$('#b4').attr('disabled','disabled')
+				$('#b5').attr('disabled','disabled')
+
+			} else {
+				newRowContent = `<tr>`
+				newRowContent += `<td class="td-center"><a href="#"><img src="images/logos/` + restaurant.name + `.png"></a></td>"`
+				newRowContent += `<td>` + restaurant.name + `</td>`
+				newRowContent += `<td>` + restaurant.address + `</td>`
+				newRowContent += `<td>` + restaurant.rating + `</td>`
+				newRowContent += `<td>` + restaurant.type + `</td>`
+				$('#rest-table tbody').append(newRowContent);
+			}
 		}
 
 	});
