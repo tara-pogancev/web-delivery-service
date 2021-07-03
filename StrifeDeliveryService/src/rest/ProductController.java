@@ -1,6 +1,7 @@
 package rest;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -12,14 +13,18 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import dto.ProductDTO;
+import dto.RestaurantDTO;
 import model.IdGenerator;
 import model.Product;
+import model.Restaurant;
 import repository.ProductRepository;
+import repository.RestaurantRepository;
 
 @Path("products")
 public class ProductController {
 
 	ProductRepository repo = new ProductRepository();
+	RestaurantRepository restaurantRepo = new RestaurantRepository();
 
 	@Context
 	ServletContext ctx;
@@ -72,6 +77,27 @@ public class ProductController {
 		System.out.println("Product " + product.getName() + " created.");
 
 		return product.getId();
+	}
+	
+	@POST
+	@Path("getProductsByRestaurant")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ArrayList<Product> getProductsByRestaurant(RestaurantDTO dto) {
+		repo.setBasePath(getDataDirPath());
+		restaurantRepo.setBasePath(getDataDirPath());
+		
+		ArrayList<Product> retVal = new ArrayList<Product>();
+		
+		Restaurant r = restaurantRepo.readByName(dto.name);
+		
+		for (String id : r.getProducts()) {
+			retVal.add(repo.read(id));
+		}
+
+		System.out.println(retVal.size() + " products fetched.");
+		
+		return retVal;
 	}
 
 }
