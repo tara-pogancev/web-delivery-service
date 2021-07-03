@@ -62,8 +62,6 @@ function setBasicParams(name, type, price, quantity, description) {
 		contentType: 'application/json',
 		success: function (response) {
 
-			alert(response);
-
 			uploadLogo(response)
 			addToRestaurant(response)		
 
@@ -120,9 +118,6 @@ function addToRestaurant(id) {
 				"id": id,
 				"name": restaurant.name
 			}
-
-			alert(restaurant.name)
-
 
 			$.post({
 				url: 'webapi/editRestaurant/addProduct',

@@ -66,6 +66,7 @@ public class ProductController {
 		product.setDescription(dto.description);
 		product.setType(dto.getEnumType());
 		product.setQuantity(dto.quantity);
+		product.setPrice(dto.price);
 
 		repo.create(product);
 		System.out.println("Product " + product.getName() + " created.");
