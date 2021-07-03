@@ -21,7 +21,7 @@ function getDataFromServerOpen() {
 				newRowContent += `</div>`
 				newRowContent += `<h4>` + restaurant.name + `</h4>`
 				newRowContent += `<p>` + restaurant.status + `</p>`
-				newRowContent += `<a href="#" class="main-button">Preview</a>`
+				newRowContent += `<a href="#" onclick=setCurrentRestaurantView(\"` + restaurant.name + `\") class="main-button">Preview</a>`
 				newRowContent += `</div>`
 				newRowContent += `</div>`
 				newRowContent += `</div>`
@@ -58,7 +58,7 @@ function getDataFromServerClosed() {
 				newRowContent += `</div>`
 				newRowContent += `<h4>` + restaurant.name + `</h4>`
 				newRowContent += `<p>` + restaurant.status + `</p>`
-				newRowContent += `<a href="#" class="main-button">Preview</a>`
+				newRowContent += `<a href="#" onclick=setCurrentRestaurantView(\"` + restaurant.name + `\") class="main-button">Preview</a>`
 				newRowContent += `</div>`
 				newRowContent += `</div>`
 				newRowContent += `</div>`
@@ -90,7 +90,7 @@ function setCurrentRestaurantView(name) {
 		data: JSON.stringify(data),
 		contentType: 'application/json',
 		success: function (response) {
-
+			window.location.href = "http://localhost:8080/PocetniREST/restaurantView.html";
 		}
 	});
 }

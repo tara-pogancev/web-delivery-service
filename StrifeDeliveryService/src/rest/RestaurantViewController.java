@@ -1,10 +1,10 @@
 package rest;
 
 import java.io.File;
-import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -13,13 +13,12 @@ import javax.ws.rs.core.MediaType;
 
 import dto.RestaurantDTO;
 import dto.RestaurantViewDTO;
-import dto.SearchFilterDTO;
 import model.Restaurant;
 import repository.RestaurantRepository;
 
 @Path("restaurantView")
 public class RestaurantViewController {
-	
+
 	RestaurantRepository repo = new RestaurantRepository();
 
 	@Context
@@ -37,21 +36,26 @@ public class RestaurantViewController {
 		return (ctx.getRealPath("") + "WEB-INF" + File.separator + "classes" + File.separator + "data"
 				+ File.separator);
 	}
-	
-	private Restaurant getCurrentRestaurant() {
+
+	@GET
+	@Path("getCurrentRestaurant")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public RestaurantViewDTO getCurrentRestaurant() {
 		repo.setBasePath(getDataDirPath());
 
-		return repo.read((String) ctx.getAttribute("restaurant"));
+		Restaurant current = repo.read((String) ctx.getAttribute("restaurant"));
+		//System.out.println("Fetching " + current.getName() + "...");
+		return new RestaurantViewDTO(current);
 	}
-	
+
 	@POST
 	@Path("setCurrentRestaurant")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void getFilteredSearch(RestaurantDTO dto) {
-		
+		//System.out.println("Restaurant set with parameter: " + dto.name);
 		ctx.setAttribute("restaurant", dto.name);
 	}
-	
 
 }
