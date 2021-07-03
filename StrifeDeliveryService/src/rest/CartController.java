@@ -1,9 +1,11 @@
 package rest;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -74,8 +76,6 @@ public class CartController {
 			Cart c = getActiveCart();
 			c.addCartItem(item);
 			repoCart.update(c);
-
-			System.out.println("New cart created, item added.");
 			return;
 		}
 
@@ -83,9 +83,44 @@ public class CartController {
 		c.addCartItem(item);
 		repoCart.create(c);
 
-		System.out.println("Cart item added.");
 		return;
 
+	}	
+	
+	@GET
+	@Path("getUserCartItems")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ArrayList<CartItem> getUserCartItems() {		
+		repoCart.setBasePath(getDataDirPath());
+		
+		if (getActiveCart() != null) {
+			return getActiveCart().getItems();
+		}			
+		
+		return new ArrayList<CartItem>();
+	}
+	
+	@GET
+	@Path("getUserCart")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Cart getUserCart() {		
+		Cart c = getActiveCart();
+		c.getTotalPrice();
+		return c;
+	}
+	
+	@POST
+	@Path("removeItem")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void removeItem(CartItemDTO dto) {
+		repoCart.setBasePath(getDataDirPath());
+		Cart c = getActiveCart();
+		c.removeItem(dto.productId);
+		repoCart.update(c);
+		
 	}
 
 }

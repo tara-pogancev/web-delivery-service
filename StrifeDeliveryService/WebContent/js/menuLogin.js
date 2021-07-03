@@ -29,7 +29,7 @@ function setLoginMenu() {
 
 				newRowContentLogin += `<ul>`
 
-				newRowContentLogin += `<li><a href="cartPage.html" class="menu-item">Cart</a></li>`
+				newRowContentLogin += `<li><a href="profileCustomer.html#mycart" class="menu-item">Cart</a></li>`
 				newRowContentLogin += `<li><a href="customerOrders.html" class="menu-item">My Orders</a></li>`
 				newRowContentLogin += `<li><a href="#" class="menu-item" onclick="logout();">LOGOUT</a></li>`
 

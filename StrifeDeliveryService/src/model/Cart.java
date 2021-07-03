@@ -44,6 +44,13 @@ public class Cart {
 		this.cartOwnerId = cartOwner.getId();
 	}
 	public float getTotalPrice() {
+		this.totalPrice = 0;
+		
+		for (CartItem i : items) {
+			float price = i.getAmount() * i.getProduct().getPrice();
+			this.totalPrice+= price;
+		}
+		
 		return totalPrice;
 	}
 	public void setTotalPrice(float totalPrice) {
@@ -60,6 +67,16 @@ public class Cart {
 		}
 		
 		items.add(item);	
+	}
+
+	public void removeItem(String productId) {
+		for (CartItem c : items) {
+			if (c.getProduct().getId().equals(productId)) {
+				items.remove(c);
+				return;
+			}				
+		}
+		
 	}
 
 }
