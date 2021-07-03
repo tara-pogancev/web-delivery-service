@@ -119,9 +119,9 @@ function printOpenRestaurant(products) {
 				newRowContent += `<h4>` + product.name + ` ` + product.quantity + `ml, $` + product.price + `</h4>`
 
 		newRowContent += `<p style="margin: 0px 30px;">` + product.description + `</p>`
-		newRowContent += `<a href="#" class="main-button">Add to cart</a>`
+		newRowContent += `<a href="#" onclick=addToCart(\"` + product.id + `\") class="main-button">Add to cart</a>`
 		newRowContent += `<div><label style="color: #a6a6a6;">Quantity: </label>`
-		newRowContent += `<input class="cart-number-input" type="number" value="1" max="10" min="1">`
+		newRowContent += `<input class="cart-number-input" type="number" value="1" max="10" min="1"  id="amount-` + product.id + `">`
 		newRowContent += `</div>`
 		newRowContent += `</div>`
 		newRowContent += `</div>`
@@ -137,6 +137,67 @@ function printEmptyRestaurant() {
 	newRowContent = `<p>No items to show.</p>`
 
 	$('#menu-items').append(newRowContent);
+
+}
+
+function addToCart(id) {
+
+	$.get({
+		url: 'webapi/login/activeUser',
+		contentType: 'application/json',
+		success: function (response) {
+			switch (response.name) {
+				case "CUSTOMER":		
+					var string = "amount-" + id			
+					var amount = document.getElementById(string).value;
+					addItem(id, amount, response.id);
+					break;
+				case "ADMIN":
+					window.location.href = "http://localhost:8080/PocetniREST/401Unauthorized.html";
+					break;
+				case "MANAGER":
+					window.location.href = "http://localhost:8080/PocetniREST/401Unauthorized.html";
+					break;
+				case "DELIVERER":
+					window.location.href = "http://localhost:8080/PocetniREST/401Unauthorized.html";
+					break;
+				default:
+					window.location.href = "http://localhost:8080/PocetniREST/login.html";
+			}
+		}
+	});
+}
+
+function addItem(id, amount, username) {
+
+	let data = {
+		id: username
+	}
+
+	$.post({
+		url: 'webapi/cart/setActiveUser',
+		data: JSON.stringify(data),
+		contentType: 'application/json',
+		success: function (response) {
+
+		}
+	});
+
+	let data2 = {
+		productId: id,
+		amount: amount
+	}
+
+	$.post({
+		url: 'webapi/cart/addCartItem',
+		data: JSON.stringify(data2),
+		contentType: 'application/json',
+		success: function (response) {
+			alert("Item(s) added to cart!")
+			window.location.reload;
+		}
+	});
+
 
 }
 

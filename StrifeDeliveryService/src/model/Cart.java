@@ -37,10 +37,6 @@ public class Cart {
 	public void setItems(ArrayList<CartItem> items) {
 		this.items = items;
 	}
-	public Customer getCartOwner() {
-		// TODO Customer owener
-		return null;
-	}
 	public String getCartOwnerId() {
 		return this.cartOwnerId;
 	}
@@ -52,6 +48,18 @@ public class Cart {
 	}
 	public void setTotalPrice(float totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+	
+	public void addCartItem(CartItem item) {
+		
+		for (CartItem c : items) {
+			if (c.getProduct().getId().equals(item.getProduct().getId())) {
+				c.setAmount(c.getAmount()+item.getAmount());
+				return;
+			}				
+		}
+		
+		items.add(item);	
 	}
 
 }

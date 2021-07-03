@@ -25,6 +25,6 @@ public class CartItem {
 		this.product = product;
 		this.amount = amount;
 	}
-	
+		
 	
 }
