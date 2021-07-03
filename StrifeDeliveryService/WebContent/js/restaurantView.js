@@ -90,7 +90,7 @@ function printClosedRestaurant(products) {
 			else
 				newRowContent += `<h4>` + product.name + ` ` + product.quantity + `ml, $` + product.price + `</h4>`
 
-		newRowContent += `<p>` + product.description + `</p>`
+		newRowContent += `<p style="margin: 0px 30px;">` + product.description + `</p>`
 		newRowContent += `</div>`
 		newRowContent += `</div>`
 		newRowContent += `</div>`
@@ -118,7 +118,7 @@ function printOpenRestaurant(products) {
 			else
 				newRowContent += `<h4>` + product.name + ` ` + product.quantity + `ml, $` + product.price + `</h4>`
 
-		newRowContent += `<p>` + product.description + `</p>`
+		newRowContent += `<p style="margin: 0px 30px;">` + product.description + `</p>`
 		newRowContent += `<a href="#" class="main-button">Add to cart</a>`
 		newRowContent += `<div><label style="color: #a6a6a6;">Quantity: </label>`
 		newRowContent += `<input class="cart-number-input" type="number" value="1" max="10" min="1">`
