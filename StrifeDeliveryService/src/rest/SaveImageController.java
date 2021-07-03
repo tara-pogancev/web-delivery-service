@@ -74,10 +74,10 @@ public class SaveImageController {
 
 		BufferedImage buffImg = ImageIO.read(new ByteArrayInputStream(decodedBytes));
 
-		File file = new File(getDataDirPathMenuItem() + name + ".png");
-		ImageIO.write(buffImg, "png", file);
+		File file = new File(getDataDirPathMenuItem() + name + ".jpg");
+		ImageIO.write(buffImg, "jpg", file);
 
-		System.out.println("Image " + name + ".png" + " uploaded.");
+		System.out.println("Image " + name + ".jpg" + " uploaded.");
 	}
 
 }

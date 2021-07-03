@@ -11,8 +11,8 @@ public class Product {
 	private String name;
 	private float price;
 	private ProductType type;
-	private int quantity; //u g ili ml
-	private String description;
+	private int quantity = 0; //u g ili ml
+	private String description = "";
 	private boolean deleted = false;
 	
 	public Product(String id, String name, float price, ProductType type, Restaurant restaurant, int quantity,
@@ -81,5 +81,11 @@ public class Product {
 	public void setId(String id) {
 		this.id = id;
 	}
+
+	public Product() {
+		super();
+	}
+
+	
 	
 }

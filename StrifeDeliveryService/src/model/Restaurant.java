@@ -75,9 +75,9 @@ public class Restaurant {
 		this.products = products;
 	}
 	
-	public void addProduct(Product product) {
-		if (!this.products.contains(product.getId()))
-			this.products.add(product.getId());
+	public void addProduct(String productId) {
+		if (!this.products.contains(productId))
+			this.products.add(productId);
 	}
 
 	public boolean isDeleted() {

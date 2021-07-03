@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import dto.ProductDTO;
 import dto.RestaurantDTO;
 import model.Address;
 import model.Restaurant;
@@ -69,4 +70,18 @@ public class EditRestaurantController {
 		
 	}
 	
+	@POST
+	@Path("addProduct")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void addProduct(ProductDTO dto)
+	{
+		repo.setBasePath(getDataDirPath());
+		
+		Restaurant restaurant = repo.readByName(dto.name);
+		restaurant.addProduct(dto.id);
+				
+		repo.update(restaurant);
+		
+	}
 }	
