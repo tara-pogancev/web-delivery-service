@@ -44,23 +44,40 @@ function generateRestaurant() {
 				newRowContent += `<td colspan="6" >Ladno nemas restoran</td>`
 
 				$('#rest-table tbody').append(newRowContent)
-				
-				$('#b1').attr('disabled','disabled')
-				$('#b2').attr('disabled','disabled')
-				$('#b3').attr('disabled','disabled')
-				$('#b4').attr('disabled','disabled')
-				$('#b5').attr('disabled','disabled')
+
+				$('#b1').attr('disabled', 'disabled')
+				$('#b2').attr('disabled', 'disabled')
+				$('#b3').attr('disabled', 'disabled')
+				$('#b4').attr('disabled', 'disabled')
+				$('#b5').attr('disabled', 'disabled')
 
 			} else {
+				
+				setCurrentRestaurantView(restaurant.name);
+				
 				newRowContent = `<tr>`
-				newRowContent += `<td class="td-center"><a href="#"><img src="images/logos/` + restaurant.name + `.png"></a></td>"`
+				newRowContent += `<td class="td-center"><a href="restaurantView.html"><img src="images/logos/` + restaurant.name + `.png"></a></td>"`
 				newRowContent += `<td>` + restaurant.name + `</td>`
 				newRowContent += `<td>` + restaurant.address + `</td>`
 				newRowContent += `<td>` + restaurant.rating + `</td>`
 				newRowContent += `<td>` + restaurant.type + `</td>`
+				
 				$('#rest-table tbody').append(newRowContent);
 			}
 		}
 
+	});
+}
+
+function setCurrentRestaurantView(name) {
+
+	let data = {
+		"name": name
+	}
+
+	$.post({
+		url: 'webapi/restaurantView/setCurrentRestaurant',
+		data: JSON.stringify(data),
+		contentType: 'application/json'
 	});
 }
