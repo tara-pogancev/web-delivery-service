@@ -36,7 +36,7 @@ public class CustomerType {
 	}
 
 	public float getDiscountFloat() {
-		return this.discount/100;
+		return (float)(this.discount)/100;
 	}
 	
 }

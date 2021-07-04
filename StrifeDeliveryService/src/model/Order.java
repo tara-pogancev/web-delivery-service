@@ -96,16 +96,19 @@ public class Order {
 
 	public int generateCancelPoints() {
 		// return (int) this.getPrice()/1000 * 133 * 4;
-		return (int) (this.getPrice() / 50 * 133 * 4);
+		return (int) (this.getPrice() / 100 * 133 * 4);
 	}
 
 	public int generatePoints() {
 		// return (int) this.getPrice()/1000 * 133;
-		return (int) (this.getPrice() / 50 * 133);
+		return (int) (this.getPrice() / 100 * 133);
 	}
 
 	public void applyDiscount(float discountFloat) {
+		System.out.println("Old price: " + getPrice());
+		System.out.println("Discount: " + discountFloat);
 		this.price = getPrice() * (1 - discountFloat);
+		System.out.println("New price: " + getPrice());
 		
 	}
 

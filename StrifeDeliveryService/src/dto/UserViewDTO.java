@@ -17,6 +17,7 @@ public class UserViewDTO {
 	public String customerStatus;
 	public boolean blocked;
 	public int points;
+	public int discount;
 	
 	public UserViewDTO(User user) {
 		super();
@@ -46,6 +47,7 @@ public class UserViewDTO {
 		this.points = user.getPoints();
 		this.customerStatus = user.getCustomerType().getName();
 		this.blocked = user.isBlocked();
+		this.discount = user.getCustomerType().getDicount();
 				
 	}
 }
