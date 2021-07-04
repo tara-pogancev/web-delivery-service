@@ -46,6 +46,8 @@ public class CartController {
 
 	private Cart getActiveCart() {
 		repoCart.setBasePath(getDataDirPath());
+		if (repoCart.read((String) ctx.getAttribute("cartUser")) == null)
+			return new Cart((String) ctx.getAttribute("cartUser"));
 		return repoCart.read((String) ctx.getAttribute("cartUser"));
 	}
 
@@ -84,7 +86,6 @@ public class CartController {
 		repoCart.create(c);
 
 		return;
-
 	}	
 	
 	@GET
@@ -92,12 +93,11 @@ public class CartController {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ArrayList<CartItem> getUserCartItems() {		
-		repoCart.setBasePath(getDataDirPath());
+		repoCart.setBasePath(getDataDirPath());		
 		
-		if (getActiveCart() != null) {
+		if (getActiveCart() != null)
 			return getActiveCart().getItems();
-		}			
-		
+			
 		return new ArrayList<CartItem>();
 	}
 	

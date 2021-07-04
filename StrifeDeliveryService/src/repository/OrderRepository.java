@@ -22,7 +22,7 @@ public class OrderRepository extends GenericRepository<Order, OrderRepository> {
 	protected String getKey(Order e) {
 		return e.getId();
 	}
-	
+
 	public ArrayList<Order> getAll() {
 		Map<String, Order> map = getMap();
 		ArrayList<Order> list = new ArrayList<>();
@@ -33,7 +33,7 @@ public class OrderRepository extends GenericRepository<Order, OrderRepository> {
 
 		return list;
 	}
-	
+
 	public Map<String, Order> getMap() {
 
 		String json = "";
@@ -48,11 +48,21 @@ public class OrderRepository extends GenericRepository<Order, OrderRepository> {
 
 		Map<String, Order> map = gs.fromJson(json, empMapType);
 
-		//System.out.println("Map with: " + map.size());
+		// System.out.println("Map with: " + map.size());
 
 		return map;
 
 	}
 	
+	public ArrayList<Order> getAllByCustomer(String id) {
+		ArrayList<Order> list = new ArrayList<>();
+
+		for (Order o : getAll()) {
+			if (o.getCustomerId().equals(id))
+				list.add(o);
+		}
+
+		return list;
+	}
 
 }

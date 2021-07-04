@@ -90,5 +90,9 @@ public class Cart {
 		}
 		
 	}
+	
+	public void emptyCart() {
+		this.items = new ArrayList<CartItem>();
+	}
 
 }

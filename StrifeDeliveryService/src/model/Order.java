@@ -1,7 +1,7 @@
 package model;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -15,18 +15,18 @@ public class Order {
 	private Restaurant restaurant;
 	private Date dateAndTime;	// ??
 	private float price;
-	private Customer customer;
+	private String customerId;
 	private OrderStatus status;
 	
 	public Order(String id, ArrayList<CartItem> items, Restaurant restaurant, Date dateAndTime, float price,
-			Customer customer, OrderStatus status) {
+			String customer, OrderStatus status) {
 		super();
 		this.id = id;
 		this.items = items;
 		this.restaurant = restaurant;
 		this.dateAndTime = dateAndTime;
 		this.price = price;
-		this.customer = customer;
+		this.customerId = customer;
 		this.status = status;
 	}
 
@@ -63,6 +63,11 @@ public class Order {
 	}
 
 	public float getPrice() {
+		this.price = 0;
+		
+		for (CartItem item : items)
+			price += item.getAmount() * item.getProduct().getPrice();
+		
 		return price;
 	}
 
@@ -70,12 +75,12 @@ public class Order {
 		this.price = price;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public String getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setCustomerId(String customer) {
+		this.customerId = customer;
 	}
 
 	public OrderStatus getStatus() {
@@ -84,6 +89,10 @@ public class Order {
 
 	public void setStatus(OrderStatus status) {
 		this.status = status;
+	}
+	
+	public void addCartItem(CartItem item) {
+		this.items.add(item);
 	}
 
 

@@ -1,7 +1,6 @@
 window.onload = getDataFromServer();
 var activeUsername = "";
 
-
 function getDataFromServer() {
 
 	$.get({
@@ -107,7 +106,7 @@ function removeItem(id) {
 
 function changeAmount(id) {
 
-	var string = "input-" + id	
+	var string = "input-" + id
 
 	let data = {
 		productId: id,
@@ -119,11 +118,40 @@ function changeAmount(id) {
 		data: JSON.stringify(data),
 		contentType: 'application/json',
 		success: function (response) {
-			
+
 			$('#rest-table tbody').empty();
 			generateCart(activeUsername);
 
 		}
 	});
 
+}
+
+function placeOrder() {
+
+	if (confirm('Are you sure you want to place your order(s)?')) {
+
+		let data = {
+			id: activeUsername
+		}
+
+		$.post({
+			url: 'webapi/orders/setActiveUser',
+			data: JSON.stringify(data),
+			contentType: 'application/json',
+			success: function (response) {
+			}
+		});
+
+		$.post({
+			url: 'webapi/orders/makeOrders',
+			data: JSON.stringify(data),
+			contentType: 'application/json',
+			success: function (response) {
+				window.location.href = "http://localhost:8080/PocetniREST/customerOrders.html";
+			}
+		});
+
+
+	}
 }
