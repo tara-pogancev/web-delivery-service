@@ -13,10 +13,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import dto.OrderViewDTO;
 import dto.UserDTO;
 import enumeration.OrderStatus;
 import model.Cart;
 import model.CartItem;
+import model.Customer;
 import model.IdGenerator;
 import model.Order;
 import model.Restaurant;
@@ -98,7 +100,7 @@ public class OrderController {
 					o.addCartItem(i);
 					Date date = new Date(System.currentTimeMillis());
 					o.setDateAndTime(date);
-					o.getPrice();
+					o.setPrice();
 					
 					orders.add(o);
 				}
@@ -106,12 +108,21 @@ public class OrderController {
 			}
 		}
 		
+		Customer c = repoCustomer.read((String) ctx.getAttribute("orderUser"));		
+		
 		for (Order order : orders) {
+			
+			order.applyDiscount(c.getCustomerType().getDiscountFloat());
 			repoOrder.create(order);
+			
+			int points = order.generatePoints();
+			c.addPoints(points);
+			repoCustomer.update(c);
+			
 		}
 		
 		cart.emptyCart();
-		repoCart.update(cart);
+		repoCart.update(cart);		
 
 		return orders;
 	}
@@ -120,32 +131,31 @@ public class OrderController {
 	@Path("getProcessingOrders")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ArrayList<Order> getProcessingOrders() {
+	public ArrayList<OrderViewDTO> getProcessingOrders() {
 		repoOrder.setBasePath(getDataDirPath());
-		ArrayList<Order> retVal = new ArrayList<>();
+		ArrayList<OrderViewDTO> retVal = new ArrayList<>();
 		
 		String customerId = (String) ctx.getAttribute("orderUser");
 	
 		for (Order o : repoOrder.getAllByCustomer(customerId))
 			if (o.getStatus() == OrderStatus.PROCESSING)
-				retVal.add(o);		
+				retVal.add(new OrderViewDTO(o));		
 		
 		return retVal;
 	}
 	
 	@GET
-	@Path("getPastOrders")
+	@Path("getAllCustomerOrders")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ArrayList<Order> getPastOrders() {
+	public ArrayList<OrderViewDTO> getAllCustomerOrders() {
 		repoOrder.setBasePath(getDataDirPath());
-		ArrayList<Order> retVal = new ArrayList<>();
+		ArrayList<OrderViewDTO> retVal = new ArrayList<>();
 		
 		String customerId = (String) ctx.getAttribute("orderUser");
 	
 		for (Order o : repoOrder.getAllByCustomer(customerId))
-			if (o.getStatus() != OrderStatus.PROCESSING)
-				retVal.add(o);		
+			retVal.add(new OrderViewDTO(o));		
 		
 		return retVal;
 	}

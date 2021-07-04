@@ -42,7 +42,7 @@ public class Customer extends User {
 		this.orders = orders;
 	}
 	public int getPoints() {
-		return points;
+		return this.points;
 	}
 	public void setPoints(int points) {
 		this.points = points;
@@ -60,8 +60,26 @@ public class Customer extends User {
 		return customerType;
 	}
 
-	public void setCustomerType(CustomerType customerType) {
-		this.customerType = customerType;
+	public void setCustomerType() {
+		this.customerType = new CustomerType("BRONZE", 0, 0);
+		if (this.points > 200)
+			this.customerType = new CustomerType("SILVER", 10, 200);
+		if (this.points > 500)
+			this.customerType = new CustomerType("GOLD", 10, 500);
+	}
+	
+	public void addPoints(int pointsToAdd) {
+		this.points += pointsToAdd;
+		
+		setCustomerType();	
+	}
+	
+	public void removePoints(int pointsToRemove) {
+		this.points -= pointsToRemove;
+		if (this.points < 0)
+			this.points = 0;
+		
+		setCustomerType();		
 	}
 	
 	

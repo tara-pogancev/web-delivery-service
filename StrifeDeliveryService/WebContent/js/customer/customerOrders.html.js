@@ -41,9 +41,9 @@ function generateProcessOrders(username) {
 				newRowContent = `<tr>`
 				newRowContent += `<td>` + order.id + `</td>`
 				newRowContent += `<td>` + order.status + `</td>`
-				newRowContent += `<td>` + order.restaurant.name + `</td>`
+				newRowContent += `<td>` + order.restaurantName + `</td>`
 				newRowContent += `<td>` + order.price + `</td > `
-				newRowContent += `<td>` + `24/05/2018` + `</td > `
+				newRowContent += `<td>` + order.date + `</td > `
 				newRowContent += `<td><a href="#" onclick=cancelOrder(\"` + order.id + `\")>Cancel</a></td>`
 
 				$('#rest-table-process tbody').append(newRowContent);
@@ -67,7 +67,7 @@ function generateProcessOrders(username) {
 function generatePastOrders(username) {
 
 	$.get({
-		url: 'webapi/orders/getPastOrders',
+		url: 'webapi/orders/getAllCustomerOrders',
 		contentType: 'application/json',
 		success: function (response) {
 			$('#rest-table-past tbody').empty();
@@ -77,9 +77,9 @@ function generatePastOrders(username) {
 				newRowContent = `<tr>`
 				newRowContent += `<td>` + order.id + `</td>`
 				newRowContent += `<td>` + order.status + `</td>`
-				newRowContent += `<td>` + order.restaurant.name + `</td>`
+				newRowContent += `<td>` + order.restaurantName + `</td>`
 				newRowContent += `<td>` + order.price + `</td > `
-				newRowContent += `<td>` + `24/05/2018` + `</td > `
+				newRowContent += `<td>` + order.date + `</td > `
 
 				$('#rest-table-past tbody').append(newRowContent);
 

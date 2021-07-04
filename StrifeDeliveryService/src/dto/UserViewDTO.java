@@ -26,8 +26,7 @@ public class UserViewDTO {
 		this.lastName = user.getLastName();
 		this.gender = user.getGender().toString().toLowerCase();
 		
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);  
-		
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);  		
 		this.dateOfBirth = dateFormat.format(user.getDateOfBirth());	
 				
 	}
@@ -40,7 +39,7 @@ public class UserViewDTO {
 		this.lastName = user.getLastName();
 		this.gender = user.getGender().toString().toLowerCase();
 		
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);  
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);  
 		
 		this.dateOfBirth = dateFormat.format(user.getDateOfBirth());	
 		

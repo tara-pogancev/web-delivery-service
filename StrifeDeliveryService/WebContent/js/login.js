@@ -38,7 +38,7 @@ function sendLogin(username, password) {
 					success: function(response) {
 						switch (response.name) {
 							case "CUSTOMER":
-								window.location.href = "http://localhost:8080/PocetniREST/profileCustomer.html";
+								window.location.href = "http://localhost:8080/PocetniREST/restaurants.html";
 								break;
 							case "ADMIN":
 								window.location.href = "http://localhost:8080/PocetniREST/profileAdmin.html";

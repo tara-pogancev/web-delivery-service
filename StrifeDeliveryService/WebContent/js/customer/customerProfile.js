@@ -23,6 +23,9 @@ function getDataFromServer() {
 
 			$('#welcomeUser').text("Welcome, " + profile.name);
 
+			$('#points').text("Points: " + profile.points);
+			$('#category').text("Category: " + profile.customerStatus);
+
 			activeUsername = profile.id;
 			generateCart(activeUsername);
 
