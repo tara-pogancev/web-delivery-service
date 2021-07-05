@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import dto.OrderDTO;
 import dto.OrderViewDTO;
 import dto.UserDTO;
 import enumeration.OrderStatus;
@@ -158,6 +159,24 @@ public class OrderController {
 			retVal.add(new OrderViewDTO(o));		
 		
 		return retVal;
+	}
+	
+	
+	@POST
+	@Path("cancelOrder")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void cancelOrder(OrderDTO dto) {		
+		repoOrder.setBasePath(getDataDirPath());
+		
+		Order orderToCancel = repoOrder.read(dto.id);
+		if (orderToCancel.getStatus() == OrderStatus.PROCESSING)		
+			orderToCancel.setStatus(OrderStatus.CANCELED);
+		
+		repoOrder.update(orderToCancel);			
+		System.out.println("Order canceled.");
+		
+		
 	}
 
 }

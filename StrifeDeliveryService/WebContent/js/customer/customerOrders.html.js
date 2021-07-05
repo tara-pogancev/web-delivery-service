@@ -1,4 +1,9 @@
-window.onload = getDataFromServer();
+$(document).ready(function () {
+
+	getDataFromServer();
+
+}, false);
+
 var activeUsername = "";
 
 function getDataFromServer() {
@@ -44,7 +49,7 @@ function generateProcessOrders(username) {
 				newRowContent += `<td>` + order.restaurantName + `</td>`
 				newRowContent += `<td>` + order.price + `</td > `
 				newRowContent += `<td>` + order.date + `</td > `
-				newRowContent += `<td><a href="#" onclick=cancelOrder(\"` + order.id + `\")>Cancel</a></td>`
+				newRowContent += `<td>` + `<a href="#" onclick=cancelOrder(\"` + order.id + `\") >Cancel</a>` + `</td>`
 
 				$('#rest-table-process tbody').append(newRowContent);
 
@@ -96,4 +101,28 @@ function generatePastOrders(username) {
 		}
 	});
 
+}
+
+function cancelOrder(orderId) {
+
+
+	if (confirm("Are you sure you want to cancel order #" + orderId + "?")) {
+
+		let data = {
+			"id": orderId
+		}
+
+		$.post({
+			url: 'webapi/orders/cancelOrder',
+			data: JSON.stringify(data),
+			contentType: 'application/json',
+			success: function (response) {
+				
+				alert("Order canceled.")
+				window.location.href = "http://localhost:8080/PocetniREST/customerOrders.html";
+
+			}
+		});
+
+	}
 }
