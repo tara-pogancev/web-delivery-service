@@ -66,10 +66,10 @@ function setLoginMenu() {
 
 				newRowContentLogin += `<ul>`
 
-				newRowContentLogin += `<li><a href="#" class="menu-item">My Restaurant</a></li>`
 				newRowContentLogin += `<li><a href="addProduct.html" class="menu-item">Add Menu Item</a></li>`
 				newRowContentLogin += `<li><a href="#" class="menu-item">Manage Menu Items</a></li>`
-				newRowContentLogin += `<li><a href="#" class="menu-item">Manage Orders</a></li>`
+				newRowContentLogin += `<li><a href="managerOrders.html" class="menu-item">Manage Orders</a></li>`
+				newRowContentLogin += `<li><a href="#" class="menu-item">Deliverers</a></li>`
 				newRowContentLogin += `<li><a href="#" class="menu-item" onclick="logout();">LOGOUT</a></li>`
 
 				newRowContentLogin += `</ul>`

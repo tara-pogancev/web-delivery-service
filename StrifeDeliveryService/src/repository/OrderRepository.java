@@ -65,4 +65,15 @@ public class OrderRepository extends GenericRepository<Order, OrderRepository> {
 		return list;
 	}
 
+	public ArrayList<Order> getAllByRestaurant(String restaurantName) {
+		ArrayList<Order> list = new ArrayList<>();
+
+		for (Order o : getAll()) {
+			if (o.getRestaurant().getName().equals(restaurantName))
+				list.add(o);
+		}
+
+		return list;
+	}
+
 }

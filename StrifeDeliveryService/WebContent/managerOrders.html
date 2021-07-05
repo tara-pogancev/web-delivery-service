@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>My Orders - Strife Delivery Service</title>
+	<title>Restaurant Orders - Strife Delivery Service</title>
 	<meta charset="utf-8">
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -84,10 +84,10 @@
 								<tr>
 									<th>ID</th>
 									<th>Status</th>
-									<th>Restaurant</th>
+									<th>Customer</th>
 									<th>Price [$]</th>
 									<th>Date</th>
-									<th>Cancel</th>
+									<th>Prepare</th>
 								</tr>
 							</thead>
 						</table>
@@ -115,7 +115,7 @@
 		<div class="container">
 			<div class="col-12 r-section-white">
 
-				<h1>All orders</h1>
+				<h1>Orders in preparation</h1>
 				<hr>
 
 				<div class="r-gap"></div>
@@ -128,7 +128,51 @@
 								<tr>
 									<th>ID</th>
 									<th>Status</th>
-									<th>Restaurant</th>
+									<th>Customer</th>
+									<th>Price [$]</th>
+									<th>Date</th>
+									<th>Ready</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+
+					<div class="tbl-content">
+						<table id="rest-table-past" class="r-table" cellpadding="0" cellspacing="0" border="0">
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+
+				<div class="r-gap"></div>
+
+			</div>
+		</div>
+	</section>
+
+		<div class="r-gap" style="margin-bottom: 100px;"></div>
+
+	<section class="section">
+		<div class="container">
+			<div class="col-12 r-section-white">
+
+				<h1>All orders</h1>
+				<hr>
+
+				<div class="r-gap"></div>
+
+				<div id="all-orders" class="row">
+
+					<div class="tbl-header">
+						<table class="r-table" cellpadding="0" cellspacing="0" border="0">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Status</th>
+									<th>Customer</th>
 									<th>Price [$]</th>
 									<th>Date</th>
 								</tr>
@@ -137,7 +181,7 @@
 					</div>
 
 					<div class="tbl-content">
-						<table id="rest-table-past" class="r-table" cellpadding="0" cellspacing="0" border="0">
+						<table id="rest-table-all" class="r-table" cellpadding="0" cellspacing="0" border="0">
 							<tbody>
 
 							</tbody>
@@ -190,7 +234,7 @@
 	<!-- Global Init -->
 	<script src="js/custom.js"></script>
 	<script src="js/menuLogin.js"></script>
-	<script src="js/customer/customerOrders.html.js"></script>
+	<script src="js/manager/managerOrders.js"></script>
 
 </body>
 

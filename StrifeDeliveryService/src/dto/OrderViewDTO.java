@@ -10,6 +10,7 @@ public class OrderViewDTO {
 	public String id;
 	public String status;
 	public String restaurantName;
+	public String customer;
 	public float price;
 	public String date;
 	
@@ -23,6 +24,8 @@ public class OrderViewDTO {
 		
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy, hh:mm");  
 		this.date = dateFormat.format(order.getDateAndTime());
+		
+		this.customer = order.getCustomerId();
 		
 	}
 	
