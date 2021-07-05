@@ -19,7 +19,7 @@ function getDataFromServer() {
 			newRowContent += `<div class="r-gap"></div>`
 			newRowContent += `<p><b>Type: </b>` + restaurant.type + `</p>`
 			newRowContent += `<p><b>City: </b>` + restaurant.city + `, ` + restaurant.postal + `</p>`
-			newRowContent += `<p><b>City: </b>` + restaurant.address + `</p>`
+			newRowContent += `<p><b>Address: </b>` + restaurant.address + `</p>`
 			newRowContent += `<div class="r-gap"></div>`
 			if (restaurant.rating === "-")
 				newRowContent += `<h5>Restaurant not rated yet.</h5>`
