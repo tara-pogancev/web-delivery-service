@@ -30,7 +30,6 @@ function getDataFromServer() {
 
 		}
 	});
-
 }
 
 function generateComments() {

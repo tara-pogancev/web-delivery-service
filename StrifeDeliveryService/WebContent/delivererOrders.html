@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>My Profile - Strife Delivery Service</title>
+	<title>Orders - Strife Delivery Service</title>
 	<meta charset="utf-8">
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -65,54 +65,139 @@
 		</row>
 	</section>
 
-	<div class="r-gap"></div>
+	<div class="r-gap" style="margin-bottom: 60px;"></div>
 
 	<section class="section">
 		<div class="container">
-			<div class="r-row">
-				<div class="title-div col-6">
-					<h1 id="welcomeUser"></h1>
-					<hr>
+			<div class="col-12 r-section-white">
+
+				<h1>Available orders</h1>
+				<hr>
+
+				<div class="r-gap"></div>
+
+				<div class="row">
+
+					<div class="tbl-header">
+						<table class="r-table" cellpadding="0" cellspacing="0" border="0">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Status</th>
+									<th>Restaurant</th>
+									<th>Customer</th>
+									<th>Price [$]</th>
+									<th>Date</th>
+									<th>Request</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+
+					<div class="tbl-content">
+						<table id="rest-table-available" class="r-table" cellpadding="0" cellspacing="0" border="0">
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+
 				</div>
-				<div align="right" class="col-6">
-					<div class="r-gap"></div>
-					<a class="main-button" href="changeProfileData.html">Edit profile</a>
-				</div>
+
+				<div class="r-gap"></div>
+
 			</div>
-
-			<div class="r-gap"></div>
-
-			<section style="width: 100%;">
-
-				<div class="row equal">
-					<div id="user-data" class="col-5 r-section-white">
-
-					</div>
-
-					<div class="col-1"></div>
-
-					<div align="center" class="col-6 r-section-white">
-						<div class="r-gap"></div>
-						<div>
-							<button class="main-button button-gap" style="width: 200px;"
-								onclick="location.href='delivererOrders.html';">Orders</button>
-
-						</div>
-						<div class="r-gap"></div>
-						<div>
-							<button class="main-button" onclick="logout()">LogOut</button>
-						</div>
-					</div>
-
-				</div>
-
-			</section>
-
-			<div class="r-gap"></div>
 		</div>
 	</section>
 
+	<div class="r-gap" style="margin-bottom: 100px;"></div>
 
+	<section class="section">
+		<div class="container">
+			<div class="col-12 r-section-white">
+
+				<h1>Active orders</h1>
+				<hr>
+
+				<div class="r-gap"></div>
+
+				<div class="row">
+
+					<div class="tbl-header">
+						<table class="r-table" cellpadding="0" cellspacing="0" border="0">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Status</th>
+									<th>Restaurant</th>
+									<th>Customer</th>
+									<th>Price [$]</th>
+									<th>Date</th>
+									<th>Deliver</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+
+					<div class="tbl-content">
+						<table id="rest-table-active" class="r-table" cellpadding="0" cellspacing="0" border="0">
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+
+				<div class="r-gap"></div>
+
+			</div>
+		</div>
+	</section>
+
+		<div class="r-gap" style="margin-bottom: 100px;"></div>
+
+	<section class="section">
+		<div class="container">
+			<div class="col-12 r-section-white">
+
+				<h1>All orders</h1>
+				<hr>
+
+				<div class="r-gap"></div>
+
+				<div id="all-orders" class="row">
+
+					<div class="tbl-header">
+						<table class="r-table" cellpadding="0" cellspacing="0" border="0">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Status</th>
+									<th>Restaurant</th>
+									<th>Customer</th>
+									<th>Price [$]</th>
+									<th>Date</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+
+					<div class="tbl-content">
+						<table id="rest-table-all" class="r-table" cellpadding="0" cellspacing="0" border="0">
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+
+				<div class="r-gap"></div>
+
+			</div>
+		</div>
+	</section>
 
 	<!-- ***** Footer Start ***** -->
 	<footer class="footer-small">
@@ -150,7 +235,7 @@
 	<!-- Global Init -->
 	<script src="js/custom.js"></script>
 	<script src="js/menuLogin.js"></script>
-	<script src="js/deliverer/delivererProfile.js"></script>
+	<script src="js/deliverer/delivererOrders.js"></script>
 
 </body>
 

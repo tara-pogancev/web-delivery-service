@@ -11,23 +11,21 @@ import enumeration.UserCategory;
 @XmlRootElement
 public class Deliverer extends User {
 
-	private ArrayList<Order> ordersToDeliver;
+	private ArrayList<String> ordersToDeliver;
 
 	public Deliverer(String id, String password, String name, String lastName, Gender gender, Date dateOfBirth,
 			UserCategory category) {
 		super(id, password, name, lastName, gender, dateOfBirth, category);
-		this.ordersToDeliver = new ArrayList<Order>();
+		this.ordersToDeliver = new ArrayList<String>();
 		this.setCategory(UserCategory.DELIVERER);
 	}
 
-	public ArrayList<Order> getOrdersToDeliver() {
+	public ArrayList<String> getOrdersToDeliver() {
 		return ordersToDeliver;
 	}
 
-	public void setOrdersToDeliver(ArrayList<Order> ordersToDeliver) {
+	public void setOrdersToDeliver(ArrayList<String> ordersToDeliver) {
 		this.ordersToDeliver = ordersToDeliver;
 	}
-	
-	
 
 }

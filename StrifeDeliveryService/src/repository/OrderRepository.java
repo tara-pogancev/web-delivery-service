@@ -9,6 +9,7 @@ import java.util.Map;
 
 import com.google.gson.reflect.TypeToken;
 
+import enumeration.OrderStatus;
 import model.*;
 
 public class OrderRepository extends GenericRepository<Order, OrderRepository> {
@@ -53,7 +54,7 @@ public class OrderRepository extends GenericRepository<Order, OrderRepository> {
 		return map;
 
 	}
-	
+
 	public ArrayList<Order> getAllByCustomer(String id) {
 		ArrayList<Order> list = new ArrayList<>();
 
@@ -70,6 +71,17 @@ public class OrderRepository extends GenericRepository<Order, OrderRepository> {
 
 		for (Order o : getAll()) {
 			if (o.getRestaurant().getName().equals(restaurantName))
+				list.add(o);
+		}
+
+		return list;
+	}
+
+	public ArrayList<Order> getAllAvailable() {
+		ArrayList<Order> list = new ArrayList<>();
+
+		for (Order o : getAll()) {
+			if (o.getStatus() == OrderStatus.AWAITING_DELIVERER)
 				list.add(o);
 		}
 

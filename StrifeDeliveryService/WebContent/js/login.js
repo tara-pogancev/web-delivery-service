@@ -47,7 +47,7 @@ function sendLogin(username, password) {
 								window.location.href = "http://localhost:8080/PocetniREST/profileManager.html";
 								break;
 							case "DELIVERER":
-								window.location.href = "http://localhost:8080/PocetniREST/prfileDeliverer.html";
+								window.location.href = "http://localhost:8080/PocetniREST/profileDeliverer.html";
 								break;
 							default:
 								window.location.href = "http://localhost:8080/PocetniREST/";
