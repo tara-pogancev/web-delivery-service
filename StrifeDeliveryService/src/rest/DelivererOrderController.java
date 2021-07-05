@@ -64,8 +64,6 @@ public class DelivererOrderController {
 		repoDel.setBasePath(getDataDirPath());
 		ArrayList<OrderViewDTO> retVal = new ArrayList<>();
 
-		Deliverer currentDel = getActiveDeliverer();
-
 		for (Order o : repoOrder.getAllAvailable())
 			if (!isRequested(o))
 				retVal.add(new OrderViewDTO(o));
@@ -85,5 +83,42 @@ public class DelivererOrderController {
 
 		return false;
 	}
+	
+	@GET
+	@Path("getActiveOrders")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ArrayList<OrderViewDTO> getActiveOrders() {
+		repoOrder.setBasePath(getDataDirPath());
+		repoDel.setBasePath(getDataDirPath());
+		ArrayList<OrderViewDTO> retVal = new ArrayList<>();
+
+		for (String o : getActiveDeliverer().getOrdersToDeliver()) {
+			Order order = repoOrder.read(o);
+			if (order.getStatus() == OrderStatus.TRANSPORT)
+				retVal.add(new OrderViewDTO(order));
+		}			
+
+		return retVal;
+	}
+	
+	@GET
+	@Path("getAllOrders")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ArrayList<OrderViewDTO> getAllOrders() {
+		repoOrder.setBasePath(getDataDirPath());
+		repoDel.setBasePath(getDataDirPath());
+		ArrayList<OrderViewDTO> retVal = new ArrayList<>();
+
+		for (String o : getActiveDeliverer().getOrdersToDeliver()) {
+			Order order = repoOrder.read(o);
+			if (order.getStatus() == OrderStatus.TRANSPORT || order.getStatus() == OrderStatus.DELIVERED)
+				retVal.add(new OrderViewDTO(order));
+		}			
+
+		return retVal;
+	}
+
 
 }
