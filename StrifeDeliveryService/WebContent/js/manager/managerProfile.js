@@ -41,7 +41,7 @@ function generateRestaurant() {
 		success: function(restaurant) {
 			if (restaurant.name === "NO_RESTAURANT") {
 				newRowContent = `<tr>`
-				newRowContent += `<td colspan="6" >Ladno nemas restoran</td>`
+				newRowContent += `<td colspan="6" >No restaurant assigned.</td>`
 
 				$('#rest-table tbody').append(newRowContent)
 

@@ -73,9 +73,8 @@ function generateCart(username) {
 				newRowContent += `<td colspan="5">No items in cart.</td>`
 
 				$('#rest-table tbody').append(newRowContent);
+				$('#order-button').attr('disabled', 'disabled')
 			}
-
-
 		}
 	});
 
