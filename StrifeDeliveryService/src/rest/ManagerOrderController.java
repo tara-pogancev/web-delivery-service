@@ -112,6 +112,7 @@ public class ManagerOrderController {
 		for (Order o : repoOrder.getAllByRestaurant(restaurantName))
 			retVal.add(new OrderViewDTO(o));				
 		
+		System.out.println(repoOrder.getAllByRestaurant(restaurantName).size());
 		return retVal;
 	}
 	
@@ -155,11 +156,12 @@ public class ManagerOrderController {
 		repoDel.setBasePath(getDataDirPath());
 		
 		ArrayList<DeliveryRequestDTO> retVal = new ArrayList<DeliveryRequestDTO>();
-		
+		Manager m = getActiveManager();
+				
 		for (Deliverer d : repoDel.getAll()) {
 			for (String orderId : d.getOrdersToDeliver()) {
 				Order o = repoOrder.read(orderId);
-				if (o.getStatus() == OrderStatus.AWAITING_DELIVERER)
+				if (o.getStatus() == OrderStatus.AWAITING_DELIVERER && o.getRestaurant().getName().equals(m.getRestaurantId()))
 					retVal.add(new DeliveryRequestDTO(d, o));
 					
 			}
