@@ -28,4 +28,15 @@ public class Deliverer extends User {
 		this.ordersToDeliver = ordersToDeliver;
 	}
 
+	public void addOrder(String orderId) {
+		if (!this.ordersToDeliver.contains(orderId))
+			this.ordersToDeliver.add(orderId);		
+	}
+
+	public void removeOrder(String orderId) {
+		if (this.ordersToDeliver.contains(orderId))
+			this.ordersToDeliver.remove(orderId);	
+		
+	}
+
 }

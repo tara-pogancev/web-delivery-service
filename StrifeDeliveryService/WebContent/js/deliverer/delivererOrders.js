@@ -117,8 +117,8 @@ function generateAllOrders() {
 				newRowContent += `<td>` + order.customer + `</td>`
 				newRowContent += `<td>` + order.price + `</td > `
 				newRowContent += `<td>` + order.date + `</td > `
-				
-				$('#rest-table-active tbody').append(newRowContent);
+
+				$('#rest-table-all tbody').append(newRowContent);
 
 			}
 
@@ -134,7 +134,40 @@ function generateAllOrders() {
 
 function request(id) {
 
+	let data = {
+		"id": id
+	}
+
+	$.post({
+		url: 'webapi/delOrders/requestOrder',
+		data: JSON.stringify(data),
+		contentType: 'application/json',
+		success: function (response) {
+			alert("Order successfully requested!");
+
+			generateActiveOrders();
+			generateAvailableOrders();
+			generateAllOrders();
+		}
+	});
 }
+
 function deliver(id) {
-	
+
+	let data = {
+		"id": id
+	}
+
+	$.post({
+		url: 'webapi/delOrders/deliverOrder',
+		data: JSON.stringify(data),
+		contentType: 'application/json',
+		success: function (response) {
+			alert("Order successfully delivered!");
+
+			generateActiveOrders();
+			generateAvailableOrders();
+			generateAllOrders();
+		}
+	});
 }

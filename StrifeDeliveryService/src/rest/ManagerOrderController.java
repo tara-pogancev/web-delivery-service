@@ -12,12 +12,15 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import dto.DeliveryRequestDTO;
 import dto.OrderDTO;
 import dto.OrderViewDTO;
 import dto.UserDTO;
 import enumeration.OrderStatus;
+import model.Deliverer;
 import model.Manager;
 import model.Order;
+import repository.DelivererRepository;
 import repository.ManagerRepository;
 import repository.OrderRepository;
 import repository.RestaurantRepository;
@@ -28,6 +31,7 @@ public class ManagerOrderController {
 	ManagerRepository repoManager = new ManagerRepository();
 	OrderRepository repoOrder = new OrderRepository();
 	RestaurantRepository repoRestaurant = new RestaurantRepository();
+	DelivererRepository repoDel = new DelivererRepository();
 
 	@Context
 	ServletContext ctx;
@@ -141,6 +145,56 @@ public class ManagerOrderController {
 		System.out.println("Order awaiting deliverer.");
 	}
 	
+	
+	@GET
+	@Path("getRequests")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ArrayList<DeliveryRequestDTO> getRequests() {		
+		repoOrder.setBasePath(getDataDirPath());
+		repoDel.setBasePath(getDataDirPath());
+		
+		ArrayList<DeliveryRequestDTO> retVal = new ArrayList<DeliveryRequestDTO>();
+		
+		for (Deliverer d : repoDel.getAll()) {
+			for (String orderId : d.getOrdersToDeliver()) {
+				Order o = repoOrder.read(orderId);
+				if (o.getStatus() == OrderStatus.AWAITING_DELIVERER)
+					retVal.add(new DeliveryRequestDTO(d, o));
+					
+			}
+		}
+		
+		return retVal;
+	}
+	
+	@POST
+	@Path("acceptRequest")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void acceptRequest(OrderDTO dto) {
+		repoOrder.setBasePath(getDataDirPath());
+		repoDel.setBasePath(getDataDirPath());
+		
+		String requestId = dto.id;
+		String orderId = requestId.substring(0, 10);
+		String delId = requestId.substring(10);
+		
+		System.out.println("Accepting order #" + orderId + " for " + delId);
+		
+		Order order = repoOrder.read(orderId);
+		
+		for (Deliverer d : repoDel.getAll()) {
+			if (d.getOrdersToDeliver().contains(orderId) && !d.getId().equals(delId)) {
+				d.removeOrder(orderId);
+				repoDel.update(d);
+			}				
+		}
+		
+		order.setStatus(OrderStatus.TRANSPORT);
+		repoOrder.update(order);
+		
+	}
 	
 	
 	

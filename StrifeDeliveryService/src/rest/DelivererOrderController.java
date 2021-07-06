@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import dto.OrderDTO;
 import dto.OrderViewDTO;
 import dto.UserDTO;
 import enumeration.OrderStatus;
@@ -119,6 +120,35 @@ public class DelivererOrderController {
 
 		return retVal;
 	}
+	
+	@POST
+	@Path("requestOrder")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void requestOrder(OrderDTO dto) {
+		repoDel.setBasePath(getDataDirPath());
+		repoOrder.setBasePath(getDataDirPath());
+		
+		Deliverer current = getActiveDeliverer();
+		
+		if (repoOrder.read(dto.id).getStatus() == OrderStatus.AWAITING_DELIVERER)
+			current.addOrder(dto.id);
+		
+		repoDel.update(current);
 
+	}
+
+	@POST
+	@Path("deliverOrder")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void deliverOrder(OrderDTO dto) {
+		repoOrder.setBasePath(getDataDirPath());
+		
+		Order o = repoOrder.read(dto.id);
+		o.setStatus(OrderStatus.DELIVERED);
+		repoOrder.update(o);
+
+	}
 
 }
