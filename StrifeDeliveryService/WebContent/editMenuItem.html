@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>Menu Items - Strife Delivery Service</title>
+	<title>Edit Product - Strife Delivery Service</title>
 	<meta charset="utf-8">
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -67,36 +67,90 @@
 	</section>
 
 
-	<section class="r-section">
-		<h1>Menu Items</h1>
+	<section class="r-section r-section-white" style="width: 60%; min-width: 900px;">
 
-		<div class="r-gap"></div>
+		<div class="row equal">
+			<div class="col-6">
+				<h1>Edit Product</h1>
+				<hr>
+				<div class="r-gap"></div>
 
-		<div class="tbl-header">
-			<table class="r-table" cellpadding="0" cellspacing="0" border="0">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Name</th>
-						<th>Type</th>
-						<th>Price</th>
-						<th>Edit</th>
-					</tr>
-				</thead>
-			</table>
+
+				<div class="r-row" style="margin-bottom: 20px;">
+					<div class="col-4">
+						<label>Name:</label>
+					</div>
+					<div align="right" class="col-8">
+						<input type="text" id="product-name" placeholder="Enter name..." style="width: 300px;">
+					</div>
+				</div>
+
+				<div class="r-row" style="margin-bottom: 20px;">
+					<div class="col-4">
+						<label>Type:</label>
+					</div>
+					<div align="right" class="col-8">
+						<select id="type" name="type" style="width: 300px;">
+							<option value="FOOD">Food</option>
+							<option value="DRINK">Drink</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="r-row" style="margin-bottom: 20px;">
+					<div class="col-4">
+						<label>Price [USD]:</label>
+					</div>
+					<div align="right" class="col-8">
+						<input type="number" step="0.1" id="product-price" min="0" style="width: 300px;">
+					</div>
+				</div>
+
+				<div class="r-row" style="margin-bottom: 20px;">
+					<div class="col-4">
+						<label>Quantity [g/ml]:</label>
+					</div>
+					<div align="right" class="col-8">
+						<input type="number" id="quantity" min="0" style="width: 300px;">
+					</div>
+				</div>
+
+				<div class="r-row" style="margin-bottom: 20px;">
+					<div class="col-4">
+						<label>Description:</label>
+					</div>
+					<div align="right" class="col-8">
+						<input type="text" id="description" style="width: 300px;">
+					</div>
+				</div>
+
+				<div class="r-row" style="margin-bottom: 20px;">
+					<div class="col-4">
+						<label>Picture:</label>
+					</div>
+					<div align="right" class="col-8">
+						<input type="file" id="logo-picture" style="width: 300px;">
+					</div>
+				</div>
+
+				<div class="r-gap" style="margin-top: 60px;"></div>
+
+				<div class="col-12 r-row-center">
+					<a class="main-button" href="#" id="form-cancel" style="margin-right: 30px;">Cancel</a>
+					<a class="main-button" href="#" id="form-submit">Finish</a>
+				</div>
+
+				<div class="r-gap">.</div>
+
+			</div>
+
+			<div class="col-6">
+				<div class="r-center">
+					<img src="images/love-image.png" style="height: 350px;">
+				</div>
+			</div>
+
 		</div>
-
-		<div class="tbl-content">
-			<table id="rest-table" class="r-table" cellpadding="0" cellspacing="0" border="0">
-				<tbody>
-
-				</tbody>
-			</table>
-		</div>
-
-		<div class="r-gap"></div>
-
-		<button class="main-button" onclick="location.href='addProduct.html';">Add Menu Item</button>
 
 	</section>
 
@@ -137,8 +191,7 @@
 	<!-- Global Init -->
 	<script src="js/custom.js"></script>
 	<script src="js/menuLogin.js"></script>
-	<script src="js/table.js"></script>
-	<script src="js/manager/menuItems.js"></script>
+	<script src="js/manager/editProduct.js"></script>
 
 </body>
 

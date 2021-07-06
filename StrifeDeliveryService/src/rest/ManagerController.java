@@ -27,9 +27,9 @@ public class ManagerController {
 
 	@SuppressWarnings("unused")
 	public void init() {
-		if (ctx.getAttribute("customers") == null) {
+		if (ctx.getAttribute("manager") == null) {
 			String contextPath = ctx.getRealPath("");
-			ctx.setAttribute("customers", new ManagerRepository());
+			ctx.setAttribute("manager", new ManagerRepository());
 		}
 	}
 	

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -33,7 +34,7 @@ public class ProductController {
 	public void init() {
 		if (ctx.getAttribute("product") == null) {
 			String contextPath = ctx.getRealPath("");
-			ctx.setAttribute("product", new ProductController());
+			ctx.setAttribute("product", new String());
 		}
 	}
 
@@ -98,6 +99,25 @@ public class ProductController {
 		System.out.println(retVal.size() + " products fetched.");
 		
 		return retVal;
+	}
+	
+	@POST
+	@Path("setActiveProduct")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void setActiveProduct(ProductDTO dto) {
+		System.out.println("Active product set to: " + dto.id);
+		ctx.setAttribute("product", dto.id);	
+	}
+	
+	@GET
+	@Path("getActiveProduct")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Product getActiveProduct() {
+		repo.setBasePath(getDataDirPath());
+		
+		return repo.read((String) ctx.getAttribute("Product"));
 	}
 
 }
