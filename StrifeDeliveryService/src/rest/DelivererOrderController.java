@@ -64,7 +64,7 @@ public class DelivererOrderController {
 		repoOrder.setBasePath(getDataDirPath());
 		repoDel.setBasePath(getDataDirPath());
 		ArrayList<OrderViewDTO> retVal = new ArrayList<>();
-
+		
 		for (Order o : repoOrder.getAllAvailable())
 			if (!isRequested(o))
 				retVal.add(new OrderViewDTO(o));

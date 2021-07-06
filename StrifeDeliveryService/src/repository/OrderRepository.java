@@ -78,12 +78,13 @@ public class OrderRepository extends GenericRepository<Order, OrderRepository> {
 	}
 
 	public ArrayList<Order> getAllAvailable() {
-		ArrayList<Order> list = new ArrayList<>();
+		ArrayList<Order> list = new ArrayList<>();	
 
 		for (Order o : getAll()) {
-			if (o.getStatus() == OrderStatus.AWAITING_DELIVERER)
+			if (o.getStatus() == (OrderStatus.AWAITING_DELIVERER))
 				list.add(o);
 		}
+		
 
 		return list;
 	}

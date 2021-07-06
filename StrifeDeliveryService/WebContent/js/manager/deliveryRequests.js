@@ -87,6 +87,19 @@ function acceptRequest(requestId) {
 
 function declineRequest(requestId) {
 
-	alert(requestId)
+		let data = {
+		"id": requestId
+	}
+
+	$.post({
+		url: 'webapi/managerOrders/declineRequest',
+		data: JSON.stringify(data),
+		contentType: 'application/json',
+		success: function (response) {
+
+			alert("Request declined!")
+			generateRequests()
+		}
+	});
 
 }

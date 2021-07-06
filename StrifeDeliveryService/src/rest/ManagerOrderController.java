@@ -112,7 +112,6 @@ public class ManagerOrderController {
 		for (Order o : repoOrder.getAllByRestaurant(restaurantName))
 			retVal.add(new OrderViewDTO(o));				
 		
-		System.out.println(repoOrder.getAllByRestaurant(restaurantName).size());
 		return retVal;
 	}
 	
@@ -194,10 +193,28 @@ public class ManagerOrderController {
 		}
 		
 		order.setStatus(OrderStatus.TRANSPORT);
-		repoOrder.update(order);
-		
+		repoOrder.update(order);		
 	}
 	
+	@POST
+	@Path("declineRequest")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void declineRequest(OrderDTO dto) {
+		repoOrder.setBasePath(getDataDirPath());
+		repoDel.setBasePath(getDataDirPath());
+		
+		String requestId = dto.id;
+		String orderId = requestId.substring(0, 10);
+		String delId = requestId.substring(10);
+		
+		System.out.println("Declining order #" + orderId + " for " + delId);
+				
+		Deliverer d = repoDel.read(delId);
+		d.removeOrder(orderId);
+		repoDel.update(d);
+			
+	}
 	
 	
 }
