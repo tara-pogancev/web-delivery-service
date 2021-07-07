@@ -38,9 +38,6 @@ function getDataFromServer() {
 					$('#rest-table tbody').append(newRowContent);
 
 				}
-
-
-
 			}
 
 			if (response.length === 0) {
@@ -48,6 +45,47 @@ function getDataFromServer() {
 				newRowContent += `<td colspan="6">No customers.</td>`
 
 				$('#rest-table tbody').append(newRowContent);
+			}
+
+		}
+	});
+
+
+	$.get({
+		url: 'webapi/customers/getSusCustomers',
+		success: function (response) {
+
+			for (let user of response) {
+
+				if (user.blocked == false) {
+
+					newRowContent = `<tr>`
+					newRowContent += `<td>` + user.id + `</td>`
+					newRowContent += `<td>` + user.name + `</td>`
+					newRowContent += `<td>` + user.lastName + `</td>`
+					newRowContent += `<td>` + `<a href="#" onclick=confirmBan(\"` + user.id + `\") >Ban</a>` + `</td>`
+
+					$('#rest-table-sus tbody').append(newRowContent);
+
+				} else {
+
+					newRowContent = `<tr bgcolor="#e1e3e3">`
+					newRowContent += `<td>` + user.id + `</td>`
+					newRowContent += `<td>` + user.name + `</td>`
+					newRowContent += `<td>` + user.lastName + `</td>`
+					newRowContent += `<td>` + user.points + `</td>`
+					newRowContent += `<td>` + `<a href="#" onclick=unbanUser(\"` + user.id + `\") >Unban</a>` + `</td>`
+
+					$('#rest-table-sus tbody').append(newRowContent);
+
+				}
+			}
+
+			if (response.length === 0) {
+				newRowContent = `<tr>`
+				newRowContent += `<td colspan="5">No customers to show.</td>`
+
+				$('#rest-table-sus tbody').append(newRowContent);
 			}
 
 		}

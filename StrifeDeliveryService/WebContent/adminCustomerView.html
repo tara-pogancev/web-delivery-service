@@ -65,50 +65,84 @@
 		</row>
 	</section>
 
-  <section class="r-section">
-    <h1>All Customers</h1>
-    
-    <div class="r-gap"></div>
+	<section class="r-section">
+		<h1>All Customers</h1>
 
-    <div class="tbl-header">
-      <table class="r-table" cellpadding="0" cellspacing="0" border="0">
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Name</th>
-            <th>Last name</th>
-			<th>Points</th>
-			<th>Category</th>
-			<th>Ban user</th>
-            <th>Delete user</th>
-          </tr>
-        </thead>
-      </table>
-    </div>
+		<div class="r-gap"></div>
 
-    <div class="tbl-content">
-      <table id="rest-table" class="r-table" cellpadding="0" cellspacing="0" border="0">
-        <tbody>
-          
-        </tbody>
-      </table>
-    </div>
+		<div class="tbl-header">
+			<table class="r-table" cellpadding="0" cellspacing="0" border="0">
+				<thead>
+					<tr>
+						<th>Username</th>
+						<th>Name</th>
+						<th>Last name</th>
+						<th>Points</th>
+						<th>Category</th>
+						<th>Ban user</th>
+						<th>Delete user</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
 
-    <div class="r-gap"></div>
+		<div class="tbl-content">
+			<table id="rest-table" class="r-table" cellpadding="0" cellspacing="0" border="0">
+				<tbody>
 
-    <div class="r-row">
-      <div class="col-6">
-        <input id="searchField" type="text" placeholder="Search customers..." style="width: 300px; margin-bottom: 10px;">
-        <span class="r-span"></span>
-        <a href="#" onclick="doSearch(); return false;" class="main-button-small">Search</a>
-      </div>
+				</tbody>
+			</table>
+		</div>
 
-    </div>
+		<div class="r-gap"></div>
 
-    <div class="r-gap"></div>
+		<div class="r-row">
+			<div class="col-6">
+				<input id="searchField" type="text" placeholder="Search customers..."
+					style="width: 300px; margin-bottom: 10px;">
+				<span class="r-span"></span>
+				<a href="#" onclick="doSearch(); return false;" class="main-button-small">Search</a>
+			</div>
 
-  </section>
+		</div>
 
+		<div class="r-gap"></div>
+
+	</section>
+
+	<div class="r-gap" style="margin-bottom: 80px;"></div>
+
+	<section class="r-section">
+		<h1>Suspicious Customers</h1>
+
+		<div class="r-gap"></div>
+
+		<div class="tbl-header">
+			<table class="r-table" cellpadding="0" cellspacing="0" border="0">
+				<thead>
+					<tr>
+						<th>Username</th>
+						<th>Name</th>
+						<th>Last name</th>
+						<th>Ban user</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+
+		<div class="tbl-content">
+			<table id="rest-table-sus" class="r-table" cellpadding="0" cellspacing="0" border="0">
+				<tbody>
+
+				</tbody>
+			</table>
+		</div>
+
+		<div class="r-gap"></div>
+
+	</section>
+
+	<div class="r-gap"></div>
 
 	<!-- ***** Footer Start ***** -->
 	<footer class="footer-small">

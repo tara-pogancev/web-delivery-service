@@ -1,7 +1,10 @@
 package rest;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
@@ -15,14 +18,18 @@ import javax.ws.rs.core.MediaType;
 import dto.SearchFilterDTO;
 import dto.UserDTO;
 import dto.UserViewDTO;
+import enumeration.OrderStatus;
 import model.Customer;
+import model.Order;
 import model.User;
 import repository.CustomerRepository;
+import repository.OrderRepository;
 
 @Path("customers")
 public class CustomerController {
 
 	CustomerRepository repoCustomer = new CustomerRepository();
+	OrderRepository repoOrder = new OrderRepository();
 
 	@Context
 	ServletContext ctx;
@@ -102,6 +109,39 @@ public class CustomerController {
 			return true;
 
 		return false;
+	}
+
+	@GET
+	@Path("getSusCustomers")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<UserViewDTO> getSusCustomers() {
+		repoCustomer.setBasePath(getDataDirPath());
+
+		ArrayList<UserViewDTO> retVal = new ArrayList<UserViewDTO>();
+
+		for (Customer c : repoCustomer.getAll())
+			if (canceledOrders(c) >= 10)
+				retVal.add(new UserViewDTO((Customer) c));
+
+		return retVal;
+	}
+
+	private int canceledOrders(Customer c) {
+		repoOrder.setBasePath(getDataDirPath());
+		int retVal = 0;
+
+		for (Order o : repoOrder.getAllByCustomer(c.getId())) {
+			if (o.getStatus() == OrderStatus.CANCELED) {
+				Date orderDate = o.getDateAndTime();
+				LocalDate date = orderDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				LocalDate currDate = LocalDate.now();
+
+				if (date.isAfter(currDate.minusDays(30)))
+					retVal++;
+			}
+		}
+		
+		return retVal;
 	}
 
 }
