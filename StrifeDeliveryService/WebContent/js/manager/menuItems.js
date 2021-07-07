@@ -39,6 +39,7 @@ function generateItems() {
 				newRowContent += `<td>` + product.type + `</td>`
 				newRowContent += `<td>` + product.price + `</td>`
 				newRowContent += `<td>` + `<a href="#" onclick=editProduct(\"` + product.id + `\") >Edit</a>` + `</td>`
+				newRowContent += `<td>` + `<a href="#" onclick=deleteProduct(\"` + product.id + `\") >Delete</a>` + `</td>`
 
 				$('#rest-table tbody').append(newRowContent);
 
@@ -62,7 +63,7 @@ function editProduct(prodId) {
 		"id": prodId
 	}
 
-	
+
 	$.post({
 		url: 'webapi/products/setActiveProduct',
 		data: JSON.stringify(data),
@@ -73,4 +74,25 @@ function editProduct(prodId) {
 		}
 	});
 
+}
+
+function deleteProduct(prodId) {
+
+	if (confirm("Are you sure you want to delete product #" + prodId)) {
+
+		let data = {
+			"id": prodId
+		}
+
+		$.post({
+			url: 'webapi/products/deleteProduct',
+			data: JSON.stringify(data),
+			contentType: 'application/json',
+			success: function (response) {
+				alert("Product deleted!")
+				window.location.href = "http://localhost:8080/PocetniREST/editMenuItem.html";
+
+			}
+		});
+	}
 }

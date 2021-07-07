@@ -16,8 +16,9 @@ function getServerData() {
 			document.getElementById('product-name').value = product.name;
 			document.getElementById('type').value = product.type;
 			document.getElementById('product-price').value = product.price;
-			document.getElementById('quantity').value = product.quantity;
-			document.getElementById('quantity').value = product.description;
+			if (product.quantity != 0)
+				document.getElementById('quantity').value = product.quantity;
+			document.getElementById('description').value = product.description;
 		}
 	});
 }
@@ -26,80 +27,40 @@ function form(e) {
 
 	e.preventDefault();
 
-	var name = document.getElementById('rest-name').value;
+	var name = document.getElementById('product-name').value;
 	var type = document.getElementById('type').value;
-	var status = document.getElementById('open-status').value;
-	var city = document.getElementById('city').value;
-	var postal = document.getElementById('postal').value;
-	var address = document.getElementById('address').value;
-	var picture = document.getElementById('logo-picture').value;
+	var price = document.getElementById('product-price').value;
+	var quantity = document.getElementById('quantity').value;
+	var description = document.getElementById('description').value;
 
-	if (name && type && status && city && postal && address)
-		editRestaurant(name, type, status, city, postal, address)
+	if (name && type && price && quantity && description)
+		editProduct(name, type, price, quantity, description)
 
 	else
 		alert("Please fill in all fields!")
 }
 
-function editRestaurant(name, type, status, city, postal, address) {
+function editProduct(name, type, price, quantity, description) {
 	let data = {
 		"name": name,
 		"type": type,
-		"status": status,
-		"city": city,
-		"postal": postal,
-		"address": address,
+		"price": price,
+		"quantity": quantity,
+		"description": description
 	}
 
 	$.post({
-		url: 'webapi/editRestaurant/editBasicParams',
+		url: 'webapi/products/editActiveProduct',
 		data: JSON.stringify(data),
 		contentType: 'application/json',
 		success: function(response) {
 
 			//uploadLogo(name);
-			alert("Restaurant successfully edited")
+			alert("Product successfully edited")
 			// Basic params edited
-			window.location.href = "http://localhost:8080/PocetniREST/profileManager.html";
+			window.location.href = "http://localhost:8080/PocetniREST/managerRestaurantItems.html";
 
 		}
 	});
-
-}
-
-function uploadLogo(name) {
-
-	let base64String = "";
-
-	var file = document.querySelector(
-		'input[type=file]')['files'][0];
-
-	var reader = new FileReader();
-
-	reader.onload = function() {
-		base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-
-		imageBase64Stringsep = base64String;
-
-		//console.log(base64String);
-
-		$.post({
-			url: 'webapi/images/uploadImage',
-			data: name,
-			success: function(response) {
-
-			}
-		});
-
-		$.post({
-			url: 'webapi/images/uploadImageLogo',
-			data: base64String,
-			success: function(response) {
-			}
-		});
-
-	}
-
-	reader.readAsDataURL(file);
 
 }

@@ -116,8 +116,38 @@ public class ProductController {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Product getActiveProduct() {
 		repo.setBasePath(getDataDirPath());
+		Product retVal = repo.read((String) ctx.getAttribute("product"));
+		System.out.println("Reading product: " + retVal.getName());
 		
-		return repo.read((String) ctx.getAttribute("Product"));
+		return retVal;
+	}
+	
+	@POST
+	@Path("editActiveProduct")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void editActiveProduct(ProductDTO dto) {
+		repo.setBasePath(getDataDirPath());
+		Product retVal = repo.read((String) ctx.getAttribute("product"));
+		
+		retVal.setName(dto.name);
+		retVal.setDescription(dto.description);
+		retVal.setPrice(dto.price);
+		retVal.setQuantity(dto.quantity);
+		retVal.setType(dto.getEnumType());
+		
+		repo.update(retVal);		
+	}
+	
+	@POST
+	@Path("deleteProduct")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void deleteProduct(ProductDTO dto) {
+		repo.setBasePath(getDataDirPath());
+		Product retVal = repo.read(dto.id);
+		retVal.setDeleted(true);		
+		repo.update(retVal);		
 	}
 
 }
