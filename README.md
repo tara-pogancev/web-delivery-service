@@ -9,7 +9,7 @@ Akademski projekat iz predmeta Veb programiranje - veb aplikacija za naručivanj
 
 • **Tara Pogančev**
 
-•**Filip Pinjuh**
+• **Filip Pinjuh**
 
 ## Licenca
 
