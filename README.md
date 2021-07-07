@@ -3,6 +3,8 @@ Akademski projekat iz predmeta Veb programiranje - veb aplikacija za naručivanj
 
 **Implementacija** pomoću REST API, Java, JavaScript, JQuery, html, css, Tomcat, u Eclipse razvojnom okruženju.
 
+![Restaurants](StrifeDeliveryService/WebContent/images/logo%20black.png)
+
 ## Autori
 
 • **Tara Pogančev**
@@ -24,4 +26,8 @@ _Admin_ je ključna uloga u datom veb servisu, sa mogućnosti dodavanja većine 
 
 ## Screenshots
 
-![Restaurants](/img/preview1.jpg?raw=true "Title")
+![Restaurants](img/preview1.jpg)
+![Restaurants](img/preview2.jpg)
+![Restaurants](img/preview3.jpg)
+![Restaurants](img/preview4.jpg)
+![Restaurants](img/preview5.jpg)
