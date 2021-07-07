@@ -50,6 +50,7 @@ function generateRestaurant() {
 				$('#b3').attr('disabled', 'disabled')
 				$('#b4').attr('disabled', 'disabled')
 				$('#b5').attr('disabled', 'disabled')
+				$('#b6').attr('disabled', 'disabled')
 
 			} else {
 				
