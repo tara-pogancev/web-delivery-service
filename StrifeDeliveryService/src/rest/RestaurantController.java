@@ -47,7 +47,7 @@ public class RestaurantController {
 		ArrayList<RestaurantViewDTO> retVal = new ArrayList<>();
 
 		for (Restaurant r : repo.getAll())
-			if (r.getStatus().equals(RestaurantStatus.OPEN))
+			if (r.getStatus().equals(RestaurantStatus.OPEN) && !r.isDeleted())
 				retVal.add(new RestaurantViewDTO(r));
 
 		return retVal;
@@ -61,7 +61,7 @@ public class RestaurantController {
 		ArrayList<RestaurantViewDTO> retVal = new ArrayList<>();
 
 		for (Restaurant r : repo.getAll())
-			if (r.getStatus().equals(RestaurantStatus.CLOSED))
+			if (r.getStatus().equals(RestaurantStatus.CLOSED) && !r.isDeleted())
 				retVal.add(new RestaurantViewDTO(r));
 
 		return retVal;
@@ -73,7 +73,7 @@ public class RestaurantController {
 	public ArrayList<Restaurant> getAllRestaurants() {
 		repo.setBasePath(getDataDirPath());
 
-		return repo.getAll();
+		return repo.getAllValid();
 	}
 
 	@GET
@@ -83,7 +83,7 @@ public class RestaurantController {
 		repo.setBasePath(getDataDirPath());
 		ArrayList<RestaurantViewDTO> retVal = new ArrayList<RestaurantViewDTO>();
 
-		for (Restaurant r : repo.getAll())
+		for (Restaurant r : repo.getAllValid())
 			retVal.add(new RestaurantViewDTO(r));
 
 		return retVal;
@@ -99,7 +99,7 @@ public class RestaurantController {
 
 		ArrayList<RestaurantViewDTO> retVal = new ArrayList<RestaurantViewDTO>();
 
-		for (Restaurant r : repo.getAll())
+		for (Restaurant r : repo.getAllValid())
 			if (validateSearchRestaurant(r, dto))
 				retVal.add(new RestaurantViewDTO(r));
 

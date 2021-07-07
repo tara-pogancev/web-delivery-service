@@ -106,5 +106,17 @@ public class EditRestaurantController {
 
 		return retVal;
 	}
+	
+	@POST
+	@Path("deleteRestaurant")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void deleteRestaurant(RestaurantDTO dto) {
+		repo.setBasePath(getDataDirPath());
+		Restaurant r = repo.read(dto.name);
+		r.setDeleted(true);
+		repo.update(r);
+		System.out.println("Restaurant " + dto.name + " deleted.");
+	}
 
 }
