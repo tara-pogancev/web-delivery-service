@@ -93,7 +93,8 @@ public class ProductController {
 		Restaurant r = restaurantRepo.readByName(dto.name);
 		
 		for (String id : r.getProducts()) {
-			retVal.add(repo.read(id));
+			if (!repo.read(id).isDeleted())
+				retVal.add(repo.read(id));
 		}
 
 		System.out.println(retVal.size() + " products fetched.");
@@ -148,6 +149,7 @@ public class ProductController {
 		Product retVal = repo.read(dto.id);
 		retVal.setDeleted(true);		
 		repo.update(retVal);		
+		System.out.println("Product #" + dto.id + " deleted.");
 	}
 
 }

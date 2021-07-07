@@ -100,7 +100,8 @@ public class EditRestaurantController {
 		
 		for (String pId : restaurant.getProducts()) {
 			Product p = repoProduct.read(pId);
-			retVal.add(p);
+			if (!p.isDeleted())
+				retVal.add(p);
 		}
 
 		return retVal;

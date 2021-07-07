@@ -69,7 +69,7 @@ function editProduct(prodId) {
 		data: JSON.stringify(data),
 		contentType: 'application/json',
 		success: function (response) {
-			window.location.href = "http://localhost:8080/PocetniREST/editMenuItem.html";
+			window.location.href = "http://localhost:8080/PocetniREST/managerRestaurantItems.html";
 
 		}
 	});
