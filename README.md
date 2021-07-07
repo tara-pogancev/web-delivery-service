@@ -24,4 +24,4 @@ _Admin_ je ključna uloga u datom veb servisu, sa mogućnosti dodavanja većine 
 
 ## Screenshots
 
-![Restaurants](img/preview1.jpg?raw=true "Title")
+![Restaurants](/img/preview1.jpg?raw=true "Title")
