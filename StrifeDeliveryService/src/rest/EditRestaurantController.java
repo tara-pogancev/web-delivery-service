@@ -13,9 +13,12 @@ import javax.ws.rs.core.MediaType;
 
 import dto.ProductDTO;
 import dto.RestaurantDTO;
+import dto.UserDTO;
 import model.Address;
+import model.Manager;
 import model.Product;
 import model.Restaurant;
+import repository.ManagerRepository;
 import repository.ProductRepository;
 import repository.RestaurantRepository;
 
@@ -24,6 +27,7 @@ public class EditRestaurantController {
 
 	RestaurantRepository repo = new RestaurantRepository();
 	ProductRepository repoProduct = new ProductRepository();
+	ManagerRepository repoManager = new ManagerRepository();
 	Restaurant restaurant;
 
 	@Context
@@ -46,6 +50,17 @@ public class EditRestaurantController {
 	private Restaurant getCurrentRestaurant() {
 		return (Restaurant) ctx.getAttribute("currentRestaurant");
 	}
+	
+	@POST
+	@Path("setRestaurantById")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void setRestaurantById(RestaurantDTO dto) {
+		repo.setBasePath(getDataDirPath());
+		restaurant = repo.readByName(dto.name);
+		setCurrentRestaurant(restaurant);
+	}
+
 
 	private void setCurrentRestaurant(Restaurant r) {
 		ctx.setAttribute("currentRestaurant", r);
@@ -117,6 +132,20 @@ public class EditRestaurantController {
 		r.setDeleted(true);
 		repo.update(r);
 		System.out.println("Restaurant " + dto.name + " deleted.");
+	}
+	
+	@POST
+	@Path("addManager")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void addManager(UserDTO dto) {
+		repoManager.setBasePath(getDataDirPath());
+		
+		Restaurant restaurant = getCurrentRestaurant();
+		Manager m = repoManager.read(dto.id);
+		m.setRestaurantId(restaurant.getName());
+		
+		repoManager.update(m);
 	}
 
 }

@@ -76,6 +76,19 @@ function doSearch() {
 
 function addManager(id) {
 
+	let data = {
+		"name": id
+	}
+
+	$.post({
+		url: 'webapi/editRestaurant/setRestaurantById',
+		data: JSON.stringify(data),
+		contentType: 'application/json',
+		success: function (response) {
+			window.location.href = "http://localhost:8080/PocetniREST/adminAddNewRestaurantManager.html";
+		}
+	})
+
 }
 
 function deleteRestaurant(id) {
