@@ -88,5 +88,4 @@ public class OrderRepository extends GenericRepository<Order, OrderRepository> {
 
 		return list;
 	}
-
 }

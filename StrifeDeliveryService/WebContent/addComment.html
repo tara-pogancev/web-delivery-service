@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>My Profile - Strife Delivery Service</title>
+	<title>Add Review - Strife Delivery Service</title>
 	<meta charset="utf-8">
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -68,131 +68,57 @@
 	<div class="r-gap"></div>
 
 	<section class="section">
-		<div class="container">
-			<div class="r-row">
-				<div class="title-div col-6">
-					<h1 id="welcomeUser"></h1>
-					<hr>
-				</div>
-				<div align="right" class="col-6">
-					<div class="r-gap"></div>
-					<a class="main-button" href="changeProfileData.html">Edit profile</a>
-				</div>
-			</div>
 
 			<div class="r-gap"></div>
 
-			<section style="width: 100%;">
+			<div class="r-gap"></div>
 
-				<div class="row equal">
-					<div id="user-data" class="col-5 r-section-white">
+			<div class="col-12 r-section-white" width="75%">
+
+				<h1 id="user-name">Write a Review</h1>
+				<hr>
+
+				<div class="r-gap"></div>
+
+				<div id="comments" class="row">
+
+					<div class="col-1"></div>
+
+					<div class="col-10" style="border: 1px solid rgba(0,0,0,0.1); padding: 35px; border-radius: 20px;">
+						<p><b>Rate the restaurant</b> 1 to 5 STARS</p>
+						
+							<div class="r-gap"></div>
+						
+						<select id="rating">
+							<option value="1"> ★ </option>
+							<option value="2"> ★★ </option>
+							<option value="3"> ★★★ </option>
+							<option value="4"> ★★★★ </option>
+							<option value="5"> ★★★★★ </option>
+						</select>
+						
+						<div class="r-gap"></div>
+
+						<input type="text" placeholder="Write your review here..." id="review" style="padding:10px; height:250px; width:800px; font-size:14pt;">
+
+						<div class="r-gap"></div>
+
+						<button class="main-button" style="background-color: #3cc988; margin-right: 20px;">Send Review</button>
+						<button class="main-button" style="background-color: #f2493d;">Back</button>
 
 					</div>
 
 					<div class="col-1"></div>
 
-					<div align="center" class="col-6 r-section-white">
-						<h2 id="category"></h2>
-						<h3 id="points"></h3>
-						<div class="r-gap"></div>
-						<h3 id="discount"></h3>
-
-						<div class="r-gap" style="margin-bottom: 60px;"></div>
-
-						<a class="main-button" href="customerOrders.html">My orders</a>
-					</div>
-
 				</div>
 
-			</section>
-
-			<div class="r-gap"></div>
-
-			<div class="col-12 r-section-white">
-
-				<h1>My Cart</h1>
-				<hr>
-
-				<div class="r-gap"></div>
-
-				<div id="mycart" class="row">
-
-					<div class="tbl-header">
-						<table class="r-table" cellpadding="0" cellspacing="0" border="0">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Amount</th>
-									<th>Price [$]</th>
-									<th>Total</th>
-									<th>Remove</th>
-								</tr>
-							</thead>
-						</table>
-					</div>
-
-					<div class="tbl-content">
-						<table id="rest-table" class="r-table" cellpadding="0" cellspacing="0" border="0">
-							<tbody>
-
-							</tbody>
-						</table>
-					</div>
-
-				</div>
-
-				<div class="r-gap"></div>
-
-				<div class="r-row" style="margin-bottom: 40px;">
-					<div class="col-6">
-						<h5 id="totalPrice"></h5>
-					</div>
-
-					<div align="right" class="col-6">
-						<button id="order-button" class="main-button" onclick="placeOrder()">Place Order</button>
-					</div>
-				</div>
-				
 			</div>
 			
-			<div class="r-gap"></div>
-			
-			<div class="col-12 r-section-white">
-
-				<h1>Review Your Orders</h1>
-				<hr>
-
-				<div class="r-gap"></div>
-				
-				<div id="mycomments" class="row">
-
-					<div class="tbl-header">
-						<table class="r-table" cellpadding="0" cellspacing="0" border="0">
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>Status</th>
-									<th>Restaurant</th>
-									<th>Date</th>
-									<th>Add Comment</th>
-								</tr>
-							</thead>
-						</table>
-					</div>
-
-					<div class="tbl-content">
-						<table id="rest-table-comment" class="r-table" cellpadding="0" cellspacing="0" border="0">
-							<tbody>
-
-							</tbody>
-						</table>
-					</div>
-
-				</div>
-
 			<div align="center" class="r-gap" style="margin-top: 100px;">
 				<button class="main-button" onclick="logout()">LogOut</button>
 			</div>
+
+
 
 		</div>
 
@@ -235,8 +161,7 @@
 	<!-- Global Init -->
 	<script src="js/custom.js"></script>
 	<script src="js/menuLogin.js"></script>
-	<script src="js/table.js"></script>
-	<script src="js/customer/customerProfile.js"></script>
+	<script src="js/admin/adminProfile.js"></script>
 
 </body>
 

@@ -29,6 +29,19 @@ function getDataFromServer() {
 
 			activeUsername = profile.id;
 			generateCart(activeUsername);
+			
+			let data = {
+				id: activeUsername
+			}
+			
+			$.post({
+				url: 'webapi/orders/setActiveUser',
+				data: JSON.stringify(data),
+				contentType: 'application/json',
+				success: function (response) {
+					generateDeliveredOrders(activeUsername);
+				}
+			});
 
 		}
 	});
@@ -157,4 +170,38 @@ function placeOrder() {
 
 
 	}
+}
+
+function generateDeliveredOrders(username) {
+
+	$.get({
+		url: 'webapi/orders/getDeliveredOrders',
+		contentType: 'application/json',
+		success: function (response) {
+			$('#rest-table-comment tbody').empty();
+			
+			for (let order of response) {
+
+				newRowContent = `<tr>`
+				newRowContent += `<td>` + order.id + `</td>`
+				newRowContent += `<td>` + order.status + `</td>`
+				newRowContent += `<td>` + order.restaurantName + `</td>`
+				newRowContent += `<td>` + order.date + `</td > `
+				newRowContent += `<td>` + `<a href="http://localhost:8080/PocetniREST/addComment.html">AddComment</a>` + `</td>`
+
+				$('#rest-table-comment tbody').append(newRowContent);
+
+			}
+
+			if (response.length === 0) {
+				newRowContent = `<tr>`
+				newRowContent += `<td colspan="6">No orders to review.</td>`
+
+				$('#rest-table-comment tbody').append(newRowContent);
+			}
+
+
+		}
+	});
+
 }
