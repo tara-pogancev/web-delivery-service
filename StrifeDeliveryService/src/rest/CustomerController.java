@@ -4,6 +4,7 @@ import java.io.File;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 import javax.servlet.ServletContext;
@@ -15,6 +16,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import comparators.*;
 import dto.SearchFilterDTO;
 import dto.UserDTO;
 import dto.UserViewDTO;
@@ -99,7 +101,7 @@ public class CustomerController {
 
 		System.out.println(retVal.size() + " customers found.");
 
-		return retVal;
+		return sortList(retVal, dto.sort);
 	}
 
 	private boolean validateSearchUser(User user, SearchFilterDTO dto) {
@@ -143,5 +145,93 @@ public class CustomerController {
 		
 		return retVal;
 	}
+	
+	
+	private ArrayList<UserViewDTO> sortList(ArrayList<UserViewDTO> list, String sort) {
+
+		switch (sort) {
+		case "NameASC":
+			list = nameACS(list);
+			break;
+
+		case "NameDES":
+			list = nameDES(list);
+			break;
+
+		case "LastNameASC":
+			list = lastNameACS(list);
+			break;
+
+		case "LastNameDES":
+			list = lastNameDES(list);
+			break;
+
+		case "UsernameASC":
+			list = usernameACS(list);
+			break;
+
+		case "UsernameDES":
+			list = usernameDES(list);
+			break;
+			
+		case "PointsASC":
+			list = pointsACS(list);
+			break;
+
+		case "PointsDES":
+			list = pointsDES(list);
+			break;
+
+		default:
+			break;
+		}
+
+		return list;
+	}
+
+	private ArrayList<UserViewDTO> nameACS(ArrayList<UserViewDTO> list) {
+		Collections.sort(list, new CustomerNameComparator());
+		return list;
+	}
+
+	private ArrayList<UserViewDTO> nameDES(ArrayList<UserViewDTO> list) {
+		Collections.sort(list, new CustomerNameComparator());
+		Collections.reverse(list);
+		return list;
+	}
+	
+	private ArrayList<UserViewDTO> lastNameACS(ArrayList<UserViewDTO> list) {
+		Collections.sort(list, new CustomerLastNameComparator());
+		return list;
+	}
+
+	private ArrayList<UserViewDTO> lastNameDES(ArrayList<UserViewDTO> list) {
+		Collections.sort(list, new CustomerLastNameComparator());
+		Collections.reverse(list);
+		return list;
+	}
+	
+	private ArrayList<UserViewDTO> usernameACS(ArrayList<UserViewDTO> list) {
+		Collections.sort(list, new CustomerUsernameComparator());
+		return list;
+	}
+
+	private ArrayList<UserViewDTO> usernameDES(ArrayList<UserViewDTO> list) {
+		Collections.sort(list, new CustomerUsernameComparator());
+		Collections.reverse(list);
+		return list;
+	}
+	
+	private ArrayList<UserViewDTO> pointsACS(ArrayList<UserViewDTO> list) {
+		Collections.sort(list, new CustomerPointsComparator());
+		return list;
+	}
+
+	private ArrayList<UserViewDTO> pointsDES(ArrayList<UserViewDTO> list) {
+		Collections.sort(list, new CustomerPointsComparator());
+		Collections.reverse(list);
+		return list;
+	}
+
 
 }
