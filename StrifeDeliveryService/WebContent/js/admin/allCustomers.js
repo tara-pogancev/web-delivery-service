@@ -172,7 +172,8 @@ function deleteUser(username) {
 function doSearch() {
 
 	let data = {
-		"text": document.getElementById('searchField').value
+		"text": document.getElementById('searchField').value,
+		"sort": document.getElementById('sort').value
 	}
 
 	$.post({

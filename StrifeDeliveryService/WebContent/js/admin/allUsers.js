@@ -67,7 +67,8 @@ function doSearch() {
 
 	let data = {
 		"text": document.getElementById('searchField').value,
-		"selection": document.getElementById('type').value
+		"selection": document.getElementById('type').value,
+		"sort": document.getElementById('sort').value
 	}
 
 	$.post({
