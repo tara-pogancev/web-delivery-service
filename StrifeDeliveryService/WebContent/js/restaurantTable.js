@@ -34,7 +34,8 @@ function doSearch() {
 	let data = {
 		"text": document.getElementById('searchField').value,
 		"selection": document.getElementById('type').value,
-		"checkbox": document.getElementById('open-only').checked
+		"checkbox": document.getElementById('open-only').checked,
+		"sort": document.getElementById('sort').value
 	}
 
 	$.post({
