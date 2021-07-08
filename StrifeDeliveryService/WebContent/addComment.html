@@ -1,18 +1,20 @@
 <html>
 
 <head>
-	<title>Add Review - Strife Delivery Service</title>
-	<meta charset="utf-8">
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
+<title>Add Review - Strife Delivery Service</title>
+<meta charset="utf-8">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
-		rel="stylesheet">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
+	rel="stylesheet">
 
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/template.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/template.css">
 
 </head>
 
@@ -28,27 +30,26 @@
 	<!-- ***** Preloader End ***** -->
 
 	<!-- ***** Header Area Start ***** -->
-	<header class="header-area header-sticky" style="background-color: white; height: 80px;">
+	<header class="header-area header-sticky"
+		style="background-color: white; height: 80px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<nav class="main-nav">
 						<!-- ***** Logo Start ***** -->
-						<a href="index.html" class="logo">
-							<img src="images/logo black.png" class="logo-img">
+						<a href="index.html" class="logo"> <img
+							src="images/logo black.png" class="logo-img">
 						</a>
 						<!-- ***** Logo End ***** -->
 						<!-- ***** Menu Start ***** -->
-						<ul class="nav nav-transparent" style="background-color: transparent;">
+						<ul class="nav nav-transparent"
+							style="background-color: transparent;">
 							<li><a href="index.html#welcome">Home</a></li>
 							<li><a href="restaurants.html">Restaurants</a></li>
 							<li><a href="index.html#testimonials">Testamonials</a></li>
-							<li class="submenu" id="login-menu">
-
-							</li>
+							<li class="submenu" id="login-menu"></li>
 						</ul>
-						<a class="menu-trigger">
-							<span>Menu</span>
+						<a class="menu-trigger"> <span>Menu</span>
 						</a>
 						<!-- ***** Menu End ***** -->
 					</nav>
@@ -61,67 +62,65 @@
 	<img src="images/header-banner-1.png" width="100%">
 
 	<section>
-		<row>
-		</row>
+		<row> </row>
 	</section>
 
 	<div class="r-gap"></div>
 
 	<section class="section">
-
+		<div class="container">
 			<div class="r-gap"></div>
 
 			<div class="r-gap"></div>
 
-			<div class="col-12 r-section-white" width="75%">
-
-				<h1 id="user-name">Write a Review</h1>
+			<div class="col-1"></div>
+			<div class="title-div col-6">
+				<h1 id="welcomeUser">Write a Review</h1>
 				<hr>
+			</div>
 
-				<div class="r-gap"></div>
+			<div class="r-gap"></div>
 
-				<div id="comments" class="row">
+			<div id="comments" class="row">
 
-					<div class="col-1"></div>
+				<div class="col-1"></div>
 
-					<div class="col-10" style="border: 1px solid rgba(0,0,0,0.1); padding: 35px; border-radius: 20px;">
-						<p><b>Rate the restaurant</b> 1 to 5 STARS</p>
-						
-							<div class="r-gap"></div>
-						
-						<select id="rating">
-							<option value="1"> ★ </option>
-							<option value="2"> ★★ </option>
-							<option value="3"> ★★★ </option>
-							<option value="4"> ★★★★ </option>
-							<option value="5"> ★★★★★ </option>
-						</select>
-						
-						<div class="r-gap"></div>
+				<div class="col-10 r-section-white"
+					style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 35px; border-radius: 20px; background-color: white">
+					<h4 id="rateRest">Rate the restaurant from 1 to 5 STARS :</h4>
 
-						<input type="text" placeholder="Write your review here..." id="review" style="padding:10px; height:250px; width:800px; font-size:14pt;">
+					<div class="r-gap"></div>
 
-						<div class="r-gap"></div>
+					<select id="rating">
+						<option value="1">★</option>
+						<option value="2">★★</option>
+						<option value="3">★★★</option>
+						<option value="4">★★★★</option>
+						<option value="5">★★★★★</option>
+					</select>
 
-						<button class="main-button" style="background-color: #3cc988; margin-right: 20px;">Send Review</button>
-						<button class="main-button" style="background-color: #f2493d;">Back</button>
+					<div class="r-gap"></div>
 
-					</div>
+					<input type="text" placeholder="Write your review here..."
+						id="review"
+						style="padding: 10px;  width:75%; height:75% font-size: 14pt;">
 
-					<div class="col-1"></div>
+					<div class="r-gap"></div>
+
+					<button class="main-button"
+						style="background-color: #3cc988; margin-right: 20px;">Send
+						Review</button>
+					<button class="main-button"
+						onclick="location.href = 'http://localhost:8080/PocetniREST/profileCustomer.html';"
+						style="background-color: #f2493d;">Back</button>
 
 				</div>
 
-			</div>
-			
-			<div align="center" class="r-gap" style="margin-top: 100px;">
-				<button class="main-button" onclick="logout()">LogOut</button>
-			</div>
+				<div class="col-1"></div>
 
-
+			</div>
 
 		</div>
-
 	</section>
 
 
@@ -131,9 +130,11 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="sub-footer">
-						<p>Copyright &copy; 2021 Strife Delivery Service
-							| Designed by <a href="https://github.com/piwneuh">Filip</a> and <a
-								href="https://github.com/tara-pogancev">Tara</a></p>
+						<p>
+							Copyright &copy; 2021 Strife Delivery Service | Designed by <a
+								href="https://github.com/piwneuh">Filip</a> and <a
+								href="https://github.com/tara-pogancev">Tara</a>
+						</p>
 					</div>
 				</div>
 			</div>
@@ -161,7 +162,7 @@
 	<!-- Global Init -->
 	<script src="js/custom.js"></script>
 	<script src="js/menuLogin.js"></script>
-	<script src="js/admin/adminProfile.js"></script>
+	<script src="js/customer/customerComments.js"></script>
 
 </body>
 

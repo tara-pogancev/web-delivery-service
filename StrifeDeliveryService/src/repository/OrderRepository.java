@@ -54,6 +54,18 @@ public class OrderRepository extends GenericRepository<Order, OrderRepository> {
 		return map;
 
 	}
+	
+	public Order getById(String id) {
+		Order retVal = new Order();
+		for(Order o:getAll()) {
+			if(o.getId().equals(id))
+			{
+				retVal = o;
+			}
+		}
+		
+		return retVal;
+	}
 
 	public ArrayList<Order> getAllByCustomer(String id) {
 		ArrayList<Order> list = new ArrayList<>();

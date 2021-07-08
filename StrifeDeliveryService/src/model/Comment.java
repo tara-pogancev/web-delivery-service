@@ -24,6 +24,15 @@ public class Comment {
 		this.id = this.author.getId() + restaurant.getName();
 
 	}
+	
+	public Comment() {
+		super();
+		this.author = null;
+		this.restaurant = null;
+		this.text = null;
+		this.rating = 1;
+		this.id = this.author.getId() + restaurant.getName();
+	}
 
 	public Customer getAuthor() {
 		return author;
