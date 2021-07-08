@@ -99,7 +99,17 @@
       <div class="col-6">
         <input id="searchField" type="text" placeholder="Search users..." style="width: 300px; margin-bottom: 10px;">
         <span class="r-span"></span>
-        <a href="#" onclick="doSearch(); return false;" class="main-button-small">Search</a>
+		<a href="#" onclick="doSearch(); return false;" class="main-button-small">Search</a>
+		
+		<select id="sort" name="sort" style="width: 300px;" onchange="doSearch()">
+          <option value="Default">Default sort</option>
+          <option value="NameASC">Name, ASC</option>
+          <option value="NameDES">Name, DES</option>
+          <option value="LastNameASC">Last Name, ASC</option>
+          <option value="LastNameDES">Last Name, DES</option>
+          <option value="UsernameASC">Username, ASC</option>
+          <option value="UsernameDES">Username, DES</option>
+        </select>
       </div>
 
       <div align="right" class="col-6">

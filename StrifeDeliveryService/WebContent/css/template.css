@@ -358,7 +358,7 @@ Rows, cols, table
 
 .tbl-content {
   min-height: auto;
-  max-height: 800px;
+  max-height: 500px;
   overflow-x: auto;
   margin-top: 0px;
   border: 1px solid rgba(0, 0, 0, 0.1);

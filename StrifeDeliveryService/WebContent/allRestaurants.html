@@ -102,6 +102,16 @@
           style="width: 300px; margin-bottom: 10px;">
         <span class="r-span"></span>
         <a href="#" onclick="doSearch(); return false;" class="main-button-small">Search</a>
+
+        <select id="sort" name="sort" style="width: 300px;" onchange="doSearch()">
+          <option value="Default">Default sort</option>
+          <option value="NameASC">Name, ASC</option>
+          <option value="NameDES">Name, DES</option>
+          <option value="LocationASC">Location, ASC</option>
+          <option value="LocationDES">Location, DES</option>
+          <option value="GradeASC">Grade, ASC</option>
+          <option value="GradeDES">Grade, DES</option>
+        </select>
       </div>
 
       <div align="right" class="col-6">

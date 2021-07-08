@@ -22,7 +22,6 @@ public class RestaurantRepository extends GenericRepository<Restaurant, Restaura
 	protected String getKey(Restaurant e) {
 		return e.getName();
 	}
-	
 
 	public ArrayList<Restaurant> getAll() {
 		Map<String, Restaurant> map = getMap();
@@ -34,7 +33,7 @@ public class RestaurantRepository extends GenericRepository<Restaurant, Restaura
 
 		return list;
 	}
-	
+
 	public Map<String, Restaurant> getMap() {
 
 		String json = "";
@@ -49,7 +48,7 @@ public class RestaurantRepository extends GenericRepository<Restaurant, Restaura
 
 		Map<String, Restaurant> map = gs.fromJson(json, empMapType);
 
-		//System.out.println("Map with: " + map.size());
+		// System.out.println("Map with: " + map.size());
 
 		return map;
 
@@ -59,8 +58,20 @@ public class RestaurantRepository extends GenericRepository<Restaurant, Restaura
 		for (Restaurant r : getAll())
 			if (r.getName().equals(name))
 				return r;
-		
+
 		return null;
+	}
+
+	public ArrayList<Restaurant> getAllValid() {
+		ArrayList<Restaurant> list = new ArrayList<>();
+
+		for (Restaurant r : getAll()) {
+			if (!r.isDeleted())
+				list.add(r);
+		}
+
+		return list;
+
 	}
 
 }

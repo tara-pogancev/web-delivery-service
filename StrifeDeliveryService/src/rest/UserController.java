@@ -2,6 +2,7 @@ package rest;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
@@ -12,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import comparators.*;
 import dto.SearchFilterDTO;
 import dto.UserDTO;
 import model.Admin;
@@ -93,7 +95,7 @@ public class UserController {
 
 		System.out.println(retVal.size() + " users found.");
 
-		return retVal;
+		return sortList(retVal, dto.sort);
 	}
 
 	private boolean validateSearchUser(User user, SearchFilterDTO dto) {
@@ -206,6 +208,73 @@ public class UserController {
 			a.setPassword(par.password);	
 			repoAdmin.update(a);
 		}
+	}
+	
+	private ArrayList<User> sortList(ArrayList<User> list, String sort) {
+
+		switch (sort) {
+		case "NameASC":
+			list = nameACS(list);
+			break;
+
+		case "NameDES":
+			list = nameDES(list);
+			break;
+
+		case "LastNameASC":
+			list = lastNameACS(list);
+			break;
+
+		case "LastNameDES":
+			list = lastNameDES(list);
+			break;
+
+		case "UsernameASC":
+			list = usernameACS(list);
+			break;
+
+		case "UsernameDES":
+			list = usernameDES(list);
+			break;
+
+		default:
+			break;
+		}
+
+		return list;
+	}
+
+	private ArrayList<User> nameACS(ArrayList<User> list) {
+		Collections.sort(list, new UserNameComparator());
+		return list;
+	}
+
+	private ArrayList<User> nameDES(ArrayList<User> list) {
+		Collections.sort(list, new UserNameComparator());
+		Collections.reverse(list);
+		return list;
+	}
+	
+	private ArrayList<User> lastNameACS(ArrayList<User> list) {
+		Collections.sort(list, new UserLastNameComparator());
+		return list;
+	}
+
+	private ArrayList<User> lastNameDES(ArrayList<User> list) {
+		Collections.sort(list, new UserLastNameComparator());
+		Collections.reverse(list);
+		return list;
+	}
+	
+	private ArrayList<User> usernameACS(ArrayList<User> list) {
+		Collections.sort(list, new UserUsernameComparator());
+		return list;
+	}
+
+	private ArrayList<User> usernameDES(ArrayList<User> list) {
+		Collections.sort(list, new UserUsernameComparator());
+		Collections.reverse(list);
+		return list;
 	}
 
 }

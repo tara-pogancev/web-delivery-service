@@ -1,7 +1,11 @@
 package rest;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
@@ -12,17 +16,22 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import comparators.*;
 import dto.SearchFilterDTO;
 import dto.UserDTO;
 import dto.UserViewDTO;
+import enumeration.OrderStatus;
 import model.Customer;
+import model.Order;
 import model.User;
 import repository.CustomerRepository;
+import repository.OrderRepository;
 
 @Path("customers")
 public class CustomerController {
 
 	CustomerRepository repoCustomer = new CustomerRepository();
+	OrderRepository repoOrder = new OrderRepository();
 
 	@Context
 	ServletContext ctx;
@@ -92,7 +101,7 @@ public class CustomerController {
 
 		System.out.println(retVal.size() + " customers found.");
 
-		return retVal;
+		return sortList(retVal, dto.sort);
 	}
 
 	private boolean validateSearchUser(User user, SearchFilterDTO dto) {
@@ -103,5 +112,126 @@ public class CustomerController {
 
 		return false;
 	}
+
+	@GET
+	@Path("getSusCustomers")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<UserViewDTO> getSusCustomers() {
+		repoCustomer.setBasePath(getDataDirPath());
+
+		ArrayList<UserViewDTO> retVal = new ArrayList<UserViewDTO>();
+
+		for (Customer c : repoCustomer.getAll())
+			if (canceledOrders(c) >= 10)
+				retVal.add(new UserViewDTO((Customer) c));
+
+		return retVal;
+	}
+
+	private int canceledOrders(Customer c) {
+		repoOrder.setBasePath(getDataDirPath());
+		int retVal = 0;
+
+		for (Order o : repoOrder.getAllByCustomer(c.getId())) {
+			if (o.getStatus() == OrderStatus.CANCELED) {
+				Date orderDate = o.getDateAndTime();
+				LocalDate date = orderDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				LocalDate currDate = LocalDate.now();
+
+				if (date.isAfter(currDate.minusDays(30)))
+					retVal++;
+			}
+		}
+		
+		return retVal;
+	}
+	
+	
+	private ArrayList<UserViewDTO> sortList(ArrayList<UserViewDTO> list, String sort) {
+
+		switch (sort) {
+		case "NameASC":
+			list = nameACS(list);
+			break;
+
+		case "NameDES":
+			list = nameDES(list);
+			break;
+
+		case "LastNameASC":
+			list = lastNameACS(list);
+			break;
+
+		case "LastNameDES":
+			list = lastNameDES(list);
+			break;
+
+		case "UsernameASC":
+			list = usernameACS(list);
+			break;
+
+		case "UsernameDES":
+			list = usernameDES(list);
+			break;
+			
+		case "PointsASC":
+			list = pointsACS(list);
+			break;
+
+		case "PointsDES":
+			list = pointsDES(list);
+			break;
+
+		default:
+			break;
+		}
+
+		return list;
+	}
+
+	private ArrayList<UserViewDTO> nameACS(ArrayList<UserViewDTO> list) {
+		Collections.sort(list, new CustomerNameComparator());
+		return list;
+	}
+
+	private ArrayList<UserViewDTO> nameDES(ArrayList<UserViewDTO> list) {
+		Collections.sort(list, new CustomerNameComparator());
+		Collections.reverse(list);
+		return list;
+	}
+	
+	private ArrayList<UserViewDTO> lastNameACS(ArrayList<UserViewDTO> list) {
+		Collections.sort(list, new CustomerLastNameComparator());
+		return list;
+	}
+
+	private ArrayList<UserViewDTO> lastNameDES(ArrayList<UserViewDTO> list) {
+		Collections.sort(list, new CustomerLastNameComparator());
+		Collections.reverse(list);
+		return list;
+	}
+	
+	private ArrayList<UserViewDTO> usernameACS(ArrayList<UserViewDTO> list) {
+		Collections.sort(list, new CustomerUsernameComparator());
+		return list;
+	}
+
+	private ArrayList<UserViewDTO> usernameDES(ArrayList<UserViewDTO> list) {
+		Collections.sort(list, new CustomerUsernameComparator());
+		Collections.reverse(list);
+		return list;
+	}
+	
+	private ArrayList<UserViewDTO> pointsACS(ArrayList<UserViewDTO> list) {
+		Collections.sort(list, new CustomerPointsComparator());
+		return list;
+	}
+
+	private ArrayList<UserViewDTO> pointsDES(ArrayList<UserViewDTO> list) {
+		Collections.sort(list, new CustomerPointsComparator());
+		Collections.reverse(list);
+		return list;
+	}
+
 
 }

@@ -73,7 +73,7 @@ public class Order {
 		this.dateAndTime = dateAndTime;
 	}
 
-	public float getPrice() {	
+	public float getPrice() {
 
 		return price;
 	}
@@ -106,13 +106,13 @@ public class Order {
 	}
 
 	public int generateCancelPoints() {
-		// return (int) this.getPrice()/1000 * 133 * 4;
-		return (int) (this.getPrice() / 100 * 133 * 4);
+		return (int) (this.getPrice() / 1000 * 133 * 4);
+		// return (int) (this.getPrice() / 100 * 133 * 4);
 	}
 
 	public int generatePoints() {
-		// return (int) this.getPrice()/1000 * 133;
-		return (int) (this.getPrice() / 100 * 133);
+		return (int) (this.getPrice() / 1000 * 133);
+		// return (int) (this.getPrice() / 100 * 133);
 	}
 
 	public void applyDiscount(float discountFloat) {
@@ -120,7 +120,7 @@ public class Order {
 		System.out.println("Discount: " + discountFloat);
 		this.price = getPrice() * (1 - discountFloat);
 		System.out.println("New price: " + getPrice());
-		
+
 	}
 
 }

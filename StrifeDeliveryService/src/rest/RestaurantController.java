@@ -2,6 +2,7 @@ package rest;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
@@ -12,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import comparators.*;
 import dto.RestaurantViewDTO;
 import dto.SearchFilterDTO;
 import enumeration.RestaurantStatus;
@@ -47,7 +49,7 @@ public class RestaurantController {
 		ArrayList<RestaurantViewDTO> retVal = new ArrayList<>();
 
 		for (Restaurant r : repo.getAll())
-			if (r.getStatus().equals(RestaurantStatus.OPEN))
+			if (r.getStatus().equals(RestaurantStatus.OPEN) && !r.isDeleted())
 				retVal.add(new RestaurantViewDTO(r));
 
 		return retVal;
@@ -61,7 +63,7 @@ public class RestaurantController {
 		ArrayList<RestaurantViewDTO> retVal = new ArrayList<>();
 
 		for (Restaurant r : repo.getAll())
-			if (r.getStatus().equals(RestaurantStatus.CLOSED))
+			if (r.getStatus().equals(RestaurantStatus.CLOSED) && !r.isDeleted())
 				retVal.add(new RestaurantViewDTO(r));
 
 		return retVal;
@@ -73,7 +75,7 @@ public class RestaurantController {
 	public ArrayList<Restaurant> getAllRestaurants() {
 		repo.setBasePath(getDataDirPath());
 
-		return repo.getAll();
+		return repo.getAllValid();
 	}
 
 	@GET
@@ -83,7 +85,7 @@ public class RestaurantController {
 		repo.setBasePath(getDataDirPath());
 		ArrayList<RestaurantViewDTO> retVal = new ArrayList<RestaurantViewDTO>();
 
-		for (Restaurant r : repo.getAll())
+		for (Restaurant r : repo.getAllValid())
 			retVal.add(new RestaurantViewDTO(r));
 
 		return retVal;
@@ -99,13 +101,13 @@ public class RestaurantController {
 
 		ArrayList<RestaurantViewDTO> retVal = new ArrayList<RestaurantViewDTO>();
 
-		for (Restaurant r : repo.getAll())
+		for (Restaurant r : repo.getAllValid())
 			if (validateSearchRestaurant(r, dto))
 				retVal.add(new RestaurantViewDTO(r));
 
 		System.out.println(retVal.size() + " restaurants found.");
 
-		return retVal;
+		return sortList(retVal, dto.sort);
 	}
 
 	private boolean validateSearchRestaurant(Restaurant r, SearchFilterDTO dto) {
@@ -126,6 +128,73 @@ public class RestaurantController {
 		}
 
 		return false;
+	}
+
+	private ArrayList<RestaurantViewDTO> sortList(ArrayList<RestaurantViewDTO> list, String sort) {
+
+		switch (sort) {
+		case "NameASC":
+			list = nameACS(list);
+			break;
+
+		case "NameDES":
+			list = nameDES(list);
+			break;
+
+		case "LocationASC":
+			list = locationACS(list);
+			break;
+
+		case "LocationDES":
+			list = locationDES(list);
+			break;
+
+		case "GradeASC":
+			list = gradeACS(list);
+			break;
+
+		case "GradeDES":
+			list = gradeDES(list);
+			break;
+
+		default:
+			break;
+		}
+
+		return list;
+	}
+
+	private ArrayList<RestaurantViewDTO> nameACS(ArrayList<RestaurantViewDTO> list) {
+		Collections.sort(list, new RestaurantNameComparator());
+		return list;
+	}
+
+	private ArrayList<RestaurantViewDTO> nameDES(ArrayList<RestaurantViewDTO> list) {
+		Collections.sort(list, new RestaurantNameComparator());
+		Collections.reverse(list);
+		return list;
+	}
+	
+	private ArrayList<RestaurantViewDTO> locationACS(ArrayList<RestaurantViewDTO> list) {
+		Collections.sort(list, new RestaurantLocationComparator());
+		return list;
+	}
+
+	private ArrayList<RestaurantViewDTO> locationDES(ArrayList<RestaurantViewDTO> list) {
+		Collections.sort(list, new RestaurantLocationComparator());
+		Collections.reverse(list);
+		return list;
+	}
+	
+	private ArrayList<RestaurantViewDTO> gradeACS(ArrayList<RestaurantViewDTO> list) {
+		Collections.sort(list, new RestaurantGradeComparator());
+		return list;
+	}
+
+	private ArrayList<RestaurantViewDTO> gradeDES(ArrayList<RestaurantViewDTO> list) {
+		Collections.sort(list, new RestaurantGradeComparator());
+		Collections.reverse(list);
+		return list;
 	}
 
 }

@@ -15,7 +15,9 @@ import javax.ws.rs.core.MediaType;
 
 import dto.OrderDTO;
 import dto.OrderViewDTO;
+import dto.RestaurantDTO;
 import dto.UserDTO;
+import dto.UserViewDTO;
 import enumeration.OrderStatus;
 import model.Cart;
 import model.CartItem;
@@ -96,38 +98,39 @@ public class OrderController {
 
 				if (orderFound == false) {
 					System.out.println("Creating new order.");
-					Order o = new Order(null, new ArrayList<CartItem>(), restaurant, null, 0, (String) ctx.getAttribute("orderUser"), OrderStatus.PROCESSING);
+					Order o = new Order(null, new ArrayList<CartItem>(), restaurant, null, 0,
+							(String) ctx.getAttribute("orderUser"), OrderStatus.PROCESSING);
 					o.setId(IdGenerator.getInstance().generateId(repoOrder.getKeySet(), 10));
 					o.addCartItem(i);
 					Date date = new Date(System.currentTimeMillis());
 					o.setDateAndTime(date);
 					o.setPrice();
-					
+
 					orders.add(o);
 				}
 
 			}
 		}
-		
-		Customer c = repoCustomer.read((String) ctx.getAttribute("orderUser"));		
-		
+
+		Customer c = repoCustomer.read((String) ctx.getAttribute("orderUser"));
+
 		for (Order order : orders) {
-			
+
 			order.applyDiscount(c.getCustomerType().getDiscountFloat());
 			repoOrder.create(order);
-			
+
 			int points = order.generatePoints();
 			c.addPoints(points);
 			repoCustomer.update(c);
-			
+
 		}
-		
+
 		cart.emptyCart();
-		repoCart.update(cart);		
+		repoCart.update(cart);
 
 		return orders;
 	}
-	
+
 	@GET
 	@Path("getProcessingOrders")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -135,16 +138,16 @@ public class OrderController {
 	public ArrayList<OrderViewDTO> getProcessingOrders() {
 		repoOrder.setBasePath(getDataDirPath());
 		ArrayList<OrderViewDTO> retVal = new ArrayList<>();
-		
+
 		String customerId = (String) ctx.getAttribute("orderUser");
-	
+
 		for (Order o : repoOrder.getAllByCustomer(customerId))
 			if (o.getStatus() == OrderStatus.PROCESSING)
-				retVal.add(new OrderViewDTO(o));		
-		
+				retVal.add(new OrderViewDTO(o));
+
 		return retVal;
 	}
-	
+
 	@GET
 	@Path("getDeliveredOrders")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -169,31 +172,54 @@ public class OrderController {
 	public ArrayList<OrderViewDTO> getAllCustomerOrders() {
 		repoOrder.setBasePath(getDataDirPath());
 		ArrayList<OrderViewDTO> retVal = new ArrayList<>();
-		
+
 		String customerId = (String) ctx.getAttribute("orderUser");
-	
+
 		for (Order o : repoOrder.getAllByCustomer(customerId))
-			retVal.add(new OrderViewDTO(o));		
-		
+			retVal.add(new OrderViewDTO(o));
+
 		return retVal;
 	}
-	
-	
+
 	@POST
 	@Path("cancelOrder")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void cancelOrder(OrderDTO dto) {		
+	public void cancelOrder(OrderDTO dto) {
 		repoOrder.setBasePath(getDataDirPath());
-		
+
 		Order orderToCancel = repoOrder.read(dto.id);
-		if (orderToCancel.getStatus() == OrderStatus.PROCESSING)		
+		if (orderToCancel.getStatus() == OrderStatus.PROCESSING)
 			orderToCancel.setStatus(OrderStatus.CANCELED);
-		
-		repoOrder.update(orderToCancel);			
+
+		repoOrder.update(orderToCancel);
 		System.out.println("Order canceled.");
-		
-		
+	}
+
+	@POST
+	@Path("getCustomersForRestaurant")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ArrayList<UserViewDTO> getCustomersForRestaurant(RestaurantDTO dto) {
+		repoOrder.setBasePath(getDataDirPath());
+		repoCustomer.setBasePath(getDataDirPath());
+
+		ArrayList<UserViewDTO> retVal = new ArrayList<UserViewDTO>();
+		ArrayList<String> customerIds = new ArrayList<String>();
+
+		for (Order o : repoOrder.getAllByRestaurant(dto.name)) {
+			if (!customerIds.contains(o.getCustomerId()))
+				customerIds.add(o.getCustomerId());
+		}
+
+		for (String id : customerIds) {
+			Customer c = repoCustomer.read(id);
+			retVal.add(new UserViewDTO(c));
+		}
+
+		System.out.println("Getting customers for restaurant " + dto.name + "... (" + retVal.size() + ")");
+
+		return retVal;
 	}
 
 }
