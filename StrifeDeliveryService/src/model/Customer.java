@@ -34,6 +34,14 @@ public class Customer extends User {
 		this.points = 0;
 	}
 	
+	public Customer()
+	{
+		super();
+		this.setCategory(UserCategory.CUSTOMER);
+		this.orders = new ArrayList<Order>();
+		this.customerType = new CustomerType("BRONZE", 0, 0);
+		this.points = 0;
+	}
 	
 	public ArrayList<Order> getOrders() {
 		return orders;

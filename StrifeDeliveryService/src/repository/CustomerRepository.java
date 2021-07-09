@@ -56,6 +56,18 @@ public class CustomerRepository extends GenericRepository<Customer, CustomerRepo
 
 	}
 	
+	public Customer getById(String id) {
+		Customer retVal = new Customer();
+		for(Customer c:getAll()) {
+			if(c.getId().equals(id))
+			{
+				retVal = c;
+			}
+		}
+		
+		return retVal;
+	}
+	
 	public void delete(String id) {
 		Map<String, Customer> map = getMap();
 		map.get(id).setDeleted(true);;

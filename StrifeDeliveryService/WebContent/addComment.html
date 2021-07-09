@@ -75,7 +75,7 @@
 
 			<div class="col-1"></div>
 			<div class="title-div col-6">
-				<h1 id="welcomeUser">Write a Review</h1>
+				<h3 id="welcomeUser">Write a Review</h3>
 				<hr>
 			</div>
 
@@ -101,13 +101,13 @@
 
 					<div class="r-gap"></div>
 
-					<input type="text" placeholder="Write your review here..."
-						id="review"
-						style="padding: 10px;  width:75%; height:75%; font-size: 14pt;">
+					<textarea placeholder="Write your review here..."
+						id="review-text"
+						style="padding: 10px; width:600px; height:250px; font-size: 14pt;"> </textarea>
 
 					<div class="r-gap"></div>
 
-					<button class="main-button"
+					<button class="main-button" onclick="addComment()"
 						style="background-color: #3cc988; margin-right: 20px;">Send
 						Review</button>
 					<button class="main-button"

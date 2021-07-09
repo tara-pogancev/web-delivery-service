@@ -12,17 +12,23 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import dto.CommentDTO;
 import dto.CommentViewDTO;
+import dto.OrderDTO;
 import dto.OrderViewDTO;
+import enumeration.CommentState;
+import enumeration.OrderStatus;
 import model.Comment;
 import model.Order;
 import repository.CommentRepository;
+import repository.CustomerRepository;
 import repository.OrderRepository;
 
 @Path("comments")
 public class CommentController {
 	CommentRepository repoComment = new CommentRepository();
 	OrderRepository repoOrder = new OrderRepository();
+	CustomerRepository repoCustomer = new CustomerRepository();
 	Order order;
 	
 	@Context
@@ -32,10 +38,13 @@ public class CommentController {
 	public void init() {
 		if (ctx.getAttribute("currentOrder") == null) {
 			String contextPath = ctx.getRealPath("");
-			ctx.setAttribute("currentOrder", new Order());
+			ctx.setAttribute("currentOrder", "");
 		}
 	}
 	
+	@GET
+	@Path("getCurrentOrder")
+	@Produces(MediaType.APPLICATION_JSON)
 	private String getDataDirPath() {
 		return (ctx.getRealPath("") + "WEB-INF" + File.separator + "classes" + File.separator + "data"
 				+ File.separator);
@@ -43,16 +52,16 @@ public class CommentController {
 	
 	@POST
 	@Path("setCurrentOrder")
-	@Consumes(MediaType.TEXT_PLAIN)
-	public void setCurrentOrder(String id) {
-		  ctx.setAttribute("currentOrder", repoOrder.getById(id));
-	}
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void setCurrentOrder(OrderDTO orderDTO) {
+		  ctx.setAttribute("currentOrder", orderDTO.id);
+	} 
 	
 	@GET
 	@Path("getCurrentOrder")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Order getCurrentOrder() {
-		return (Order) ctx.getAttribute("currentOrder");
+	public String getCurrentOrder() {
+		return (String) ctx.getAttribute("currentOrder");
 	}
 	
 	@POST
@@ -69,5 +78,52 @@ public class CommentController {
 			retVal.add(new CommentViewDTO(c));		
 		
 		return retVal;
+	}
+	
+	@POST
+	@Path("addComment")
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String addComment(CommentDTO commentDTO) {
+		Order order = repoOrder.getById(getCurrentOrder());
+		commentDTO.id = order.getId();
+		commentDTO.author = repoCustomer.getById(order.getCustomerId());
+		commentDTO.restaurant = order.getRestaurant();
+		Comment newComment = new Comment(commentDTO);
+		repoComment.create(newComment);
+		
+		
+		order.setStatus(OrderStatus.REVIEWED);
+		repoOrder.update(order);
+		
+		
+		return "Review waiting aproval...";
+	}
+	
+	@POST
+	@Path("approveComment")
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String approveComment(CommentDTO commentDTO) {
+		Comment com = repoComment.getById(commentDTO.id);
+		com.setState(CommentState.APPROVED);
+		repoComment.update(com);
+		
+		
+		return "Review approved...";
+	}
+	
+	@POST
+	@Path("denyComment")
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String denyComment(CommentDTO commentDTO) {
+
+		Comment com = repoComment.getById(commentDTO.id);
+		com.setState(CommentState.DENIED);
+		repoComment.update(com);
+		
+		
+		return "Review denied...";
 	}
 }

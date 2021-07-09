@@ -55,6 +55,18 @@ public class CommentRepository extends GenericRepository<Comment, CommentReposit
 
 	}
 	
+	public Comment getById(String id) {
+		Comment retVal = new Comment();
+		for(Comment c:getAll()) {
+			if(c.getId().equals(id))
+			{
+				retVal = c;
+			}
+		}
+		
+		return retVal;
+	}
+	
 	public ArrayList<Comment> getAllByCustomer(String id) {
 		ArrayList<Comment> list = new ArrayList<>();
 

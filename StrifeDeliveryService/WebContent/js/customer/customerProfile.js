@@ -1,5 +1,6 @@
 window.onload = getDataFromServer();
 var activeUsername = "";
+var activeUser = null;
 
 function getDataFromServer() {
 
@@ -7,7 +8,6 @@ function getDataFromServer() {
 		url: 'webapi/login/activeUserObject',
 		contentType: 'application/json',
 		success: function(profile) {
-
 			newRowContent = `<p><b>Username:</b> ` + profile.id + `</p>`
 			newRowContent += `<div class="r-gap"></div>`
 			newRowContent += `<p><b>First name:</b> ` + profile.name + `</p>`
@@ -26,7 +26,8 @@ function getDataFromServer() {
 			$('#points').text("Points: " + profile.points);
 			$('#category').text("Category: " + profile.customerStatus);
 			$('#discount').text("Discount: " + profile.discount + "%");
-
+			
+			activeUser = profile;
 			activeUsername = profile.id;
 			generateCart(activeUsername);
 
@@ -187,7 +188,7 @@ function generateDeliveredOrders(username) {
 				newRowContent += `<td>` + order.status + `</td>`
 				newRowContent += `<td>` + order.restaurantName + `</td>`
 				newRowContent += `<td>` + order.date + `</td > `
-				newRowContent += `<td>` + `<a onclick=setOrderForReview(\"` + item.product.id + `\")  href="#">AddComment</a>` + `</td>`
+				newRowContent += `<td>` + `<a onclick=setOrderForReview(\"` + order.id + `\")  href="http://localhost:8080/PocetniREST/addComment.html">Add Review</a>` + `</td>`
 
 				$('#rest-table-comment tbody').append(newRowContent);
 

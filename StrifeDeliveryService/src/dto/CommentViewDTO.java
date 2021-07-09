@@ -7,12 +7,12 @@ import model.Restaurant;
 
 public class CommentViewDTO {
 
-	private String id;
-	private Customer author; 
-	private Restaurant restaurant; 
-	private String text;
-	private int rating;
-	private CommentState state = CommentState.WAITING;
+	public String id;
+	public Customer author; 
+	public Restaurant restaurant; 
+	public String text;
+	public int rating;
+	public CommentState state = CommentState.WAITING;
 	
 	public CommentViewDTO(Comment com) {
 		super();
