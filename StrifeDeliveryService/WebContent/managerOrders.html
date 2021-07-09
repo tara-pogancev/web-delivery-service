@@ -153,7 +153,7 @@
 		</div>
 	</section>
 
-		<div class="r-gap" style="margin-bottom: 100px;"></div>
+	<div class="r-gap" style="margin-bottom: 100px;"></div>
 
 	<section class="section">
 		<div class="container">
@@ -186,6 +186,58 @@
 
 							</tbody>
 						</table>
+					</div>
+
+				</div>
+
+				<div class="r-gap"></div>
+
+				<div class="r-row">
+					<div class="col-6">
+
+						<div>
+							<select id="sort" name="sort" style="width: 300px;" onchange="doSearch()">
+								<option value="Default">Default sort</option>
+								<option value="PriceASC">Price, ASC</option>
+								<option value="PriceDES">Price, DES</option>
+								<option value="DateASC">Date, ASC</option>
+								<option value="DateDES">Date, DES</option>
+							</select>
+						</div>
+
+						<div>
+							<label style="margin-right: 20px;">Price in range: </label>
+							<input type="number" min="0" id="price-min" style="width: 50px;" onchange="doSearch()">
+							<label> - </label>
+							<input type="number" min="0" id="price-max" style="width: 50px;" onchange="doSearch()">
+						</div>
+
+					</div>
+
+					<div align="right" class="col-6">
+
+						<div>
+							<select id="type" name="type" style="width: 150px;" onchange="doSearch()">
+								<option value="all">All</option>
+								<option value="PROCESSING">Processing</option>
+								<option value="PREPARATION">Preparation</option>
+								<option value="AWAITING_DELIVERER">Awaiting deliverer</option>
+								<option value="TRANSPORT">Transport</option>
+								<option value="DELIVERED">Delivered</option>
+								<option value="CANCELED">Canceled</option>
+							</select>
+						</div>
+
+						<div>
+							<label style="margin-right: 20px;">Start date: </label>
+							<input type="date" id="start-date" onchange="doSearch()">
+						</div>
+
+						<div>
+							<label style="margin-right: 26px;">End date: </label>
+							<input type="date" id="end-date" onchange="doSearch()">
+						</div>
+
 					</div>
 
 				</div>

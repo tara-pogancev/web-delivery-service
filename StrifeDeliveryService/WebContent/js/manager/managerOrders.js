@@ -164,7 +164,7 @@ function generateAllOrders() {
 				newRowContent += `<td>` + order.customer + `</td>`
 				newRowContent += `<td>` + order.price + `</td > `
 				newRowContent += `<td>` + order.date + `</td > `
-				
+
 				$('#rest-table-all tbody').append(newRowContent);
 
 			}
@@ -178,5 +178,49 @@ function generateAllOrders() {
 
 		}
 	});
+
+}
+
+function doSearch() {
+
+	alert("search");
+
+	// let data = {
+	// 	"sort": document.getElementById('sort').value,
+	// 	"status": document.getElementById('type').value,
+	// 	"priceMin": document.getElementById('price-min').value,
+	// 	"priceMax": document.getElementById('price-max').value,
+	// 	"startDate": document.getElementById('start-date').value,
+	// 	"endDate": document.getElementById('end-date').value
+	// }
+
+	// $.post({
+	// 	url: 'webapi/managerOrders/getFilteredSearchManager',
+	// 	data: JSON.stringify(data),
+	// 	contentType: 'application/json',
+	// 	success: function (response) {
+	// 		$('#rest-table-all tbody').empty();
+
+	// 		for (let order of response) {
+
+	// 			newRowContent = `<tr>`
+	// 			newRowContent += `<td>` + order.id + `</td>`
+	// 			newRowContent += `<td>` + order.status + `</td>`
+	// 			newRowContent += `<td>` + order.customer + `</td>`
+	// 			newRowContent += `<td>` + order.price + `</td > `
+	// 			newRowContent += `<td>` + order.date + `</td > `
+
+	// 			$('#rest-table-all tbody').append(newRowContent);
+
+	// 		}
+
+	// 		if (response.length === 0) {
+	// 			newRowContent = `<tr>`
+	// 			newRowContent += `<td colspan="5">No orders to show.</td>`
+
+	// 			$('#rest-table-all tbody').append(newRowContent);
+	// 		}
+	// 	}
+	// });
 
 }
