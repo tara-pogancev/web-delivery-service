@@ -117,7 +117,7 @@ function cancelOrder(orderId) {
 			data: JSON.stringify(data),
 			contentType: 'application/json',
 			success: function (response) {
-				
+
 				alert("Order canceled.")
 				window.location.href = "http://localhost:8080/PocetniREST/customerOrders.html";
 
@@ -125,4 +125,47 @@ function cancelOrder(orderId) {
 		});
 
 	}
+}
+
+function doSearch() {
+
+	let data = {
+		"searchField": document.getElementById('searchField').value,
+		"sort": document.getElementById('sort').value,
+		"status": document.getElementById('type').value,
+		"priceMin": document.getElementById('price-min').value,
+		"priceMax": document.getElementById('price-max').value,
+		"restType": document.getElementById('type-rest').value,
+		"startDate": document.getElementById('start-date').value,
+		"endDate": document.getElementById('end-date').value
+	}
+
+	$.post({
+		url: 'webapi/orders/getFilteredSearchCustomer',
+		data: JSON.stringify(data),
+		contentType: 'application/json',
+		success: function (response) {
+			$('#rest-table-past tbody').empty();
+			for (let order of response) {
+
+				newRowContent = `<tr>`
+				newRowContent += `<td>` + order.id + `</td>`
+				newRowContent += `<td>` + order.status + `</td>`
+				newRowContent += `<td>` + order.restaurantName + `</td>`
+				newRowContent += `<td>` + order.price + `</td > `
+				newRowContent += `<td>` + order.date + `</td > `
+
+				$('#rest-table-past tbody').append(newRowContent);
+
+			}
+
+			if (response.length === 0) {
+				newRowContent = `<tr>`
+				newRowContent += `<td colspan="6">No orders to show.</td>`
+
+				$('#rest-table-past tbody').append(newRowContent);
+			}
+		}
+	});
+
 }
