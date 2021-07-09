@@ -36,7 +36,7 @@ public abstract class GenericRepository<Entity, StorageType extends GenericRepos
 		
 		//return "C:\\Users\\Tara\\Desktop\\FTN\\Veb programiranje\\&PROJEKAT\\web-delivery-service\\StrifeDeliveryService\\src\\data\\"+ getFileName();
 		
-		// return "C:\\Users\\filip\\Documents\\GitHub\\web-delivery-service\\StrifeDeliveryService\\src\\data\\" + getFileName();
+		//return "C:\\Users\\filip\\Documents\\GitHub\\web-delivery-service\\StrifeDeliveryService\\src\\data\\" + getFileName();
 
 	}
 
