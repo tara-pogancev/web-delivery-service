@@ -16,11 +16,11 @@ function getDataFromServer() {
 			activeUsername = profile.id;
 
 			let data = {
-				id: activeUsername
+				"id": activeUsername
 			}
 
 			$.post({
-				url: 'webapi/delOrders/setActiveDeliverer',
+				url: 'webapi/managerOrders/setActiveManager',
 				data: JSON.stringify(data),
 				contentType: 'application/json',
 				success: function (response) {
