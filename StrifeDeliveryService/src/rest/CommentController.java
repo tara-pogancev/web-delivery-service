@@ -16,6 +16,7 @@ import dto.CommentDTO;
 import dto.CommentViewDTO;
 import dto.OrderDTO;
 import dto.OrderViewDTO;
+import dto.RestaurantDTO;
 import enumeration.CommentState;
 import enumeration.OrderStatus;
 import model.Comment;
@@ -42,9 +43,6 @@ public class CommentController {
 		}
 	}
 	
-	@GET
-	@Path("getCurrentOrder")
-	@Produces(MediaType.APPLICATION_JSON)
 	private String getDataDirPath() {
 		return (ctx.getRealPath("") + "WEB-INF" + File.separator + "classes" + File.separator + "data"
 				+ File.separator);
@@ -59,7 +57,7 @@ public class CommentController {
 	
 	@GET
 	@Path("getCurrentOrder")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
 	public String getCurrentOrder() {
 		return (String) ctx.getAttribute("currentOrder");
 	}
@@ -81,10 +79,34 @@ public class CommentController {
 	}
 	
 	@POST
+	@Path("getRestaurantComments")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ArrayList<Comment> getRestaurantComments(RestaurantDTO restaurantDTO) {
+		repoComment.setBasePath(getDataDirPath());
+		
+		return repoComment.getAllByRestaurant(restaurantDTO.name);
+
+	}
+	
+	@GET
+	@Path("getAll")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Comment> getAll() {
+		repoComment.setBasePath(getDataDirPath());
+		
+		return repoComment.getAll();
+	}
+	
+	@POST
 	@Path("addComment")
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String addComment(CommentDTO commentDTO) {
+		System.out.println(getCurrentOrder());
+		repoOrder.setBasePath(getDataDirPath());
+		repoCustomer.setBasePath(getDataDirPath());
+		repoComment.setBasePath(getDataDirPath());
 		Order order = repoOrder.getById(getCurrentOrder());
 		commentDTO.id = order.getId();
 		commentDTO.author = repoCustomer.getById(order.getCustomerId());
@@ -96,7 +118,7 @@ public class CommentController {
 		order.setStatus(OrderStatus.REVIEWED);
 		repoOrder.update(order);
 		
-		
+		System.out.println("Comment added");
 		return "Review waiting aproval...";
 	}
 	

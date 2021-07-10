@@ -24,8 +24,6 @@ function getDataFromServer() {
 
 			$('#user-data').append(newRowContent);
 
-			v
-
 			generateRestaurant();
 
 		}

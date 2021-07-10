@@ -213,7 +213,6 @@ function setOrderForReview(id) {
 			id: id
 		}
 
-
 	$.post({
 		url: 'webapi/comments/setCurrentOrder',
 		contentType: 'application/json',

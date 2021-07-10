@@ -20,15 +20,14 @@ function getDataFromServer() {
 }
 
 function addComment() {
-	alert("JEEEEEEEEEEJ")
 	$.get({
 		url: 'webapi/comments/getCurrentOrder',
 		contentType: 'application/json',
 		success: function(response){
-			
+			alert("ovde")
 			let data = 	{
-				text = document.getElementById('review-text'),
-				rating = document.getElementById('rating')
+				"text" : document.getElementById('review-text').value,
+				"rating" : document.getElementById('rating').value
 			}
 
 			$.post({
