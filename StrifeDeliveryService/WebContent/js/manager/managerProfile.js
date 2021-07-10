@@ -29,6 +29,8 @@ function getDataFromServer() {
 				newRowContent += `<div class="r-gap"></div>`
 
 				$('#user-data').append(newRowContent);
+				
+				$('#welcomeUser').text("Welcome, " + manager.name);
 
 				generateRestaurant();
 			}
