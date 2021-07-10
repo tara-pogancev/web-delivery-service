@@ -33,12 +33,35 @@ function getDataFromServer() {
 }
 
 function generateComments() {
-
-}
-
-function acceptComment(commentId) {
-
-}
-function declineComment(commentId) {
 	
+	$.get({
+		url: 'webapi/comments/getAll',
+		contentType: 'application/json',
+		success: function (response) {
+
+			$('#rest-table-comment tbody').empty();
+
+			for (let comment of response) {
+
+				newRowContent = `<tr>`
+				newRowContent += `<td>` + comment.id + `</td>`
+				newRowContent += `<td>` + "" + `</td>`
+				newRowContent += `<td>` + "" + `</td>`
+				newRowContent += `<td>` + comment.rating + `</td > `
+				newRowContent += `<td>` + comment.text + `</td > `
+				newRowContent += `<td>` + comment.state + `</td > `
+
+				$('#rest-table-comment tbody').append(newRowContent);
+
+			}
+
+			if (response.length === 0) {
+				newRowContent = `<tr>`
+				newRowContent += `<td colspan="6">There are no customer reviews.</td>`
+
+				$('#rest-table-comment tbody').append(newRowContent);
+			}
+
+		}
+	});
 }

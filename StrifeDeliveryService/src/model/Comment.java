@@ -2,6 +2,8 @@ package model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import dto.CommentDTO;
+
 import enumeration.CommentState;
 
 @XmlRootElement
@@ -23,6 +25,25 @@ public class Comment {
 		this.rating = rating;
 		this.id = this.author.getId() + restaurant.getName();
 
+	}
+	
+	public Comment() {
+		super();
+		this.author = null;
+		this.restaurant = null;
+		this.text = null;
+		this.rating = 1;
+		this.id = null;
+	}
+	
+	public Comment(CommentDTO comment) {
+		this.id =comment.id;
+		this.author = comment.author;
+		this.restaurant = comment.restaurant;
+		this.text = comment.text;
+		this.rating = comment.rating;
+		this.state = comment.state;
+		
 	}
 
 	public Customer getAuthor() {

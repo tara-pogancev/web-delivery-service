@@ -29,6 +29,17 @@ public class Order {
 		this.customerId = customer;
 		this.status = status;
 	}
+	
+	public Order() {
+		super();
+		this.id = null;
+		this.items = null;
+		this.restaurant = null;
+		this.dateAndTime = null;
+		this.price = 1;
+		this.customerId = null;
+		this.status = null;
+	}
 
 	public String getId() {
 		return id;

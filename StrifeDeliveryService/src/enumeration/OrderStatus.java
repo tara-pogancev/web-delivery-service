@@ -10,6 +10,7 @@ public enum OrderStatus {
 	AWAITING_DELIVERER, 
 	TRANSPORT, 
 	DELIVERED, 
-	CANCELED
+	CANCELED,
+	REVIEWED
 
 }

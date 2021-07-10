@@ -5,6 +5,7 @@ $(document).ready(function () {
 }, false);
 
 var restaurantStatus;
+var restaurantName;
 
 function getDataFromServer() {
 
@@ -37,6 +38,10 @@ function getDataFromServer() {
 			getProducts(restaurant.name)
 
 			restaurantStatus = restaurant.status;
+			restaurantName = restaurant.name;
+
+			getReviews();
+
 		}
 	});
 
@@ -63,7 +68,6 @@ function getProducts(restName) {
 
 			else
 				printOpenRestaurant(products)
-
 
 		}
 
@@ -199,5 +203,46 @@ function addItem(id, amount, username) {
 	});
 
 
+}
+
+function getReviews() {
+
+	let data = {
+		"name": restaurantName
+	}
+
+	$.post({
+		url: 'webapi/comments/getRestaurantComments',
+		data: JSON.stringify(data),
+		contentType: 'application/json',
+		success: function (comments) {
+
+			for (comment of comments) {
+
+				newRowContent = `<div style="margin: 20px; padding: 30px;">`
+				if (comment.rating === 1)				
+					newRowContent += `<h3 style="margin-bottom: 20px;">` + comment.author.id + `, ` + comment.rating + ` star </h3>`
+				else 
+					newRowContent += `<h3 style="margin-bottom: 20px;">` + comment.author.id + `, ` + comment.rating + ` stars </h3>`
+				newRowContent += `<p>` + comment.text + `</p>`
+				newRowContent += `<hr>`
+				newRowContent += `</div>`
+
+				$('#rest-reviews').append(newRowContent);
+
+			}
+
+			if (comments.length === 0) {
+
+				newRowContent = `<h5>` + `No reviews yet.` + `</h5>`
+				newRowContent += `<hr>`
+
+				$('#rest-reviews').append(newRowContent);
+
+			}
+
+		}
+
+	});
 }
 

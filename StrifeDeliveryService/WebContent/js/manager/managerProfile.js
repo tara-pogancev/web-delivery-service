@@ -24,8 +24,6 @@ function getDataFromServer() {
 
 			$('#user-data').append(newRowContent);
 
-			$('#welcomeUser').text("Welcome, " + manager.name);
-
 			generateRestaurant();
 
 		}

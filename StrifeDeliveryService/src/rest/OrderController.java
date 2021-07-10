@@ -138,6 +138,23 @@ public class OrderController {
 	}
 
 	@GET
+	@Path("getDeliveredOrders")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ArrayList<OrderViewDTO> getDeliveredOrders() {
+		repoOrder.setBasePath(getDataDirPath());
+		ArrayList<OrderViewDTO> retVal = new ArrayList<>();
+		
+		String customerId = (String) ctx.getAttribute("orderUser");
+	
+		for (Order o : repoOrder.getAllByCustomer(customerId))
+			if (o.getStatus() == OrderStatus.DELIVERED)
+				retVal.add(new OrderViewDTO(o));		
+		
+		return retVal;
+	}
+	
+	@GET
 	@Path("getAllCustomerOrders")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)

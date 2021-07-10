@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<title>My Profile - Strife Delivery Service</title>
+<title>Add Review - Strife Delivery Service</title>
 <meta charset="utf-8">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -69,136 +69,60 @@
 
 	<section class="section">
 		<div class="container">
-			<div class="r-row">
-				<div class="title-div col-6">
-					<h1 id="welcomeUser">Manager profile view</h1>
-					<hr>
-				</div>
-				<div align="right" class="col-6">
-					<div class="r-gap"></div>
-					<a class="main-button" href="changeProfileData.html">Edit
-						profile</a>
-				</div>
+			<div class="r-gap"></div>
+
+			<div class="r-gap"></div>
+
+			<div class="col-1"></div>
+			<div class="title-div col-6">
+				<h3 id="welcomeUser">Write a Review</h3>
+				<hr>
 			</div>
 
 			<div class="r-gap"></div>
 
-			<section style="width: 100%;">
+			<div id="comments" class="row">
 
-				<div class="row equal">
-					<div id="user-data" class="col-5 r-section-white"></div>
+				<div class="col-1"></div>
 
-					<div class="col-1"></div>
+				<div class="col-10 r-section-white"
+					style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 35px; border-radius: 20px; background-color: white">
+					<h4 id="rateRest">Rate the restaurant from 1 to 5 STARS :</h4>
 
-					<div align="center" class="col-6 r-section-white">
-						<div>
-							<button id="b1" class="main-button button-gap" style="width: 200px;"
-								onclick="location.href='managerRestaurantItems.html';">Menu
-								Items</button>
-							<button id="b2" class="main-button button-gap" style="width: 200px;"
-								onclick="location.href='addProduct.html';">Add Menu
-								Item</button>
-						</div>
+					<div class="r-gap"></div>
 
-						<div>
-							<button id="b3" class="main-button button-gap" style="width: 200px;"
-								onclick="location.href='managerOrders.html';">Manage
-								Orders</button>
-							<button id="b4" class="main-button button-gap" style="width: 200px;"
-								onclick="location.href='managerRequests.html';">Requests</button>
-						</div>
+					<select id="rating">
+						<option value="1">★</option>
+						<option value="2">★★</option>
+						<option value="3">★★★</option>
+						<option value="4">★★★★</option>
+						<option value="5">★★★★★</option>
+					</select>
 
-						<div>
-							<button id="b5" class="main-button button-gap" style="width: 200px;"
-							onclick="location.href='editRestaurant.html';">Edit Restaurant</button>
-							<button id="b6" class="main-button button-gap" style="width: 200px;"
-							onclick="location.href='managerCustomers.html';">Our Customers</button>
-						</div>
-						
-					</div>
+					<div class="r-gap"></div>
 
-				</div>
+					<textarea placeholder="Write your review here..."
+						id="review-text"
+						style="padding: 10px; width:600px; height:250px; font-size: 14pt;"> </textarea>
 
-			</section>
+					<div class="r-gap"></div>
 
-			<div class="r-gap"></div>
+					<button onclick="addComment()" class="main-button" 
+						style="background-color: #3cc988; margin-right: 20px;">Send
+						Review</button>
+					<button class="main-button"
+						onclick="location.href = 'http://localhost:8080/PocetniREST/profileCustomer.html';"
+						style="background-color: #f2493d;">Back</button>
 
-			<div class="col-12 r-section-white">
-
-				<h1 id="user-name">My Restaurant</h1>
-				<hr>
-
-				<div class="r-gap"></div>
-				<div class="tbl-content">
-					<table id="rest-table" class="r-table" cellpadding="0" cellspacing="0" border="0">
-						<tbody>
-
-						</tbody>
-					</table>
 				</div>
 
 				<div class="col-1"></div>
 
 			</div>
-			
-			<div class="r-gap"></div>
-			
-			<div class="col-12 r-section-white">
-
-				<h1 id="user-name">Comment Review</h1>
-				<hr>
-
-				<div class="r-gap"></div>
-
-				<div id="comments" class="row">
-
-					<div class="col-1"></div>
-
-						<div id="mycomments" class="row">
-
-							<div class="tbl-header">
-								<table class="r-table" cellpadding="0" cellspacing="0"
-									border="0">
-									<thead>
-										<tr>
-											<th>ID</th>
-											<th>Customer</th>
-											<th>Rating</th>
-											<th>Text</th>
-											<th>State</th>
-											<th>Approve</th>
-											<th>Deny</th>
-										</tr>
-									</thead>
-								</table>
-							</div>
-
-							<div class="tbl-content">
-								<table id="rest-table-comment" class="r-table" cellpadding="0"
-									cellspacing="0" border="0">
-									<tbody>
-
-									</tbody>
-								</table>
-							</div>
-
-						</div>
-
-					<div class="col-1"></div>
-
-				</div>
-
-			</div>
 
 		</div>
-		
-		
-
-		<div align="center" class="r-gap" style="margin-top: 100px;">
-			<button class="main-button" onclick="logout()">LogOut</button>
-		</div>
-
 	</section>
+
 
 	<!-- ***** Footer Start ***** -->
 	<footer class="footer-small">
@@ -238,7 +162,7 @@
 	<!-- Global Init -->
 	<script src="js/custom.js"></script>
 	<script src="js/menuLogin.js"></script>
-	<script src="js/manager/managerProfile.js"></script>
+	<script src="js/customer/customerComments.js"></script>
 
 </body>
 
