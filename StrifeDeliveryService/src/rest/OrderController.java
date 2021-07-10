@@ -289,6 +289,13 @@ public class OrderController {
 			list = dateDES(list);
 			break;
 
+		case "RestASC":
+			list = restASC(list);
+			break;
+
+		case "RestDES":
+			list = restDES(list);
+			break;
 
 		default:
 			break;
@@ -315,6 +322,17 @@ public class OrderController {
 	
 	private ArrayList<OrderViewDTO> dateDES(ArrayList<OrderViewDTO> list) {
 		Collections.sort(list, new OrderDateComparator());
+		Collections.reverse(list);
+		return list;
+	}
+	
+	private ArrayList<OrderViewDTO> restASC(ArrayList<OrderViewDTO> list) {
+		Collections.sort(list, new OrderRestaurantNameComparator());
+		return list;
+	}
+	
+	private ArrayList<OrderViewDTO> restDES(ArrayList<OrderViewDTO> list) {
+		Collections.sort(list, new OrderRestaurantNameComparator());
 		Collections.reverse(list);
 		return list;
 	}

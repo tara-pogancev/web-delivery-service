@@ -16,6 +16,7 @@ import javax.ws.rs.core.MediaType;
 
 import comparators.OrderDateComparator;
 import comparators.OrderPriceComparator;
+import comparators.OrderRestaurantNameComparator;
 import dto.OrderDTO;
 import dto.OrderSearchFilterDTO;
 import dto.OrderViewDTO;
@@ -247,6 +248,14 @@ public class DelivererOrderController {
 		case "DateDES":
 			list = dateDES(list);
 			break;
+			
+		case "RestASC":
+			list = restASC(list);
+			break;
+
+		case "RestDES":
+			list = restDES(list);
+			break;
 
 		default:
 			break;
@@ -273,6 +282,17 @@ public class DelivererOrderController {
 
 	private ArrayList<OrderViewDTO> dateDES(ArrayList<OrderViewDTO> list) {
 		Collections.sort(list, new OrderDateComparator());
+		Collections.reverse(list);
+		return list;
+	}
+	
+	private ArrayList<OrderViewDTO> restASC(ArrayList<OrderViewDTO> list) {
+		Collections.sort(list, new OrderRestaurantNameComparator());
+		return list;
+	}
+	
+	private ArrayList<OrderViewDTO> restDES(ArrayList<OrderViewDTO> list) {
+		Collections.sort(list, new OrderRestaurantNameComparator());
 		Collections.reverse(list);
 		return list;
 	}
