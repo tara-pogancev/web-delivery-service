@@ -14,7 +14,7 @@ public class Customer extends User {
 	private ArrayList<Order> orders;
 	private CustomerType customerType;
 	private int points;
-	private boolean blocked = false;	
+		
 	
 	public Customer(String id, String password, String name, String lastName, Gender gender, Date dateOfBirth,
 			UserCategory category) {
@@ -54,14 +54,6 @@ public class Customer extends User {
 	}
 	public void setPoints(int points) {
 		this.points = points;
-	}
-
-	public boolean isBlocked() {
-		return blocked;
-	}
-
-	public void setBlocked(boolean blocked) {
-		this.blocked = blocked;
 	}
 
 	public CustomerType getCustomerType() {

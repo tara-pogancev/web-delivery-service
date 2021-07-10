@@ -19,6 +19,7 @@ public class User {
 	private Date dateOfBirth;
 	private UserCategory category;
 	private boolean deleted;
+	private boolean blocked = false;
 	
 	public boolean isDeleted() {
 		return deleted;
@@ -121,6 +122,12 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", password=" + password + ", name=" + name + ", lastName=" + lastName + ", gender="
 				+ gender + ", dateOfBirth=" + dateOfBirth + ", category=" + category + ", deleted=" + deleted + "]";
+	}
+	public boolean isBlocked() {
+		return blocked;
+	}
+	public void setBlocked(boolean blocked) {
+		this.blocked = blocked;
 	}
 	
 	
