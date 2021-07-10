@@ -115,7 +115,7 @@ public class RestaurantController {
 			if (r.getName().toLowerCase().contains(dto.text.toLowerCase())
 					|| r.getLocation().getCity().toLowerCase().contains(dto.text.toLowerCase())
 					|| r.getLocation().getAddressName().toLowerCase().contains(dto.text.toLowerCase())
-					|| r.getRatingString().toLowerCase().contains(dto.text.toLowerCase()) || dto.text.isEmpty()) {
+					|| r.getRating().toLowerCase().contains(dto.text.toLowerCase()) || dto.text.isEmpty()) {
 
 				if (dto.checkbox)
 					if (r.getStatus().equals(RestaurantStatus.CLOSED))

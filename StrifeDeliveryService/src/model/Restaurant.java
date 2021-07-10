@@ -13,8 +13,9 @@ public class Restaurant {
 	private String type; 
 	private ArrayList<String> products;
 	private RestaurantStatus status;
-	private Address location;
+	private Address location;	
 	private boolean deleted = false;
+	private String rating = "-";
 	
 	public Restaurant(String name, String type, RestaurantStatus status, Address location) {
 		super();
@@ -94,13 +95,13 @@ public class Restaurant {
 				+ ", location=" + location + "]";
 	}
 	
-	public float getRating() {
-		return 0;
+	public String getRating() {
+		return this.rating;
 	}
 	
-	public String getRatingString() {
-		return "-";
+	public void setRating(String rating) {
+		this.rating = rating;
 	}
-	
+
 		
 }

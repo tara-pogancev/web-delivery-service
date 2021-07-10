@@ -15,21 +15,23 @@ import javax.ws.rs.core.MediaType;
 import dto.CommentDTO;
 import dto.CommentViewDTO;
 import dto.OrderDTO;
-import dto.OrderViewDTO;
 import dto.RestaurantDTO;
 import enumeration.CommentState;
 import enumeration.OrderStatus;
 import model.Comment;
 import model.Order;
+import model.Restaurant;
 import repository.CommentRepository;
 import repository.CustomerRepository;
 import repository.OrderRepository;
+import repository.RestaurantRepository;
 
 @Path("comments")
 public class CommentController {
 	CommentRepository repoComment = new CommentRepository();
 	OrderRepository repoOrder = new OrderRepository();
 	CustomerRepository repoCustomer = new CustomerRepository();
+	RestaurantRepository repoRestaurant = new RestaurantRepository();
 	Order order;
 	
 	@Context
@@ -173,9 +175,9 @@ public class CommentController {
 		repoComment.setBasePath(getDataDirPath());
 		Comment com = repoComment.getById(commentDTO.id);
 		com.setState(CommentState.APPROVED);
-		repoComment.update(com);
-		
-		
+		repoComment.update(com);		
+		 
+		updateRestRating(com.getRestaurant().getName());
 		return "Review approved...";
 	}
 	
@@ -188,8 +190,36 @@ public class CommentController {
 		Comment com = repoComment.getById(commentDTO.id);
 		com.setState(CommentState.DENIED);
 		repoComment.update(com);
-		
-		
+				
 		return "Review denied...";
+	}
+	
+	private void updateRestRating(String restaurantName) {
+		repoComment.setBasePath(getDataDirPath());
+		repoRestaurant.setBasePath(getDataDirPath());
+		
+		Restaurant r = repoRestaurant.read(restaurantName);
+		
+		int total = 0;
+		int num = 0;
+		
+		for (Comment c : repoComment.getAllByRestaurant(restaurantName)) {
+			if (c.getState() == CommentState.APPROVED) {
+				total += c.getRating();
+				num++;
+			}
+		}
+		
+		if (num == 0) {
+			r.setRating("-");
+		} else {
+			float rating = ((float)total) / ((float)num);
+			 String newRating = String.format ("%.1f", rating);
+			 r.setRating(newRating);
+			 System.out.println(newRating);
+		}
+		
+		repoRestaurant.update(r);
+		System.out.println("Ratings for " + restaurantName + " updated with " + num + " ratings.");
 	}
 }

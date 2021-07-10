@@ -26,7 +26,7 @@ function getDataFromServer() {
 				newRowContent += `<h5>Restaurant not rated yet.</h5>`
 
 			else
-				newRowContent += `<h5>User rating: ` + restaurant.rating + `/5</h5>`
+				newRowContent += `<h5>User rating: ` + restaurant.rating + `/5.0</h5>`
 
 			$('#restaurant-data').append(newRowContent);
 

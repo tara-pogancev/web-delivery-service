@@ -19,7 +19,7 @@ public class RestaurantViewDTO {
 		this.city = r.getLocation().getCity();
 		this.postal = r.getLocation().getPostalCode();
 		this.address = r.getLocation().getAddressName();
-		this.rating = r.getRatingString();		
+		this.rating = r.getRating();		
 	}
 	
 	public RestaurantViewDTO() {

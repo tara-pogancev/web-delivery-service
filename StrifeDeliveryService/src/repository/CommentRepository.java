@@ -10,7 +10,6 @@ import java.util.Map;
 import com.google.gson.reflect.TypeToken;
 
 import model.Comment;
-import model.Order;
 
 public class CommentRepository extends GenericRepository<Comment, CommentRepository> {
 
