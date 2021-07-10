@@ -45,8 +45,8 @@ function generateComments() {
 
 				newRowContent = `<tr>`
 				newRowContent += `<td>` + comment.id + `</td>`
-				newRowContent += `<td>` + "" + `</td>`
-				newRowContent += `<td>` + "" + `</td>`
+				newRowContent += `<td>` + comment.author.id + `</td>`
+				newRowContent += `<td>` + comment.restaurant.name + `</td>`
 				newRowContent += `<td>` + comment.rating + `</td > `
 				newRowContent += `<td>` + comment.text + `</td > `
 				newRowContent += `<td>` + comment.state + `</td > `
