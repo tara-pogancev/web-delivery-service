@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
 
 	getDataFromServer();
 
@@ -9,42 +9,41 @@ function getDataFromServer() {
 	$.get({
 		url: 'webapi/login/activeUserObject',
 		contentType: 'application/json',
-		success: function (admin) {
-		
-			if(admin.customerStatus == "INTRUDER")
-			{
+		success: function(admin) {
+
+			if (admin.customerStatus == "INTRUDER") {
 				window.location.href = "http://localhost:8080/PocetniREST/403Forbidden.html";
 			}
-			else{
-			
+			else {
 
-			newRowContent = `<p><b>Username:</b> ` + admin.id + `</p>`
-			newRowContent += `<div class="r-gap"></div>`
-			newRowContent += `<p><b>First name:</b> ` + admin.name + `</p>`
-			newRowContent += `<div class="r-gap"></div>`
-			newRowContent += `<p><b>Last name:</b> ` + admin.lastName + `</p>`
-			newRowContent += `<div class="r-gap"></div>`
-			newRowContent += `<p><b>Gender:</b> ` + admin.gender.toUpperCase() + `</p>`
-			newRowContent += `<div class="r-gap"></div>`
-			newRowContent += `<p><b>Date of birth:</b> ` + admin.dateOfBirth + `</p>`
-			newRowContent += `<div class="r-gap"></div>`
 
-			$('#user-data').append(newRowContent);
+				newRowContent = `<p><b>Username:</b> ` + admin.id + `</p>`
+				newRowContent += `<div class="r-gap"></div>`
+				newRowContent += `<p><b>First name:</b> ` + admin.name + `</p>`
+				newRowContent += `<div class="r-gap"></div>`
+				newRowContent += `<p><b>Last name:</b> ` + admin.lastName + `</p>`
+				newRowContent += `<div class="r-gap"></div>`
+				newRowContent += `<p><b>Gender:</b> ` + admin.gender.toUpperCase() + `</p>`
+				newRowContent += `<div class="r-gap"></div>`
+				newRowContent += `<p><b>Date of birth:</b> ` + admin.dateOfBirth + `</p>`
+				newRowContent += `<div class="r-gap"></div>`
 
-			$('#welcomeUser').text("Welcome, " + admin.name);
+				$('#user-data').append(newRowContent);
 
-			generateComments();
+				$('#welcomeUser').text("Welcome, " + admin.name);
+
+				generateComments();
 			}
 		}
 	});
 }
 
 function generateComments() {
-	
+
 	$.get({
 		url: 'webapi/comments/getAll',
 		contentType: 'application/json',
-		success: function (response) {
+		success: function(response) {
 
 			$('#rest-table-comment tbody').empty();
 

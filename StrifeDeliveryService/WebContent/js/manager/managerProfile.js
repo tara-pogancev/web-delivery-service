@@ -12,22 +12,26 @@ function getDataFromServer() {
 		url: 'webapi/login/activeUserObject',
 		contentType: 'application/json',
 		success: function(manager) {
+			if (manager.customerStatus == "INTRUDER") {
+				window.location.href = "http://localhost:8080/PocetniREST/403Forbidden.html";
+			}
+			else {
 
-			newRowContent = `<p><b>Username:</b> ` + manager.id + `</p>`
-			newRowContent += `<div class="r-gap"></div>`
-			newRowContent += `<p><b>First name:</b> ` + manager.name + `</p>`
-			newRowContent += `<div class="r-gap"></div>`
-			newRowContent += `<p><b>Last name:</b> ` + manager.lastName + `</p>`
-			newRowContent += `<div class="r-gap"></div>`
-			newRowContent += `<p><b>Gender:</b> ` + manager.gender.toUpperCase() + `</p>`
-			newRowContent += `<div class="r-gap"></div>`
-			newRowContent += `<p><b>Date of birth:</b> ` + manager.dateOfBirth + `</p>`
-			newRowContent += `<div class="r-gap"></div>`
+				newRowContent = `<p><b>Username:</b> ` + manager.id + `</p>`
+				newRowContent += `<div class="r-gap"></div>`
+				newRowContent += `<p><b>First name:</b> ` + manager.name + `</p>`
+				newRowContent += `<div class="r-gap"></div>`
+				newRowContent += `<p><b>Last name:</b> ` + manager.lastName + `</p>`
+				newRowContent += `<div class="r-gap"></div>`
+				newRowContent += `<p><b>Gender:</b> ` + manager.gender.toUpperCase() + `</p>`
+				newRowContent += `<div class="r-gap"></div>`
+				newRowContent += `<p><b>Date of birth:</b> ` + manager.dateOfBirth + `</p>`
+				newRowContent += `<div class="r-gap"></div>`
 
-			$('#user-data').append(newRowContent);
-			
-			generateRestaurant();
+				$('#user-data').append(newRowContent);
 
+				generateRestaurant();
+			}
 		}
 	});
 
@@ -64,7 +68,7 @@ function generateRestaurant() {
 				newRowContent += `<td>` + restaurant.type + `</td>`
 
 				$('#rest-table tbody').append(newRowContent);
-				
+
 				generateComments(restaurant);
 				generateCommentsReviewed(restaurant);
 			}
@@ -87,11 +91,11 @@ function setCurrentRestaurantView(name) {
 }
 
 function generateComments(restaurant) {
-	
+
 	let data = {
-		"name" : restaurant.name
+		"name": restaurant.name
 	}
-	
+
 	$.post({
 		url: 'webapi/comments/getManagerComments',
 		contentType: 'application/json',
@@ -126,11 +130,11 @@ function generateComments(restaurant) {
 }
 
 function generateCommentsReviewed(restaurant) {
-	
+
 	let data = {
-		"name" : restaurant.name
+		"name": restaurant.name
 	}
-	
+
 	$.post({
 		url: 'webapi/comments/getManagerCommentsReviewed',
 		contentType: 'application/json',
@@ -147,7 +151,7 @@ function generateCommentsReviewed(restaurant) {
 				newRowContent += `<td>` + comment.rating + `</td > `
 				newRowContent += `<td style="width: 34%">` + comment.text + `</td > `
 				newRowContent += `<td>` + comment.state + `</td > `
-																																																								
+
 				$('#rest-table-comment-reviewed tbody').append(newRowContent);
 
 			}
@@ -167,7 +171,7 @@ function approveComment(id) {
 	let data = {
 		"id": id
 	}
-	
+
 	$.post({
 		url: 'webapi/comments/approveComment',
 		contentType: 'application/json',
@@ -187,7 +191,7 @@ function denyComment(id) {
 	let data = {
 		"id": id
 	}
-	
+
 	$.post({
 		url: 'webapi/comments/denyComment',
 		contentType: 'application/json',
