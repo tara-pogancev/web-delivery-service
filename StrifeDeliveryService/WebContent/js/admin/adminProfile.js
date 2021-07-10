@@ -10,6 +10,13 @@ function getDataFromServer() {
 		url: 'webapi/login/activeUserObject',
 		contentType: 'application/json',
 		success: function (admin) {
+		
+			if(admin.customerStatus == "INTRUDER")
+			{
+				window.location.href = "http://localhost:8080/PocetniREST/403Forbidden.html";
+			}
+			else{
+			
 
 			newRowContent = `<p><b>Username:</b> ` + admin.id + `</p>`
 			newRowContent += `<div class="r-gap"></div>`
@@ -27,7 +34,7 @@ function getDataFromServer() {
 			$('#welcomeUser').text("Welcome, " + admin.name);
 
 			generateComments();
-
+			}
 		}
 	});
 }

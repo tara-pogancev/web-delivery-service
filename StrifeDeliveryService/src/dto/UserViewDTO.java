@@ -50,4 +50,10 @@ public class UserViewDTO {
 		this.discount = user.getCustomerType().getDicount();
 				
 	}
+	
+	public UserViewDTO(String s) {
+
+		this.customerStatus = s;
+	
+	}
 }
