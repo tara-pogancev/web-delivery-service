@@ -97,12 +97,39 @@ public class CommentController {
 	}
 	
 	@POST
+	@Path("getManagerCommentsReviewed")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ArrayList<Comment> getManagerCommentsReviewed(RestaurantDTO restaurantDTO) {
+		repoComment.setBasePath(getDataDirPath());
+		ArrayList<Comment> list = new ArrayList<Comment>();
+		for(Comment c : repoComment.getAllByRestaurant(restaurantDTO.name))
+		{
+			if (!c.getState().equals(CommentState.WAITING))
+			{
+				list.add(c);
+			}
+		}
+		return list;
+
+	}
+	
+	
+	@POST
 	@Path("getManagerComments")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ArrayList<Comment> getManagerComments(RestaurantDTO restaurantDTO) {
 		repoComment.setBasePath(getDataDirPath());
-		return repoComment.getAllByRestaurant(restaurantDTO.name);
+		ArrayList<Comment> list = new ArrayList<Comment>();
+		for(Comment c : repoComment.getAllByRestaurant(restaurantDTO.name))
+		{
+			if (c.getState().equals(CommentState.WAITING))
+			{
+				list.add(c);
+			}
+		}
+		return list;
 	}
 	
 	@GET
@@ -143,6 +170,7 @@ public class CommentController {
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String approveComment(CommentDTO commentDTO) {
+		repoComment.setBasePath(getDataDirPath());
 		Comment com = repoComment.getById(commentDTO.id);
 		com.setState(CommentState.APPROVED);
 		repoComment.update(com);
@@ -156,7 +184,7 @@ public class CommentController {
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String denyComment(CommentDTO commentDTO) {
-
+		repoComment.setBasePath(getDataDirPath());
 		Comment com = repoComment.getById(commentDTO.id);
 		com.setState(CommentState.DENIED);
 		repoComment.update(com);

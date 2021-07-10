@@ -1,3 +1,5 @@
+var rest;
+
 document.addEventListener('DOMContentLoaded', function() {
 
 	getDataFromServer();
@@ -23,7 +25,7 @@ function getDataFromServer() {
 			newRowContent += `<div class="r-gap"></div>`
 
 			$('#user-data').append(newRowContent);
-
+			
 			generateRestaurant();
 
 		}
@@ -51,17 +53,20 @@ function generateRestaurant() {
 				$('#b6').attr('disabled', 'disabled')
 
 			} else {
-				
+
 				setCurrentRestaurantView(restaurant.name);
-				
+
 				newRowContent = `<tr>`
 				newRowContent += `<td class="td-center"><a href="restaurantView.html"><img src="images/logos/` + restaurant.name + `.png"></a></td>"`
 				newRowContent += `<td>` + restaurant.name + `</td>`
 				newRowContent += `<td>` + restaurant.address + `</td>`
 				newRowContent += `<td>` + restaurant.rating + `</td>`
 				newRowContent += `<td>` + restaurant.type + `</td>`
-				
+
 				$('#rest-table tbody').append(newRowContent);
+				
+				generateComments(restaurant);
+				generateCommentsReviewed(restaurant);
 			}
 		}
 
@@ -78,5 +83,117 @@ function setCurrentRestaurantView(name) {
 		url: 'webapi/restaurantView/setCurrentRestaurant',
 		data: JSON.stringify(data),
 		contentType: 'application/json'
+	});
+}
+
+function generateComments(restaurant) {
+	
+	let data = {
+		"name" : restaurant.name
+	}
+	
+	$.post({
+		url: 'webapi/comments/getManagerComments',
+		contentType: 'application/json',
+		data: JSON.stringify(data),
+		success: function(response) {
+
+			$('#rest-table-comment tbody').empty();
+
+			for (let comment of response) {
+
+				newRowContent = `<tr>`
+				newRowContent += `<td>` + comment.author.id + `</td>`
+				newRowContent += `<td>` + comment.rating + `</td > `
+				newRowContent += `<td>` + comment.text + `</td > `
+				newRowContent += `<td>` + comment.state + `</td > `
+				newRowContent += `<td>` + `<a onclick=approveComment(\"` + comment.id + `\")  href="http://localhost:8080/PocetniREST/profileManager.html">Approve</a>` + `</td>`
+				newRowContent += `<td>` + `<a onclick=denyComment(\"` + comment.id + `\")  href="http://localhost:8080/PocetniREST/profileManager.html">Deny</a>` + `</td>`
+
+				$('#rest-table-comment tbody').append(newRowContent);
+
+			}
+
+			if (response.length === 0) {
+				newRowContent = `<tr>`
+				newRowContent += `<td colspan="6">There are no customer reviews.</td>`
+
+				$('#rest-table-comment tbody').append(newRowContent);
+			}
+
+		}
+	});
+}
+
+function generateCommentsReviewed(restaurant) {
+	
+	let data = {
+		"name" : restaurant.name
+	}
+	
+	$.post({
+		url: 'webapi/comments/getManagerCommentsReviewed',
+		contentType: 'application/json',
+		data: JSON.stringify(data),
+		success: function(response) {
+
+			$('#rest-table-comment-reviewed tbody').empty();
+
+			for (let comment of response) {
+
+				newRowContent = `<tr>`
+				newRowContent += `<td>` + comment.id + `</td>`
+				newRowContent += `<td>` + comment.author.id + `</td>`
+				newRowContent += `<td>` + comment.rating + `</td > `
+				newRowContent += `<td>` + comment.text + `</td > `
+				newRowContent += `<td>` + comment.state + `</td > `
+																																																								
+				$('#rest-table-comment-reviewed tbody').append(newRowContent);
+
+			}
+
+			if (response.length === 0) {
+				newRowContent = `<tr>`
+				newRowContent += `<td colspan="6">There are no customer reviews.</td>`
+
+				$('#rest-table-comment-reviewed tbody').append(newRowContent);
+			}
+
+		}
+	});
+}
+
+function approveComment(id) {
+	let data = {
+		"id": id
+	}
+	
+	$.post({
+		url: 'webapi/comments/approveComment',
+		contentType: 'application/json',
+		data: JSON.stringify(data),
+		success: function(response) {
+			alert(response);
+		}
+	});
+
+
+
+
+}
+
+function denyComment(id) {
+
+	let data = {
+		"id": id
+	}
+	
+	$.post({
+		url: 'webapi/comments/denyComment',
+		contentType: 'application/json',
+		data: JSON.stringify(data),
+		success: function(response) {
+			alert(response);
+		}
 	});
 }
