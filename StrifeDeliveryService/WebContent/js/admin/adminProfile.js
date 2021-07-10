@@ -48,7 +48,7 @@ function generateComments() {
 				newRowContent += `<td>` + comment.author.id + `</td>`
 				newRowContent += `<td>` + comment.restaurant.name + `</td>`
 				newRowContent += `<td>` + comment.rating + `</td > `
-				newRowContent += `<td>` + comment.text + `</td > `
+				newRowContent += `<td style="width: 34%">` + comment.text + `</td > `
 				newRowContent += `<td>` + comment.state + `</td > `
 
 				$('#rest-table-comment tbody').append(newRowContent);

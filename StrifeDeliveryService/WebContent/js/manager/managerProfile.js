@@ -105,7 +105,7 @@ function generateComments(restaurant) {
 				newRowContent = `<tr>`
 				newRowContent += `<td>` + comment.author.id + `</td>`
 				newRowContent += `<td>` + comment.rating + `</td > `
-				newRowContent += `<td>` + comment.text + `</td > `
+				newRowContent += `<td style="width: 34%">` + comment.text + `</td > `
 				newRowContent += `<td>` + comment.state + `</td > `
 				newRowContent += `<td>` + `<a onclick=approveComment(\"` + comment.id + `\")  href="http://localhost:8080/PocetniREST/profileManager.html">Approve</a>` + `</td>`
 				newRowContent += `<td>` + `<a onclick=denyComment(\"` + comment.id + `\")  href="http://localhost:8080/PocetniREST/profileManager.html">Deny</a>` + `</td>`
@@ -145,7 +145,7 @@ function generateCommentsReviewed(restaurant) {
 				newRowContent += `<td>` + comment.id + `</td>`
 				newRowContent += `<td>` + comment.author.id + `</td>`
 				newRowContent += `<td>` + comment.rating + `</td > `
-				newRowContent += `<td>` + comment.text + `</td > `
+				newRowContent += `<td style="width: 34%">` + comment.text + `</td > `
 				newRowContent += `<td>` + comment.state + `</td > `
 																																																								
 				$('#rest-table-comment-reviewed tbody').append(newRowContent);
