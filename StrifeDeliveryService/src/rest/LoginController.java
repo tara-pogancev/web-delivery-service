@@ -212,9 +212,11 @@ public class LoginController {
 		else if (repoDel.read(username) != null)
 			return new UserViewDTO(repoDel.read(username));
 
-		else
+		else if (repoAdmin.read(username) != null)
 			return new UserViewDTO(repoAdmin.read(username));
-
+		
+		else
+			return new UserViewDTO("INTRUDER");
 	}
 
 	@GET

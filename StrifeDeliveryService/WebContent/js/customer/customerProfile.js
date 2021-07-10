@@ -8,42 +8,48 @@ function getDataFromServer() {
 		url: 'webapi/login/activeUserObject',
 		contentType: 'application/json',
 		success: function(profile) {
-			newRowContent = `<p><b>Username:</b> ` + profile.id + `</p>`
-			newRowContent += `<div class="r-gap"></div>`
-			newRowContent += `<p><b>First name:</b> ` + profile.name + `</p>`
-			newRowContent += `<div class="r-gap"></div>`
-			newRowContent += `<p><b>Last name:</b> ` + profile.lastName + `</p>`
-			newRowContent += `<div class="r-gap"></div>`
-			newRowContent += `<p><b>Gender:</b> ` + profile.gender.toUpperCase() + `</p>`
-			newRowContent += `<div class="r-gap"></div>`
-			newRowContent += `<p><b>Date of birth:</b> ` + profile.dateOfBirth + `</p>`
-			newRowContent += `<div class="r-gap"></div>`
 
-			$('#user-data').append(newRowContent);
-
-			$('#welcomeUser').text("Welcome, " + profile.name);
-
-			$('#points').text("Points: " + profile.points);
-			$('#category').text("Category: " + profile.customerStatus);
-			$('#discount').text("Discount: " + profile.discount + "%");
-			
-			activeUser = profile;
-			activeUsername = profile.id;
-			generateCart(activeUsername);
-
-			let data = {
-				id: activeUsername
+			if (profile.customerStatus == "INTRUDER") {
+				window.location.href = "http://localhost:8080/PocetniREST/403Forbidden.html";
 			}
+			else {
+				newRowContent = `<p><b>Username:</b> ` + profile.id + `</p>`
+				newRowContent += `<div class="r-gap"></div>`
+				newRowContent += `<p><b>First name:</b> ` + profile.name + `</p>`
+				newRowContent += `<div class="r-gap"></div>`
+				newRowContent += `<p><b>Last name:</b> ` + profile.lastName + `</p>`
+				newRowContent += `<div class="r-gap"></div>`
+				newRowContent += `<p><b>Gender:</b> ` + profile.gender.toUpperCase() + `</p>`
+				newRowContent += `<div class="r-gap"></div>`
+				newRowContent += `<p><b>Date of birth:</b> ` + profile.dateOfBirth + `</p>`
+				newRowContent += `<div class="r-gap"></div>`
 
-			$.post({
-				url: 'webapi/orders/setActiveUser',
-				data: JSON.stringify(data),
-				contentType: 'application/json',
-				success: function(response) {
-					generateDeliveredOrders(activeUsername);
+				$('#user-data').append(newRowContent);
+
+				$('#welcomeUser').text("Welcome, " + profile.name);
+
+				$('#points').text("Points: " + profile.points);
+				$('#category').text("Category: " + profile.customerStatus);
+				$('#discount').text("Discount: " + profile.discount + "%");
+
+				activeUser = profile;
+				activeUsername = profile.id;
+				generateCart(activeUsername);
+
+				let data = {
+					id: activeUsername
 				}
-			});
 
+				$.post({
+					url: 'webapi/orders/setActiveUser',
+					data: JSON.stringify(data),
+					contentType: 'application/json',
+					success: function(response) {
+						generateDeliveredOrders(activeUsername);
+
+					}
+				});
+			}
 		}
 	});
 
@@ -210,8 +216,8 @@ function generateDeliveredOrders(username) {
 function setOrderForReview(id) {
 
 	let data = {
-			id: id
-		}
+		id: id
+	}
 
 	$.post({
 		url: 'webapi/comments/setCurrentOrder',
