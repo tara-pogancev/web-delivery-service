@@ -84,9 +84,25 @@ public class CommentController {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ArrayList<Comment> getRestaurantComments(RestaurantDTO restaurantDTO) {
 		repoComment.setBasePath(getDataDirPath());
-		
-		return repoComment.getAllByRestaurant(restaurantDTO.name);
+		ArrayList<Comment> list = new ArrayList<Comment>();
+		for(Comment c : repoComment.getAllByRestaurant(restaurantDTO.name))
+		{
+			if (c.getState().equals(CommentState.APPROVED))
+			{
+				list.add(c);
+			}
+		}
+		return list;
 
+	}
+	
+	@POST
+	@Path("getManagerComments")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ArrayList<Comment> getManagerComments(RestaurantDTO restaurantDTO) {
+		repoComment.setBasePath(getDataDirPath());
+		return repoComment.getAllByRestaurant(restaurantDTO.name);
 	}
 	
 	@GET

@@ -33,7 +33,7 @@ public class Comment {
 		this.restaurant = null;
 		this.text = null;
 		this.rating = 1;
-		this.id = this.author.getId() + restaurant.getName();
+		this.id = null;
 	}
 	
 	public Comment(CommentDTO comment) {
